@@ -1,4 +1,4 @@
-import Layout from "../layout-2";
+
 
 export default function SupportCenterPage() {
     return (
