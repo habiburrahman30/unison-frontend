@@ -7,7 +7,7 @@ export default function Footer() {
                         <div className="col-md-6 col-lg-3">
                             <div className="footer-widget-box about-us">
                                 <a href={"/"} className="footer-logo">
-                                    <img src="/assets/img/logo/logo-light.png" alt="" />
+                                    <img src="/assets/img/logo/logo.png" alt="" />
                                 </a>
                                 <p className="mb-3">
                                     We are many variations of the passages available but the majoro
@@ -17,12 +17,8 @@ export default function Footer() {
                                     <li>
                                         <a href="tel:+21236547898">
                                             <i className="far fa-phone" />
-                                            +2 123 654 7898
+                                            +880 1723435818
                                         </a>
-                                    </li>
-                                    <li>
-                                        <i className="far fa-map-marker-alt" />
-                                        25/B Milford Road, New York
                                     </li>
                                     <li>
                                         <a href="#">
@@ -31,18 +27,39 @@ export default function Footer() {
                                                 className=""
                                                 data-cfemail=""
                                             >
-                                                [email&nbsp;protected]
+                                                [info@unisonbizltd.com.bd]
                                             </span>
                                         </a>
                                     </li>
                                     <li>
+                                        <h4 className="footer-widget-title mt-20 mb-0 pb-2">
+                                            Registered Office
+                                        </h4>
+                                    </li>
+                                    <li>
+                                        {/* <i className="far fa-map-marker-alt" /> */}
+                                        152, Gawair Madrasha Road, Ashkona, Dakkinkhan, Dhaka-1230, Bangladesh
+                                    </li>
+
+                                    <li>
+                                        <h4 className="footer-widget-title mt-20 mb-0 pb-2">
+                                            Sales Office & Mailing Address
+                                        </h4>
+                                    </li>
+                                    <li>
+                                        {/* <i className="far fa-map-marker-alt" /> */}
+                                        House: 25, Road: 09, Block: H, Mirpur -2, Dhaka-1216 Bangladesh
+
+                                    </li>
+
+                                    {/* <li>
                                         <i className="far fa-clock" />
                                         Mon-Fri (9.00AM - 8.00PM)
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-md-6 col-lg-2">
+                        <div className="col-md-6 col-lg-3">
                             <div className="footer-widget-box list">
                                 <h4 className="footer-widget-title">Quick Links</h4>
                                 <ul className="footer-list">
@@ -70,35 +87,35 @@ export default function Footer() {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-md-6 col-lg-2">
+                        <div className="col-md-6 col-lg-3">
                             <div className="footer-widget-box list">
                                 <h4 className="footer-widget-title">Browse Category</h4>
                                 <ul className="footer-list">
                                     <li>
-                                        <a href={"/products"}>Medicine</a>
+                                        <a href={"/products"}>MGPS</a>
                                     </li>
                                     <li>
-                                        <a href={"/products"}>Medical Equipments</a>
+                                        <a href={"/products"}>Oxygen Generator</a>
                                     </li>
                                     <li>
-                                        <a href={"/products"}>Beauty Care</a>
+                                        <a href={"/products"}>MOT</a>
                                     </li>
                                     <li>
-                                        <a href={"/products"}>Baby &amp; Mom Care</a>
+                                        <a href={"/products"}>OT</a>
                                     </li>
                                     <li>
-                                        <a href={"/products"}>Healthcare</a>
+                                        <a href={"/products"}>ICU</a>
                                     </li>
                                     <li>
-                                        <a href={"/products"}>Food &amp; Nutrition</a>
+                                        <a href={"/products"}>Hospital Furniture</a>
                                     </li>
                                     <li>
-                                        <a href={"/products"}>Medical Supplies</a>
+                                        <a href={"/products"}>CSSD</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-md-6 col-lg-2">
+                        <div className="col-md-6 col-lg-3">
                             <div className="footer-widget-box list">
                                 <h4 className="footer-widget-title">Support Center</h4>
                                 <ul className="footer-list">
@@ -120,7 +137,7 @@ export default function Footer() {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-md-6 col-lg-3">
+                        {/* <div className="col-md-6 col-lg-3">
                             <div className="footer-widget-box list">
                                 <h4 className="footer-widget-title">Get Mobile App</h4>
                                 <p>Medica App is now available on App Store &amp; Google Play.</p>
@@ -152,7 +169,7 @@ export default function Footer() {
                                     <img src="/assets/img/payment/paypal.svg" alt="" />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

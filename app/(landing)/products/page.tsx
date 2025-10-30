@@ -54,64 +54,55 @@ export default function ProductsPage() {
                                         <ul className="shop-category-list">
                                             <li>
                                                 <a href="#">
-                                                    Medicine<span>(15)</span>
+                                                    MGPS<span>(15)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Healthcare<span>(23)</span>
+                                                    Oxygen Generator<span>(23)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Beauty Care<span>(35)</span>
+                                                    MOT<span>(35)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Sexual Wellness<span>(46)</span>
+                                                    OT<span>(46)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Fitness<span>(39)</span>
+                                                    ICU<span>(39)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Lab Test<span>(79)</span>
+                                                    NICU<span>(79)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Baby &amp; Mom Care<span>(28)</span>
+                                                    Hospital Furniture<span>(28)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Supplement<span>(17)</span>
+                                                    CSSD<span>(17)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Food &amp; Nutrition<span>(12)</span>
+                                                    Water Management<span>(12)</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    Equipments<span>(74)</span>
+                                                    Disposable<span>(74)</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#">
-                                                    Medical Supplies<span>(38)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Pet Care<span>(22)</span>
-                                                </a>
-                                            </li>
+
                                             <li>
                                                 <a href="#">
                                                     Others<span>(25)</span>
@@ -280,68 +271,7 @@ export default function ProductsPage() {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="shop-widget">
-                                        <h4 className="shop-widget-title">Price Range</h4>
-                                        <div className="price-range-box">
-                                            <div className="price-range-input">
-                                                <input type="text" id="price-amount" readOnly={true} />
-                                            </div>
-                                            <div className="price-range" />
-                                        </div>
-                                    </div>
-                                    <div className="shop-widget">
-                                        <h4 className="shop-widget-title">Sales</h4>
-                                        <ul className="shop-checkbox-list">
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="sale1"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="sale1">
-                                                        On Sale
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="sale2"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="sale2">
-                                                        In Stock
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="sale3"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="sale3">
-                                                        Out Of Stock
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="sale4"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="sale4">
-                                                        Discount
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+
                                     {/* <div className="shop-widget">
                                         <h4 className="shop-widget-title">Ratings</h4>
                                         <ul className="shop-checkbox-list rating">
@@ -427,153 +357,8 @@ export default function ProductsPage() {
                                             </li>
                                         </ul>
                                     </div> */}
-                                    <div className="shop-widget">
-                                        <h4 className="shop-widget-title">Colors</h4>
-                                        <ul className="shop-checkbox-list color">
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="color1"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="color1">
-                                                        <span style={{ backgroundColor: "#606ddd" }} />
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="color2"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="color2">
-                                                        <span style={{ backgroundColor: "#4caf50" }} />
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="color3"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="color3">
-                                                        <span style={{ backgroundColor: "#17a2b8" }} />
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="color4"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="color4">
-                                                        <span style={{ backgroundColor: "#ffc107" }} />
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="color5"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="color5">
-                                                        <span style={{ backgroundColor: "#f44336" }} />
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="shop-widget">
-                                        <h4 className="shop-widget-title">Sizes</h4>
-                                        <ul className="shop-checkbox-list">
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="size1"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="size1">
-                                                        Extra Small
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="size2"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="size2">
-                                                        Small
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="size3"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="size3">
-                                                        Medium
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="size4"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="size4">
-                                                        Large
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="size5"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="size5">
-                                                        Extra Large
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="shop-widget-banner mt-30 mb-50">
-                                        <div
-                                            className="banner-img"
-                                            style={{
-                                                backgroundImage: "url(/assets/img/banner/shop-banner.jpg)"
-                                            }}
-                                        />
-                                        <div className="banner-content">
-                                            <h6>
-                                                Get <span>35% Off</span>
-                                            </h6>
-                                            <h4>New Collection of Medicine</h4>
-                                            <a href="#" className="theme-btn">
-                                                Shop Now
-                                            </a>
-                                        </div>
-                                    </div>
+
+
                                 </div>
                             </div>
                             <div className="col-lg-9">

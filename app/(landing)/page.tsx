@@ -61,7 +61,7 @@ export default function HomePage() {
                       data-animation="fadeInUp"
                       data-delay=".25s"
                     >
-                      Easy Health Care
+                      Health Care Technology & Solution
                     </h6>
                     <h1
                       className="hero-title"
@@ -72,19 +72,17 @@ export default function HomePage() {
                       Delivering Innovation in <span>Medical Equipment &</span>  Healthcare Technology.
                     </h1>
                     <p data-animation="fadeInLeft" data-delay=".75s">
-                      There are many variations of passages orem psum available but
-                      the majority have suffered alteration in some form by injected
-                      humour.
+                      We are committed to protect our commitment.
                     </p>
                     <div
                       className="hero-btn"
                       data-animation="fadeInUp"
                       data-delay="1s"
                     >
-                      <a href={"/products"} className="theme-btn">
+                      {/* <a href={"/products"} className="theme-btn">
                         Shop Now
                         <i className="fas fa-arrow-right" />
-                      </a>
+                      </a> */}
                       <a href={"/about"} className="theme-btn theme-btn2">
                         Learn More
                         <i className="fas fa-arrow-right" />
@@ -95,14 +93,14 @@ export default function HomePage() {
                 <div className="col-lg-6">
                   <div className="hero-right">
                     <div className="hero-img">
-                      <img src="/assets/img/hero/hero-1.png" alt="" />
+                      <img src="/assets/img/hero/hero-4.png" alt="" />
                     </div>
-                    <div className="hero-img-info">
+                    {/* <div className="hero-img-info">
                       <div className="icon">
                         <img src="/assets/img/icon/delivery.svg" alt="" />
                       </div>
                       <h6>Delivery within 30 minutes</h6>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -122,17 +120,16 @@ export default function HomePage() {
                       <div className="form-group">
                         <select className="select" name="category">
                           <option value="">All Category</option>
-                          <option value={1}>Medicine</option>
-                          <option value={2}>Medical Equipments</option>
-                          <option value={3}>Beauty Care</option>
-                          <option value={4}>Baby &amp; Mom Care</option>
-                          <option value={5}>Healthcare</option>
-                          <option value={6}>Food &amp; Nutrition</option>
-                          <option value={7}>Medical Supplies</option>
-                          <option value={8}>Lab Test</option>
-                          <option value={9}>Fitness</option>
-                          <option value={10}>Vitamins &amp; Supplement</option>
-                          <option value={11}>Pet Care</option>
+                          <option value={1}>MGPS</option>
+                          <option value={2}>Oxygen Generator</option>
+                          <option value={3}>MOT</option>
+                          <option value={4}>OT</option>
+                          <option value={5}>ICU</option>
+                          <option value={6}>NICU</option>
+                          <option value={7}>Hospital Furniture</option>
+                          <option value={8}>CSSD</option>
+                          <option value={9}>Water Management</option>
+                          <option value={10}>Disposable</option>
                         </select>
                       </div>
                     </div>
@@ -195,7 +192,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/medicine.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Medicine</h4>
+                      <h4>MGPS</h4>
                       <p>30 Items</p>
                     </div>
                   </div>
@@ -208,7 +205,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/health-care.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Healthcare</h4>
+                      <h4>Oxygen Generator</h4>
                       <p>25 Items</p>
                     </div>
                   </div>
@@ -221,7 +218,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/beauty-care.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Beauty Care</h4>
+                      <h4>MOT</h4>
                       <p>15 Items</p>
                     </div>
                   </div>
@@ -234,7 +231,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/sexual.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Sexual Wellness</h4>
+                      <h4>OT</h4>
                       <p>05 Items</p>
                     </div>
                   </div>
@@ -247,7 +244,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/fitness.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Fitness</h4>
+                      <h4>ICU</h4>
                       <p>30 Items</p>
                     </div>
                   </div>
@@ -260,7 +257,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/lab-test.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Lab Test</h4>
+                      <h4>NICU</h4>
                       <p>12 Items</p>
                     </div>
                   </div>
@@ -273,7 +270,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/baby-mom-care.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Baby &amp; Mom Care</h4>
+                      <h4>Hospital Furniture</h4>
                       <p>08 Items</p>
                     </div>
                   </div>
@@ -286,7 +283,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/supplements.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Supplement</h4>
+                      <h4>CSSD</h4>
                       <p>14 Items</p>
                     </div>
                   </div>
@@ -299,7 +296,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/food-nutrition.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Food &amp; Nutrition</h4>
+                      <h4>Water Management</h4>
                       <p>19 Items</p>
                     </div>
                   </div>
@@ -312,13 +309,13 @@ export default function HomePage() {
                       <img src="/assets/img/icon/medical-equipements.svg" alt="" />
                     </div>
                     <div className="content">
-                      <h4>Equipments</h4>
+                      <h4>Disposable</h4>
                       <p>24 Items</p>
                     </div>
                   </div>
                 </a>
               </div>
-              <div className="category-item">
+              {/* <div className="category-item">
                 <a href="#">
                   <div className="category-info">
                     <div className="icon">
@@ -343,445 +340,19 @@ export default function HomePage() {
                     </div>
                   </div>
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
         {/* category area end*/}
         {/* small banner */}
-        <div className="small-banner pb-100">
-          <div className="container wow fadeInUp" data-wow-delay=".25s">
-            <div className="row g-4">
-              <div className="col-12 col-md-6 col-lg-4">
-                <div className="banner-item">
-                  <img src="/assets/img/banner/mini-banner-1.jpg" alt="" />
-                  <div className="banner-content">
-                    <p>Sanitizer</p>
-                    <h3>
-                      Hand Sanitizer <br /> Collectons
-                    </h3>
-                    <a href={"/products"}>Shop Now</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-6 col-lg-4">
-                <div className="banner-item">
-                  <img src="/assets/img/banner/mini-banner-2.jpg" alt="" />
-                  <div className="banner-content">
-                    <p>Hot Sale</p>
-                    <h3>
-                      Face Wash Sale <br /> Collections
-                    </h3>
-                    <a href="#">Discover Now</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-6 col-lg-4">
-                <div className="banner-item">
-                  <img src="/assets/img/banner/mini-banner-3.jpg" alt="" />
-                  <div className="banner-content">
-                    <p>Facial Mask</p>
-                    <h3>
-                      Facial Mask Sale <br /> Up To <span>50%</span> Off
-                    </h3>
-                    <a href="#">Discover Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* small banner end */}
         {/* trending item */}
-        <div className="product-area pb-100">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 wow fadeInDown" data-wow-delay=".25s">
-                <div className="site-heading-inline">
-                  <h2 className="site-title">Trending Items</h2>
-                  <a href={"/products"}>
-                    View More <i className="fas fa-angle-double-right" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="product-wrap wow fadeInUp" data-wow-delay=".25s">
-              <div className="product-slider owl-carousel owl-theme">
-                <div className="product-item">
-                  <div className="product-img">
-                    <span className="type new">New</span>
-                    <a href="shop-single.html">
-                      <img src="/assets/img/product/01.png" alt="" />
-                    </a>
-                    <div className="product-action-wrap">
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#quickview"
-                          data-tooltip="tooltip"
-                          title="Quick View"
-                        >
-                          <i className="far fa-eye" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Wishlist">
-                          <i className="far fa-heart" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Compare">
-                          <i className="far fa-arrows-repeat" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product-content">
-                    <h3 className="product-title">
-                      <a href="shop-single.html">Surgical Face Mask</a>
-                    </h3>
-                    <div className="product-rate">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="far fa-star" />
-                    </div>
-                    <div className="product-bottom">
-                      <div className="product-price">
-                        <span>$250.00</span>
-                      </div>
-                      <button
-                        type="button"
-                        className="product-cart-btn"
-                        data-bs-placement="left"
-                        data-tooltip="tooltip"
-                        title="Add To Cart"
-                      >
-                        <i className="far fa-shopping-bag" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-item">
-                  <div className="product-img">
-                    <span className="type hot">Hot</span>
-                    <a href="shop-single.html">
-                      <img src="/assets/img/product/02.png" alt="" />
-                    </a>
-                    <div className="product-action-wrap">
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#quickview"
-                          data-tooltip="tooltip"
-                          title="Quick View"
-                        >
-                          <i className="far fa-eye" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Wishlist">
-                          <i className="far fa-heart" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Compare">
-                          <i className="far fa-arrows-repeat" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product-content">
-                    <h3 className="product-title">
-                      <a href="shop-single.html">Surgical Face Mask</a>
-                    </h3>
-                    <div className="product-rate">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="far fa-star" />
-                    </div>
-                    <div className="product-bottom">
-                      <div className="product-price">
-                        <span>$250.00</span>
-                      </div>
-                      <button
-                        type="button"
-                        className="product-cart-btn"
-                        data-bs-placement="left"
-                        data-tooltip="tooltip"
-                        title="Add To Cart"
-                      >
-                        <i className="far fa-shopping-bag" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-item">
-                  <div className="product-img">
-                    <span className="type oos">Out Of Stock</span>
-                    <a href="shop-single.html">
-                      <img src="/assets/img/product/03.png" alt="" />
-                    </a>
-                    <div className="product-action-wrap">
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#quickview"
-                          data-tooltip="tooltip"
-                          title="Quick View"
-                        >
-                          <i className="far fa-eye" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Wishlist">
-                          <i className="far fa-heart" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Compare">
-                          <i className="far fa-arrows-repeat" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product-content">
-                    <h3 className="product-title">
-                      <a href="shop-single.html">Surgical Face Mask</a>
-                    </h3>
-                    <div className="product-rate">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="far fa-star" />
-                    </div>
-                    <div className="product-bottom">
-                      <div className="product-price">
-                        <span>$250.00</span>
-                      </div>
-                      <button
-                        type="button"
-                        className="product-cart-btn"
-                        data-bs-placement="left"
-                        data-tooltip="tooltip"
-                        title="Add To Cart"
-                      >
-                        <i className="far fa-shopping-bag" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-item">
-                  <div className="product-img">
-                    <span className="type discount">10% Off</span>
-                    <a href="shop-single.html">
-                      <img src="/assets/img/product/04.png" alt="" />
-                    </a>
-                    <div className="product-action-wrap">
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#quickview"
-                          data-tooltip="tooltip"
-                          title="Quick View"
-                        >
-                          <i className="far fa-eye" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Wishlist">
-                          <i className="far fa-heart" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Compare">
-                          <i className="far fa-arrows-repeat" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product-content">
-                    <h3 className="product-title">
-                      <a href="shop-single.html">Surgical Face Mask</a>
-                    </h3>
-                    <div className="product-rate">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="far fa-star" />
-                    </div>
-                    <div className="product-bottom">
-                      <div className="product-price">
-                        <del>$250.00</del>
-                        <span>$190.00</span>
-                      </div>
-                      <button
-                        type="button"
-                        className="product-cart-btn"
-                        data-bs-placement="left"
-                        data-tooltip="tooltip"
-                        title="Add To Cart"
-                      >
-                        <i className="far fa-shopping-bag" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-item">
-                  <div className="product-img">
-                    <a href="shop-single.html">
-                      <img src="/assets/img/product/05.png" alt="" />
-                    </a>
-                    <div className="product-action-wrap">
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#quickview"
-                          data-tooltip="tooltip"
-                          title="Quick View"
-                        >
-                          <i className="far fa-eye" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Wishlist">
-                          <i className="far fa-heart" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Compare">
-                          <i className="far fa-arrows-repeat" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product-content">
-                    <h3 className="product-title">
-                      <a href="shop-single.html">Surgical Face Mask</a>
-                    </h3>
-                    <div className="product-rate">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="far fa-star" />
-                    </div>
-                    <div className="product-bottom">
-                      <div className="product-price">
-                        <span>$250.00</span>
-                      </div>
-                      <button
-                        type="button"
-                        className="product-cart-btn"
-                        data-bs-placement="left"
-                        data-tooltip="tooltip"
-                        title="Add To Cart"
-                      >
-                        <i className="far fa-shopping-bag" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-item">
-                  <div className="product-img">
-                    <a href="shop-single.html">
-                      <img src="/assets/img/product/06.png" alt="" />
-                    </a>
-                    <div className="product-action-wrap">
-                      <div className="product-action">
-                        <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#quickview"
-                          data-tooltip="tooltip"
-                          title="Quick View"
-                        >
-                          <i className="far fa-eye" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Wishlist">
-                          <i className="far fa-heart" />
-                        </a>
-                        <a href="#" data-tooltip="tooltip" title="Add To Compare">
-                          <i className="far fa-arrows-repeat" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="product-content">
-                    <h3 className="product-title">
-                      <a href="shop-single.html">Surgical Face Mask</a>
-                    </h3>
-                    <div className="product-rate">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="far fa-star" />
-                    </div>
-                    <div className="product-bottom">
-                      <div className="product-price">
-                        <span>$250.00</span>
-                      </div>
-                      <button
-                        type="button"
-                        className="product-cart-btn"
-                        data-bs-placement="left"
-                        data-tooltip="tooltip"
-                        title="Add To Cart"
-                      >
-                        <i className="far fa-shopping-bag" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* trending item end */}
         {/* feature area */}
-        <div className="feature-area pb-100">
-          <div className="container wow fadeInUp" data-wow-delay=".25s">
-            <div className="feature-wrap">
-              <div className="row g-0">
-                <div className="col-12 col-md-6 col-lg-3">
-                  <div className="feature-item">
-                    <div className="feature-icon">
-                      <i className="fal fa-truck" />
-                    </div>
-                    <div className="feature-content">
-                      <h4>Free Delivery</h4>
-                      <p>Orders Over $120</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-6 col-lg-3">
-                  <div className="feature-item">
-                    <div className="feature-icon">
-                      <i className="fal fa-sync" />
-                    </div>
-                    <div className="feature-content">
-                      <h4>Get Refund</h4>
-                      <p>Within 30 Days Returns</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-6 col-lg-3">
-                  <div className="feature-item">
-                    <div className="feature-icon">
-                      <i className="fal fa-wallet" />
-                    </div>
-                    <div className="feature-content">
-                      <h4>Safe Payment</h4>
-                      <p>100% Secure Payment</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-6 col-lg-3">
-                  <div className="feature-item">
-                    <div className="feature-icon">
-                      <i className="fal fa-headset" />
-                    </div>
-                    <div className="feature-content">
-                      <h4>24/7 Support</h4>
-                      <p>Feel Free To Call Us</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* feature area end */}
         {/* popular item */}
         <div className="product-area pb-100">
@@ -799,10 +370,11 @@ export default function HomePage() {
                     <div className="item-tab">
                       <ul
                         className="nav nav-pills mt-40 mb-50"
+                        style={{ justifyContent: "start" }}
                         id="item-tab"
                         role="tablist"
                       >
-                        <li className="nav-item" role="presentation">
+                        <li className="nav-item" role="presentation" >
                           <button
                             className="nav-link active"
                             id="item-tab1"
@@ -813,7 +385,7 @@ export default function HomePage() {
                             aria-controls="pill-item-tab1"
                             aria-selected="true"
                           >
-                            Medicine
+                            MGPS
                           </button>
                         </li>
                         <li className="nav-item" role="presentation">
@@ -827,7 +399,7 @@ export default function HomePage() {
                             aria-controls="pill-item-tab2"
                             aria-selected="false"
                           >
-                            Beauty Care
+                            Oxygen Generator
                           </button>
                         </li>
                         <li className="nav-item" role="presentation">
@@ -841,7 +413,7 @@ export default function HomePage() {
                             aria-controls="pill-item-tab3"
                             aria-selected="false"
                           >
-                            Healthcare
+                            MOT
                           </button>
                         </li>
                         <li className="nav-item" role="presentation">
@@ -855,7 +427,7 @@ export default function HomePage() {
                             aria-controls="pill-item-tab4"
                             aria-selected="false"
                           >
-                            Baby &amp; Mom Care
+                            OT
                           </button>
                         </li>
                         <li className="nav-item" role="presentation">
@@ -869,7 +441,7 @@ export default function HomePage() {
                             aria-controls="pill-item-tab5"
                             aria-selected="false"
                           >
-                            Food &amp; Nutrition
+                            ICU
                           </button>
                         </li>
                         <li className="nav-item" role="presentation">
@@ -883,7 +455,35 @@ export default function HomePage() {
                             aria-controls="pill-item-tab6"
                             aria-selected="false"
                           >
-                            Medical Equipments
+                            NICU
+                          </button>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                          <button
+                            className="nav-link"
+                            id="item-tab7"
+                            data-bs-toggle="pill"
+                            data-bs-target="#pill-item-tab7"
+                            type="button"
+                            role="tab"
+                            aria-controls="pill-item-tab7"
+                            aria-selected="false"
+                          >
+                            Hospital Furniture
+                          </button>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                          <button
+                            className="nav-link"
+                            id="item-tab8"
+                            data-bs-toggle="pill"
+                            data-bs-target="#pill-item-tab8"
+                            type="button"
+                            role="tab"
+                            aria-controls="pill-item-tab8"
+                            aria-selected="false"
+                          >
+                            CSSD
                           </button>
                         </li>
                       </ul>
@@ -910,36 +510,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/14.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -952,20 +523,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -976,36 +534,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/07.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1018,20 +547,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1042,36 +558,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/24.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1084,20 +571,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1108,36 +582,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/15.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1150,21 +595,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <del>$250.00</del>
-                                <span>$190.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1197,22 +628,8 @@ export default function HomePage() {
                                 >
                                   <i className="far fa-eye" />
                                 </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
+
+
                               </div>
                             </div>
                           </div>
@@ -1227,20 +644,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1251,36 +655,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/11.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1293,20 +668,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1317,36 +679,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/12.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1359,20 +692,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1383,36 +703,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/13.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1425,21 +716,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <del>$250.00</del>
-                                <span>$190.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1460,36 +737,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/17.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1502,20 +750,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1526,36 +761,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/18.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1568,20 +774,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1592,36 +785,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/19.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1634,20 +798,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1658,36 +809,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/20.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1700,21 +822,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <del>$250.00</del>
-                                <span>$190.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1735,36 +843,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/22.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1777,20 +856,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1801,36 +867,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/23.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1843,20 +880,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1867,36 +891,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/24.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1909,20 +904,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -1933,36 +915,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/25.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -1975,21 +928,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <del>$250.00</del>
-                                <span>$190.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2010,36 +949,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/30.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -2052,20 +962,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2076,36 +973,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/31.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -2118,20 +986,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2142,36 +997,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/32.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -2184,20 +1010,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2208,36 +1021,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/33.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -2250,21 +1034,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <del>$250.00</del>
-                                <span>$190.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2285,36 +1055,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/34.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -2327,20 +1068,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2351,36 +1079,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/35.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -2393,20 +1092,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2417,36 +1103,7 @@ export default function HomePage() {
                             <a href="shop-single.html">
                               <img src="/assets/img/product/36.png" alt="" />
                             </a>
-                            <div className="product-action-wrap">
-                              <div className="product-action">
-                                <a
-                                  href="#"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#quickview"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Quick View"
-                                >
-                                  <i className="far fa-eye" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
-                              </div>
-                            </div>
+
                           </div>
                           <div className="product-content">
                             <h3 className="product-title">
@@ -2459,20 +1116,7 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <span>$250.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2482,6 +1126,146 @@ export default function HomePage() {
                             <span className="type discount">10% Off</span>
                             <a href="shop-single.html">
                               <img src="/assets/img/product/37.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="tab-pane"
+                    id="pill-item-tab7"
+                    role="tabpanel"
+                    aria-labelledby="item-tab7"
+                    tabIndex={0}
+                  >
+                    <div className="row g-3">
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type new">New</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/22.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type hot">Hot</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/23.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type oos">Out Of Stock</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/24.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type discount">10% Off</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/25.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="tab-pane"
+                    id="pill-item-tab8"
+                    role="tabpanel"
+                    aria-labelledby="item-tab8"
+                    tabIndex={0}
+                  >
+                    <div className="row g-3">
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type new">New</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/10.png" alt="" />
                             </a>
                             <div className="product-action-wrap">
                               <div className="product-action">
@@ -2495,22 +1279,8 @@ export default function HomePage() {
                                 >
                                   <i className="far fa-eye" />
                                 </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Wishlist"
-                                >
-                                  <i className="far fa-heart" />
-                                </a>
-                                <a
-                                  href="#"
-                                  data-bs-placement="top"
-                                  data-tooltip="tooltip"
-                                  title="Add To Compare"
-                                >
-                                  <i className="far fa-arrows-repeat" />
-                                </a>
+
+
                               </div>
                             </div>
                           </div>
@@ -2525,21 +1295,79 @@ export default function HomePage() {
                               <i className="fas fa-star" />
                               <i className="far fa-star" />
                             </div>
-                            <div className="product-bottom">
-                              <div className="product-price">
-                                <del>$250.00</del>
-                                <span>$190.00</span>
-                              </div>
-                              <button
-                                type="button"
-                                className="product-cart-btn"
-                                data-bs-placement="left"
-                                data-tooltip="tooltip"
-                                title="Add To Cart"
-                              >
-                                <i className="far fa-shopping-bag" />
-                              </button>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type hot">Hot</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/11.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
                             </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type oos">Out Of Stock</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/12.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-lg-4 col-xl-3">
+                        <div className="product-item">
+                          <div className="product-img">
+                            <span className="type discount">10% Off</span>
+                            <a href="shop-single.html">
+                              <img src="/assets/img/product/13.png" alt="" />
+                            </a>
+
+                          </div>
+                          <div className="product-content">
+                            <h3 className="product-title">
+                              <a href="shop-single.html">Surgical Face Mask</a>
+                            </h3>
+                            <div className="product-rate">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="far fa-star" />
+                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -2562,35 +1390,10 @@ export default function HomePage() {
         </div>
         {/* popular item end */}
         {/* big banner */}
-        <div className="big-banner">
-          <div className="container wow fadeInUp" data-wow-delay=".25s">
-            <div
-              className="banner-wrap"
-              style={{ backgroundImage: "url(/assets/img/banner/big-banner.jpg)" }}
-            >
-              <div className="row">
-                <div className="col-lg-8 mx-auto">
-                  <div className="banner-content">
-                    <div className="banner-info">
-                      <h6>Mega Collections</h6>
-                      <h2>
-                        Huge Sale Up To <span>40%</span> Off
-                      </h2>
-                      <p>at our outlet stores</p>
-                    </div>
-                    <a href={"/products"} className="theme-btn">
-                      Shop Now
-                      <i className="fas fa-arrow-right" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* big banner end */}
         {/* brand area */}
-        <div className="brand-area pt-80">
+        <div className="brand-area mb-5">
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -2638,334 +1441,10 @@ export default function HomePage() {
         </div>
         {/* brand area end */}
         {/* video area */}
-        <div className="video-area pt-100">
-          <div className="container-fluid px-0">
-            <div
-              className="video-content"
-              style={{ backgroundImage: "url(/assets/img/video/01.jpg)" }}
-            >
-              <div className="video-wrapper">
-                <a
-                  className="play-btn popup-youtube"
-                  href="https://www.youtube.com/watch?v=ckHzmP1evNU"
-                >
-                  <i className="fas fa-play" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* video area end */}
         {/* product list */}
-        <div className="product-list pl-negative pb-100">
-          <div className="container wow fadeInUp" data-wow-delay=".25s">
-            <div className="row g-4">
-              <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                <div className="product-list-box">
-                  <h2 className="product-list-title">On sale</h2>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/01.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/02.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/03.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                <div className="product-list-box">
-                  <h2 className="product-list-title">Best Seller</h2>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/04.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/05.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/06.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                <div className="product-list-box">
-                  <h2 className="product-list-title">Top Rated</h2>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/07.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/08.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                  <div className="product-list-item">
-                    <div className="product-list-img">
-                      <a href="shop-single.html">
-                        <img src="/assets/img/product/09.png" alt="#" />
-                      </a>
-                    </div>
-                    <div className="product-list-content">
-                      <h4>
-                        <a href="shop-single.html">Surgical Face Mask</a>
-                      </h4>
-                      <div className="product-list-rate">
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="fas fa-star" />
-                        <i className="far fa-star" />
-                      </div>
-                      <div className="product-list-price">
-                        <del>60.00</del>
-                        <span>$40.00</span>
-                      </div>
-                    </div>
-                    <a
-                      href="#"
-                      className="product-list-btn"
-                      data-bs-placement="left"
-                      data-tooltip="tooltip"
-                      title="Add To Cart"
-                    >
-                      <i className="far fa-shopping-bag" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* product list end */}
         {/* deal area */}
         <div className="deal-area pt-50 pb-50">
@@ -2977,7 +1456,7 @@ export default function HomePage() {
                   <div className="row align-items-center">
                     <div className="col-lg-6">
                       <div className="deal-content">
-                        <div className="deal-info">
+                        <div className="deal-info pb-20">
                           <span>Weekly Deal</span>
                           <h1>Best Deal For This Week</h1>
                           <p>
@@ -2987,9 +1466,7 @@ export default function HomePage() {
                             even slightly believable.
                           </p>
                         </div>
-                        <div className="deal-countdown">
-                          <div className="countdown" data-countdown="2025/12/30" />
-                        </div>
+
                         <a href={"/products"} className="theme-btn theme-btn2">
                           Shop Now <i className="fas fa-arrow-right" />
                         </a>
@@ -2998,10 +1475,7 @@ export default function HomePage() {
                     <div className="col-lg-6">
                       <div className="deal-img">
                         <img src="/assets/img/deal/01.png" alt="" />
-                        <div className="deal-discount">
-                          <span>35%</span>
-                          <span>off</span>
-                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -3010,7 +1484,7 @@ export default function HomePage() {
                   <div className="row align-items-center">
                     <div className="col-lg-6">
                       <div className="deal-content">
-                        <div className="deal-info">
+                        <div className="deal-info pb-20">
                           <span>Weekly Deal</span>
                           <h1>Best Deal For This Week</h1>
                           <p>
@@ -3020,9 +1494,7 @@ export default function HomePage() {
                             even slightly believable.
                           </p>
                         </div>
-                        <div className="deal-countdown">
-                          <div className="countdown" data-countdown="2025/12/30" />
-                        </div>
+
                         <a href={"/products"} className="theme-btn theme-btn2">
                           Shop Now <i className="fas fa-arrow-right" />
                         </a>
@@ -3031,10 +1503,7 @@ export default function HomePage() {
                     <div className="col-lg-6">
                       <div className="deal-img">
                         <img src="/assets/img/deal/02.png" alt="" />
-                        <div className="deal-discount">
-                          <span>35%</span>
-                          <span>off</span>
-                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -3043,7 +1512,7 @@ export default function HomePage() {
                   <div className="row align-items-center">
                     <div className="col-lg-6">
                       <div className="deal-content">
-                        <div className="deal-info">
+                        <div className="deal-info pb-20">
                           <span>Weekly Deal</span>
                           <h1>Best Deal For This Week</h1>
                           <p>
@@ -3053,9 +1522,7 @@ export default function HomePage() {
                             even slightly believable.
                           </p>
                         </div>
-                        <div className="deal-countdown">
-                          <div className="countdown" data-countdown="2025/12/30" />
-                        </div>
+
                         <a href={"/products"} className="theme-btn theme-btn2">
                           Shop Now <i className="fas fa-arrow-right" />
                         </a>
@@ -3064,10 +1531,7 @@ export default function HomePage() {
                     <div className="col-lg-6">
                       <div className="deal-img">
                         <img src="/assets/img/deal/03.png" alt="" />
-                        <div className="deal-discount">
-                          <span>35%</span>
-                          <span>off</span>
-                        </div>
+
                       </div>
                     </div>
                   </div>

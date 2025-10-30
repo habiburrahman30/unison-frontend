@@ -45,7 +45,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/medicine.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Medicine</h4>
+                                                <h4>MGPS</h4>
                                                 <p>30 Items</p>
                                             </div>
                                         </div>
@@ -60,7 +60,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/health-care.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Healthcare</h4>
+                                                <h4>Oxgen Generator</h4>
                                                 <p>25 Items</p>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/beauty-care.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Beauty Care</h4>
+                                                <h4>MOT</h4>
                                                 <p>15 Items</p>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/sexual.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Sexual Wellness</h4>
+                                                <h4>OT</h4>
                                                 <p>05 Items</p>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/fitness.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Fitness</h4>
+                                                <h4>ICU</h4>
                                                 <p>30 Items</p>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/lab-test.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Lab Test</h4>
+                                                <h4>NICU</h4>
                                                 <p>12 Items</p>
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/baby-mom-care.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Baby &amp; Mom Care</h4>
+                                                <h4>Hospital Furniture</h4>
                                                 <p>08 Items</p>
                                             </div>
                                         </div>
@@ -150,7 +150,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/supplements.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Supplement</h4>
+                                                <h4>CSSD</h4>
                                                 <p>14 Items</p>
                                             </div>
                                         </div>
@@ -165,7 +165,7 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/food-nutrition.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Food &amp; Nutrition</h4>
+                                                <h4>Water Management</h4>
                                                 <p>19 Items</p>
                                             </div>
                                         </div>
@@ -180,14 +180,14 @@ export default function CategoryPage() {
                                                 <img src="/assets/img/icon/medical-equipements.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4>Equipments</h4>
+                                                <h4>Disposable</h4>
                                                 <p>24 Items</p>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
                             </div>
-                            <div className="col-6 col-md-4 col-lg-2">
+                            {/* <div className="col-6 col-md-4 col-lg-2">
                                 <div className="category-item">
                                     <a href="#">
                                         <div className="category-info">
@@ -216,7 +216,7 @@ export default function CategoryPage() {
                                         </div>
                                     </a>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

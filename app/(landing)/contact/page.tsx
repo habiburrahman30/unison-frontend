@@ -40,8 +40,8 @@ export default function ContactPage() {
                                                         <i className="fal fa-map-location-dot" />
                                                     </div>
                                                     <div className="contact-info-content">
-                                                        <h5>Office Address</h5>
-                                                        <p>25/B Milford Elm Drive Road, New York, USA</p>
+                                                        <h5>Registered Office</h5>
+                                                        <p>152, Gawair Madrasha Road, Ashkona, Dakkinkhan, Dhaka-1230, Bangladesh</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,8 +52,8 @@ export default function ContactPage() {
                                                     </div>
                                                     <div className="contact-info-content">
                                                         <h5>Call Us</h5>
-                                                        <p>+2 123 4565 788</p>
-                                                        <p>+2 123 4565 789</p>
+                                                        <p>+880 1723435818</p>
+                                                        <p>+880 1723435818</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                                                                 className="__cf_email__"
                                                                 data-cfemail="cda4a3aba28da8b5aca0bda1a8e3aea2a0"
                                                             >
-                                                                [email&nbsp;protected]
+                                                                [info@unisonbizltd.com.bd]
                                                             </a>
                                                         </p>
                                                         <p>
@@ -79,7 +79,7 @@ export default function ContactPage() {
                                                                 className="__cf_email__"
                                                                 data-cfemail="b0c3c5c0c0dfc2c4f0d5c8d1ddc0dcd59ed3dfdd"
                                                             >
-                                                                [email&nbsp;protected]
+                                                                [info@unisonbizltd.com.bd]
                                                             </a>
                                                         </p>
                                                     </div>
@@ -208,7 +208,7 @@ export default function ContactPage() {
                 {/* map */}
                 <div className="contact-map">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7302.131589942968!2d90.41128994408162!3d23.780671282538933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79ebfc24eab%3A0xea7dab563f12457a!2sGulshan%201%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1759907737473!5m2!1sen!2sbd"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.3405610766417!2d90.36182289999999!3d23.8064859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0d9de327c2d%3A0xfc0c07e06bd9b989!2z4KaH4KaJ4Kao4Ka_4Ka44KaoIOCmrOCmv-CmnCDgprLgpr_gpq7gpr_gpp_gp4fgpqE!5e0!3m2!1sen!2sbd!4v1761850821380!5m2!1sen!2sbd"
                         style={{ border: 0 }}
                         allowFullScreen={true}
                         aria-hidden="false"

@@ -40,7 +40,7 @@ export default function ProductPage() {
                                         <i className="far fa-play" />
                                     </a>
                                     <div className="flexslider-thumbnails">
-                                        <ul className="slides">
+                                        <ul className="slides ">
                                             <li
                                                 data-thumb="/assets/img/product/01.png"
                                                 rel="adjustX:10, adjustY:"
@@ -63,128 +63,30 @@ export default function ProductPage() {
                             <div className="col-md-12 col-lg-6 col-xxl-6">
                                 <div className="shop-single-info">
                                     <h4 className="shop-single-title">Surgical Face Mask</h4>
-                                    <div className="shop-single-rating">
-                                        <i className="fas fa-star" />
-                                        <i className="fas fa-star" />
-                                        <i className="fas fa-star" />
-                                        <i className="fas fa-star-half-alt" />
-                                        <i className="far fa-star" />
-                                        <span className="rating-count"> (4 Customer Reviews)</span>
-                                    </div>
-                                    <div className="shop-single-price">
-                                        <del>$690</del>
-                                        <span className="amount">$650</span>
-                                        <span className="discount-percentage">30% Off</span>
-                                    </div>
-                                    <p className="mb-3">
+
+                                    <h5 className="widget-title pt-20">
+                                        Registered Office
+                                    </h5>
+
+                                    <p className="mb-3 ">
                                         There are many variations of passages of Lorem Ipsum available,
                                         but the majority have suffered alteration in some form, by
                                         injected humour, or randomised words which don't look even
                                         slightly believable.
                                     </p>
-                                    <div className="shop-single-cs">
-                                        <div className="row">
-                                            <div className="col-md-3 col-lg-4 col-xl-3">
-                                                <div className="shop-single-size">
-                                                    <h6>Quantity</h6>
-                                                    <div className="shop-cart-qty">
-                                                        <button className="minus-btn">
-                                                            <i className="fal fa-minus" />
-                                                        </button>
-                                                        <input
-                                                            className="quantity"
-                                                            type="text"
-                                                            defaultValue={1}
-                                                            disabled={false}
-                                                        />
-                                                        <button className="plus-btn">
-                                                            <i className="fal fa-plus" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-3 col-lg-4 col-xl-3">
-                                                <div className="shop-single-size">
-                                                    <h6>Size</h6>
-                                                    <select className="select">
-                                                        <option value="">Choose Size</option>
-                                                        <option value={1}>Extra Small</option>
-                                                        <option value={2}>Small</option>
-                                                        <option value={3}>Medium</option>
-                                                        <option value={4}>Extra Large</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 col-lg-12 col-xl-6">
-                                                <div className="shop-single-color">
-                                                    <h6>Color</h6>
-                                                    <ul className="shop-checkbox-list color">
-                                                        <li>
-                                                            <div className="form-check">
-                                                                <input
-                                                                    className="form-check-input"
-                                                                    type="checkbox"
-                                                                    id="color1"
-                                                                />
-                                                                <label className="form-check-label" htmlFor="color1">
-                                                                    <span style={{ backgroundColor: "#606ddd" }} />
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div className="form-check">
-                                                                <input
-                                                                    className="form-check-input"
-                                                                    type="checkbox"
-                                                                    id="color2"
-                                                                />
-                                                                <label className="form-check-label" htmlFor="color2">
-                                                                    <span style={{ backgroundColor: "#4caf50" }} />
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div className="form-check">
-                                                                <input
-                                                                    className="form-check-input"
-                                                                    type="checkbox"
-                                                                    id="color3"
-                                                                />
-                                                                <label className="form-check-label" htmlFor="color3">
-                                                                    <span style={{ backgroundColor: "#17a2b8" }} />
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div className="form-check">
-                                                                <input
-                                                                    className="form-check-input"
-                                                                    type="checkbox"
-                                                                    id="color4"
-                                                                />
-                                                                <label className="form-check-label" htmlFor="color4">
-                                                                    <span style={{ backgroundColor: "#ffc107" }} />
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div className="form-check">
-                                                                <input
-                                                                    className="form-check-input"
-                                                                    type="checkbox"
-                                                                    id="color5"
-                                                                />
-                                                                <label className="form-check-label" htmlFor="color5">
-                                                                    <span style={{ backgroundColor: "#f44336" }} />
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="shop-single-sortinfo">
+
+                                    <h5 className="widget-title pt-10">
+                                        Registered Office
+                                    </h5>
+
+                                    <p className="mb-3 ">
+                                        There are many variations of passages of Lorem Ipsum available,
+                                        but the majority have suffered alteration in some form, by
+                                        injected humour, or randomised words which don't look even
+                                        slightly believable.
+                                    </p>
+
+                                    {/* <div className="shop-single-sortinfo">
                                         <ul>
                                             <li>
                                                 Stock: <span>Available</span>
@@ -203,57 +105,13 @@ export default function ProductPage() {
                                                 <a href="#">Modern</a>,<a href="#">Shop</a>
                                             </li>
                                         </ul>
-                                    </div>
-                                    <div className="shop-single-action">
-                                        <div className="row align-items-center">
-                                            <div className="col-md-6 col-lg-12 col-xl-6">
-                                                <div className="shop-single-btn">
-                                                    <a href="#" className="theme-btn">
-                                                        <span className="far fa-shopping-bag" />
-                                                        Add To Cart
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="theme-btn theme-btn2"
-                                                        data-tooltip="tooltip"
-                                                        title="Add To Wishlist"
-                                                    >
-                                                        <span className="far fa-heart" />
-                                                    </a>
-                                                    <a
-                                                        href="#"
-                                                        className="theme-btn theme-btn2"
-                                                        data-tooltip="tooltip"
-                                                        title="Add To Compare"
-                                                    >
-                                                        <span className="far fa-arrows-repeat" />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 col-lg-12 col-xl-6">
-                                                <div className="shop-single-share">
-                                                    <span>Share:</span>
-                                                    <a href="#">
-                                                        <i className="fab fa-facebook-f" />
-                                                    </a>
-                                                    <a href="#">
-                                                        <i className="fab fa-x-twitter" />
-                                                    </a>
-                                                    <a href="#">
-                                                        <i className="fab fa-linkedin-in" />
-                                                    </a>
-                                                    <a href="#">
-                                                        <i className="fab fa-pinterest-p" />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div> */}
+
                                 </div>
                             </div>
                         </div>
                         {/* shop single details */}
-                        <div className="shop-single-details">
+                        {/* <div className="shop-single-details">
                             <nav>
                                 <div className="nav nav-tabs" id="nav-tab" role="tablist">
                                     <button
@@ -402,7 +260,7 @@ export default function ProductPage() {
                                 </div>
 
                             </div>
-                        </div>
+                        </div> */}
                         {/* shop single details end */}
                         {/* related item */}
                         <div className="product-area related-item pt-40">
@@ -426,7 +284,7 @@ export default function ProductPage() {
                                                     <img src="/assets/img/product/07.png" alt="" />
                                                 </a>
                                                 <div className="product-action-wrap">
-                                                    <div className="product-action">
+                                                    {/* <div className="product-action">
                                                         <a
                                                             href="#"
                                                             data-bs-toggle="modal"
@@ -437,23 +295,8 @@ export default function ProductPage() {
                                                         >
                                                             <i className="far fa-eye" />
                                                         </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Wishlist"
-                                                        >
-                                                            <i className="far fa-heart" />
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Compare"
-                                                        >
-                                                            <i className="far fa-arrows-repeat" />
-                                                        </a>
-                                                    </div>
+
+                                                    </div> */}
                                                 </div>
                                             </div>
                                             <div className="product-content">
@@ -467,20 +310,7 @@ export default function ProductPage() {
                                                     <i className="fas fa-star" />
                                                     <i className="far fa-star" />
                                                 </div>
-                                                <div className="product-bottom">
-                                                    <div className="product-price">
-                                                        <span>$100.00</span>
-                                                    </div>
-                                                    <button
-                                                        type="button"
-                                                        className="product-cart-btn"
-                                                        data-bs-placement="left"
-                                                        data-tooltip="tooltip"
-                                                        title="Add To Cart"
-                                                    >
-                                                        <i className="far fa-shopping-bag" />
-                                                    </button>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -491,36 +321,7 @@ export default function ProductPage() {
                                                 <a href="shop-single.html">
                                                     <img src="/assets/img/product/08.png" alt="" />
                                                 </a>
-                                                <div className="product-action-wrap">
-                                                    <div className="product-action">
-                                                        <a
-                                                            href="#"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#quickview"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Quick View"
-                                                        >
-                                                            <i className="far fa-eye" />
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Wishlist"
-                                                        >
-                                                            <i className="far fa-heart" />
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Compare"
-                                                        >
-                                                            <i className="far fa-arrows-repeat" />
-                                                        </a>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                             <div className="product-content">
                                                 <h3 className="product-title">
@@ -533,20 +334,7 @@ export default function ProductPage() {
                                                     <i className="fas fa-star" />
                                                     <i className="far fa-star" />
                                                 </div>
-                                                <div className="product-bottom">
-                                                    <div className="product-price">
-                                                        <span>$100.00</span>
-                                                    </div>
-                                                    <button
-                                                        type="button"
-                                                        className="product-cart-btn"
-                                                        data-bs-placement="left"
-                                                        data-tooltip="tooltip"
-                                                        title="Add To Cart"
-                                                    >
-                                                        <i className="far fa-shopping-bag" />
-                                                    </button>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -557,36 +345,7 @@ export default function ProductPage() {
                                                 <a href="shop-single.html">
                                                     <img src="/assets/img/product/12.png" alt="" />
                                                 </a>
-                                                <div className="product-action-wrap">
-                                                    <div className="product-action">
-                                                        <a
-                                                            href="#"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#quickview"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Quick View"
-                                                        >
-                                                            <i className="far fa-eye" />
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Wishlist"
-                                                        >
-                                                            <i className="far fa-heart" />
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Compare"
-                                                        >
-                                                            <i className="far fa-arrows-repeat" />
-                                                        </a>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                             <div className="product-content">
                                                 <h3 className="product-title">
@@ -599,20 +358,7 @@ export default function ProductPage() {
                                                     <i className="fas fa-star" />
                                                     <i className="far fa-star" />
                                                 </div>
-                                                <div className="product-bottom">
-                                                    <div className="product-price">
-                                                        <span>$100.00</span>
-                                                    </div>
-                                                    <button
-                                                        type="button"
-                                                        className="product-cart-btn"
-                                                        data-bs-placement="left"
-                                                        data-tooltip="tooltip"
-                                                        title="Add To Cart"
-                                                    >
-                                                        <i className="far fa-shopping-bag" />
-                                                    </button>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -623,36 +369,7 @@ export default function ProductPage() {
                                                 <a href="shop-single.html">
                                                     <img src="/assets/img/product/14.png" alt="" />
                                                 </a>
-                                                <div className="product-action-wrap">
-                                                    <div className="product-action">
-                                                        <a
-                                                            href="#"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#quickview"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Quick View"
-                                                        >
-                                                            <i className="far fa-eye" />
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Wishlist"
-                                                        >
-                                                            <i className="far fa-heart" />
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Add To Compare"
-                                                        >
-                                                            <i className="far fa-arrows-repeat" />
-                                                        </a>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                             <div className="product-content">
                                                 <h3 className="product-title">
@@ -665,21 +382,7 @@ export default function ProductPage() {
                                                     <i className="fas fa-star" />
                                                     <i className="far fa-star" />
                                                 </div>
-                                                <div className="product-bottom">
-                                                    <div className="product-price">
-                                                        <del>$120.00</del>
-                                                        <span>$100.00</span>
-                                                    </div>
-                                                    <button
-                                                        type="button"
-                                                        className="product-cart-btn"
-                                                        data-bs-placement="left"
-                                                        data-tooltip="tooltip"
-                                                        title="Add To Cart"
-                                                    >
-                                                        <i className="far fa-shopping-bag" />
-                                                    </button>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>

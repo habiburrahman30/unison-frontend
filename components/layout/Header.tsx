@@ -18,13 +18,13 @@ export default function Header() {
                                                     className="__cf_email__"
                                                     data-cfemail="4821262e27082d30292538242d662b2725"
                                                 >
-                                                    [email&nbsp;protected]
+                                                    [info@unisonbizltd.com.bd]
                                                 </span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="tel:+21236547898">
-                                                <i className="far fa-headset" /> +2 123 654 7898
+                                                <i className="far fa-headset" /> +880 1723435818
                                             </a>
                                         </li>
                                         <li className="help">
@@ -184,35 +184,6 @@ export default function Header() {
                                     </li>
                                     <li className="nav-item dropdown">
                                         <a
-                                            className="nav-link dropdown-toggle "
-                                            href={"/about"}
-                                            data-bs-toggle="dropdown"
-                                        >
-                                            About Us
-                                        </a>
-                                        {/* <Link href="/about" className="nav-link dropdown-toggle">
-                                            About Us
-                                        </Link> */}
-                                        <ul className="dropdown-menu fade-down">
-                                            <li>
-                                                <a className="dropdown-item" href={"/our-team"}>
-                                                    Our Team
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href={"/our-gallery"}>
-                                                    Gallery
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href={"/news-event"}>
-                                            News / Event
-                                        </a>
-                                    </li>
-                                    <li className="nav-item dropdown">
-                                        <a
                                             className="nav-link dropdown-toggle"
                                             href={"/products"}
                                             data-bs-toggle="dropdown"
@@ -229,25 +200,55 @@ export default function Header() {
                                         <ul className="dropdown-menu fade-down">
                                             <li>
                                                 <a className="dropdown-item" href={"/products"}>
+                                                    MGPS
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
+                                                    Oxygen Generator
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
+                                                    MOT
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
+                                                    OT
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
+                                                    ICU
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
+                                                    NICU
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
+                                                    Hospital Furniture
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
+                                                    CSSD
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="brand.html">
                                                     Water Management
                                                 </a>
                                             </li>
                                             <li>
                                                 <a className="dropdown-item" href="brand.html">
-                                                    Waste Management
+                                                    Disposable
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    Rediopharma Solution
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    Generator
-                                                </a>
-                                            </li>
-                                            <li className="dropdown-submenu">
+                                            {/* <li className="dropdown-submenu">
                                                 <a className="dropdown-item dropdown-toggle" href="#">
                                                     Medical Equipment
                                                 </a>
@@ -313,9 +314,40 @@ export default function Header() {
                                                         </a>
                                                     </li>
                                                 </ul>
+                                            </li> */}
+                                        </ul>
+                                    </li>
+                                    <li className="nav-item dropdown">
+                                        <a
+                                            className="nav-link dropdown-toggle "
+                                            href={"/about"}
+                                            data-bs-toggle="dropdown"
+                                        >
+                                            About Us
+                                        </a>
+                                        {/* <Link href="/about" className="nav-link dropdown-toggle">
+                                            About Us
+                                        </Link> */}
+
+                                        <ul className="dropdown-menu fade-down">
+                                            <li>
+                                                <a className="dropdown-item" href={"/our-team"}>
+                                                    Our Team
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href={"/our-gallery"}>
+                                                    Gallery
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href={"/news-event"}>
+                                            News / Event
+                                        </a>
+                                    </li>
+
                                     <li className="nav-item">
                                         <a className="nav-link" href={"/testimonial"}>
                                             Customer
