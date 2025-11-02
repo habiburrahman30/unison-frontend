@@ -1,7 +1,81 @@
+"use client"
 import ProductGrid from "../components/ProductGrid";
 import ProductList from "../components/ProductList";
+import products from "@/app/data/products";
+import brands from "@/app/data/brands";
+import categoryes from "@/app/data/categoryes";
+import { useEffect, useState } from "react";
 
 export default function ProductsPage() {
+
+    const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+    const [selectedBrands, setSelectedBrands] = useState<number[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const [sortOption, setSortOption] = useState("default");
+
+
+    //*** For Filter */
+    const filteredProducts = products.filter((product) => {
+        const brandMatch =
+            selectedBrands.length === 0 || selectedBrands.includes(product.brand_id);
+
+        const categoryMatch =
+            selectedCategory === null || product.category_id === selectedCategory;
+
+        const matchesSearch =
+            product.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+        return brandMatch && categoryMatch && matchesSearch;
+    });
+
+
+
+
+    // Sort Products
+    let sortedProducts = [...filteredProducts];
+
+    switch (sortOption) {
+        case "latest":
+            sortedProducts.sort((a, b) => b.id - a.id);
+            break;
+
+        case "bestseller":
+            sortedProducts.sort((a, b) => (b.stock ?? 0) - (a.stock ?? 0));
+            break;
+
+        case "price-asc":
+            sortedProducts.sort((a, b) => Number(a.price) - Number(b.price));
+            break;
+
+        case "price-desc":
+            sortedProducts.sort((a, b) => Number(b.price) - Number(a.price));
+            break;
+
+        default:
+            sortedProducts.sort((a, b) => a.id - b.id);
+    }
+
+
+    //*** For Pagination */
+    const PRODUCTS_PER_PAGE = 6;
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
+
+    const paginatedProducts = sortedProducts.slice(
+        (currentPage - 1) * PRODUCTS_PER_PAGE,
+        currentPage * PRODUCTS_PER_PAGE
+    );
+
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [sortOption, selectedCategory, selectedBrands, searchTerm]);
+
     return (
         <>
             <main className="main">
@@ -35,12 +109,14 @@ export default function ProductsPage() {
                                     <div className="shop-widget">
                                         <div className="shop-search-form">
                                             <h4 className="shop-widget-title">Search</h4>
-                                            <form action="#">
+                                            <form action="#" onSubmit={(e) => e.preventDefault()}>
                                                 <div className="form-group">
                                                     <input
                                                         type="text"
                                                         className="form-control"
                                                         placeholder="Search"
+                                                        value={searchTerm}
+                                                        onChange={(e) => setSearchTerm(e.target.value)}
                                                     />
                                                     <button >
                                                         <i className="far fa-search" />
@@ -49,71 +125,95 @@ export default function ProductsPage() {
                                             </form>
                                         </div>
                                     </div>
+                                    {/* <div className="shop-widget">
+                                        <div className="shop-search-form">
+                                            <h4 className="shop-widget-title">Search</h4>
+                                            <form
+                                                onSubmit={(e) => e.preventDefault()} // prevent page reload
+                                            >
+                                                <div className="form-group d-flex">
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Search"
+                                                        value={searchTerm}
+                                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                                    />
+                                                    <button type="submit" className="btn btn-primary">
+                                                        <i className="far fa-search" />
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div> */}
                                     <div className="shop-widget">
                                         <h4 className="shop-widget-title">Category</h4>
                                         <ul className="shop-category-list">
                                             <li>
-                                                <a href="#">
-                                                    MGPS<span>(15)</span>
+                                                <a href="#" onClick={(e) => { e.preventDefault(); setSelectedCategory(null); }}>
+                                                    All Categories
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#">
-                                                    Oxygen Generator<span>(23)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    MOT<span>(35)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    OT<span>(46)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    ICU<span>(39)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    NICU<span>(79)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Hospital Furniture<span>(28)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    CSSD<span>(17)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Water Management<span>(12)</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    Disposable<span>(74)</span>
-                                                </a>
-                                            </li>
+                                            {categoryes.map((cat, index) => (
+                                                <li key={cat.id}>
+                                                    <a href="#"
 
-                                            <li>
-                                                <a href="#">
-                                                    Others<span>(25)</span>
-                                                </a>
-                                            </li>
+                                                        className={selectedCategory === cat.id ? "active" : ""}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setSelectedCategory(cat.id);
+                                                        }}
+                                                    >
+                                                        {cat.name}<span>({cat.item})</span>
+                                                    </a>
+                                                </li>
+                                            ))}
                                         </ul>
                                     </div>
                                     <div className="shop-widget">
                                         <h4 className="shop-widget-title">Brands</h4>
                                         <ul className="shop-checkbox-list">
+
                                             <li>
+                                                <div className="form-check">
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="checkbox"
+                                                        id="brand-all"
+                                                        checked={selectedBrands.length === 0}
+                                                        onChange={() => setSelectedBrands([])}
+                                                    />
+                                                    <label className="form-check-label" htmlFor="brand2">
+                                                        All Brands<span>({brands.length})</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+
+                                            {brands.map((brand) => (
+                                                <li key={brand.id}>
+                                                    <div className="form-check">
+                                                        <input
+                                                            className="form-check-input"
+                                                            type="checkbox"
+                                                            id={`brand-${brand.id}`}
+                                                            checked={selectedBrands.includes(brand.id)}
+                                                            onChange={() => {
+                                                                if (selectedBrands.includes(brand.id)) {
+                                                                    // remove from selection
+                                                                    setSelectedBrands(selectedBrands.filter((id) => id !== brand.id));
+                                                                } else {
+                                                                    // add to selection
+                                                                    setSelectedBrands([...selectedBrands, brand.id]);
+                                                                }
+                                                            }}
+                                                        />
+                                                        <label className="form-check-label" htmlFor={`brand-${brand.id}`}>
+                                                            {brand.name} <span>({brand.item})</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            ))}
+                                            {/* <li>
                                                 <div className="form-check">
                                                     <input
                                                         className="form-check-input"
@@ -121,7 +221,7 @@ export default function ProductsPage() {
                                                         id="brand1"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand1">
-                                                        Tovol<span>(12)</span>
+                                                        Advanced Sterilization Products (ASP)<span>(12)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -133,7 +233,7 @@ export default function ProductsPage() {
                                                         id="brand2"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand2">
-                                                        Sundoy<span>(15)</span>
+                                                        Pardo<span>(15)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -145,7 +245,7 @@ export default function ProductsPage() {
                                                         id="brand3"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand3">
-                                                        Sahoo Medoc<span>(20)</span>
+                                                        Mindray<span>(20)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -157,7 +257,7 @@ export default function ProductsPage() {
                                                         id="brand4"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand4">
-                                                        Casterly<span>(05)</span>
+                                                        Mentice (The logo is very similar to Mentice)<span>(05)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -169,7 +269,7 @@ export default function ProductsPage() {
                                                         id="brand5"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand5">
-                                                        Maindeno<span>(09)</span>
+                                                        MEISSA (MEYSA TIBBİ CİHAZLAR)<span>(09)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -181,7 +281,7 @@ export default function ProductsPage() {
                                                         id="brand6"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand6">
-                                                        Knroll Seproll<span>(25)</span>
+                                                        CPX (Brand of Precision UK for Medical Gas Pipeline Systems)<span>(25)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -193,7 +293,7 @@ export default function ProductsPage() {
                                                         id="brand7"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand7">
-                                                        Neo Enternity<span>(19)</span>
+                                                        Olidef Medical<span>(19)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -205,7 +305,7 @@ export default function ProductsPage() {
                                                         id="brand8"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand8">
-                                                        Charisha<span>(23)</span>
+                                                        Medifa (Member of Reinsberg Group)<span>(23)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -217,7 +317,7 @@ export default function ProductsPage() {
                                                         id="brand9"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand9">
-                                                        Audou<span>(13)</span>
+                                                        Sterilmed Medical<span>(13)</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -229,46 +329,11 @@ export default function ProductsPage() {
                                                         id="brand10"
                                                     />
                                                     <label className="form-check-label" htmlFor="brand10">
-                                                        Desioreck<span>(14)</span>
+                                                        OXYMAT<span>(14)</span>
                                                     </label>
                                                 </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="brand11"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="brand11">
-                                                        Rochel Brek<span>(16)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="brand12"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="brand12">
-                                                        Mordani<span>(17)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="checkbox"
-                                                        id="brand13"
-                                                    />
-                                                    <label className="form-check-label" htmlFor="brand13">
-                                                        Others<span>(18)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
+                                            </li>   */}
+
                                         </ul>
                                     </div>
 
@@ -366,31 +431,98 @@ export default function ProductsPage() {
                                     <div className="shop-sort">
                                         <div className="shop-sort-box">
                                             <div className="shop-sorty-label">Sort By:</div>
-                                            <select className="select">
-                                                <option value={1}>Default Sorting</option>
-                                                <option value={5}>Latest Items</option>
-                                                <option value={2}>Best Seller Items</option>
-                                                <option value={3}>Price - Low To High</option>
-                                                <option value={4}>Price - High To Low</option>
+                                            <select className="select"
+                                                value={sortOption}
+                                                onChange={(e) => setSortOption(e.target.value)}
+                                            >
+                                                <option value="default">Default Sorting</option>
+                                                <option value="latest">Latest Items</option>
+                                                <option value="bestseller">Best Seller Items</option>
+                                                <option value="price-asc">Price - Low To High</option>
+                                                <option value="price-desc">Price - High To Low</option>
+
                                             </select>
-                                            <div className="shop-sort-show">Showing 1-10 of 50 Results</div>
+                                            <div className="shop-sort-show">Showing 1{paginatedProducts.length} of {filteredProducts.length} Results</div>
                                         </div>
-                                        <div className="shop-sort-gl">
+                                        {/* <div className="shop-sort-gl">
                                             <a href="shop-grid.html" className="shop-sort-grid active">
                                                 <i className="far fa-grid-round-2" />
                                             </a>
                                             <a href="shop-list.html" className="shop-sort-list">
                                                 <i className="far fa-list-ul" />
                                             </a>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 {/* grid and list view */}
-                                <ProductGrid />
+                                {/* ✅ PASS FILTERED PRODUCTS */}
+                                <ProductGrid products={paginatedProducts} />
                                 {/* <ProductList /> */}
                                 {/* grid and list view */}
                                 {/* pagination */}
-                                <div className="pagination-area mt-50">
+                                {paginatedProducts.length > 0 && (
+
+
+                                    <div className="pagination-area mt-50">
+                                        <div aria-label="Page navigation example">
+                                            <ul className="pagination">
+                                                {/* Previous Button */}
+                                                <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                                                    <a
+                                                        className="page-link"
+                                                        href="#"
+                                                        aria-label="Previous"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            if (currentPage > 1) setCurrentPage(currentPage - 1);
+                                                        }}
+                                                    >
+                                                        <span aria-hidden="true">
+                                                            <i className="far fa-arrow-left" />
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                {/* Page Numbers */}
+                                                {pageNumbers.map((num) => (
+                                                    <li
+                                                        key={num}
+                                                        className={`page-item ${currentPage === num ? "active" : ""}`}
+                                                    >
+                                                        <a
+                                                            className="page-link"
+                                                            href="#"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setCurrentPage(num);
+                                                            }}
+                                                        >
+                                                            {num}
+                                                        </a>
+                                                    </li>
+                                                ))}
+
+                                                {/* Next Button */}
+                                                <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+                                                    <a
+                                                        className="page-link"
+                                                        href="#"
+                                                        aria-label="Next"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+                                                        }}
+                                                    >
+                                                        <span aria-hidden="true">
+                                                            <i className="far fa-arrow-right" />
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                )}
+                                {/* <div className="pagination-area mt-50">
                                     <div aria-label="Page navigation example">
                                         <ul className="pagination">
                                             <li className="page-item">
@@ -427,7 +559,7 @@ export default function ProductsPage() {
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> */}
                                 {/* pagination end */}
                             </div>
                         </div>

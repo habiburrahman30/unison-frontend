@@ -39,75 +39,76 @@ export default function BrandsPage() {
                         <div className="row g-4">
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.asp.com">
                                         <img src="/assets/img/brand/01.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.pardo.es/en/">
                                         <img src="/assets/img/brand/02.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.mindray.com/">
                                         <img src="/assets/img/brand/03.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.mentice.com/">
                                         <img src="/assets/img/brand/04.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.meissa.com.tr/en/">
                                         <img src="/assets/img/brand/04.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.precisionuk.co.uk/">
                                         <img src="/assets/img/brand/05.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.olidef.com.br/en/">
                                         <img src="/assets/img/brand/06.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.medifa.com/">
                                         <img src="/assets/img/brand/06.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
+                                    <a href="https://www.sterilmed.com.tr/">
                                         <img src="/assets/img/brand/05.png" alt="" />
                                     </a>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/04.png" alt="" />
+                                    <a href="https://oxymat.com/" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <img src="/assets/img/brand/04.png" alt="Oxymat Logo" />
                                     </a>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-lg-2">
+                            {/* <div className="col-md-6 col-lg-2">
                                 <div className="brand-item">
                                     <a href="#">
                                         <img src="/assets/img/brand/03.png" alt="" />
@@ -169,7 +170,7 @@ export default function BrandsPage() {
                                         <span className="fas fa-arrow-rotate-left" /> Load More
                                     </a>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,75 @@ export default function HomePage() {
   useEffect(() => {
     setNow(Date.now()); // only runs on client
   }, []);
+
+
+  const sliderData = [
+    {
+      image: "/assets/img/deal/01.webp",
+    },
+    {
+      image: "/assets/img/deal/02.webp",
+    },
+    {
+      image: "/assets/img/deal/03.webp",
+    },
+
+  ];
+
+
+  const categoryData = [
+    {
+      name: "MGPS",
+      icon: "/assets/img/icon/gas_pipeline.png",
+      item: "10",
+    },
+    {
+      name: "Oxygen Generator",
+      icon: "/assets/img/icon/02_genarator.png",
+      item: "5",
+    },
+    {
+      name: "MOT",
+      icon: "/assets/img/icon/mot.png",
+      item: "4",
+    },
+    {
+      name: "OT",
+      icon: "/assets/img/icon/ot.png",
+      item: "14",
+    },
+    {
+      name: "ICU",
+      icon: "/assets/img/icon/icu.png",
+      item: "8",
+    },
+    {
+      name: "NICU",
+      icon: "/assets/img/icon/nicu.png",
+      item: "19",
+    },
+    {
+      name: "Hospital Furniture",
+      icon: "/assets/img/icon/hospital_furniture.png",
+      item: "11",
+    },
+    {
+      name: "CSSD",
+      icon: "/assets/img/icon/safe.png",
+      item: "2",
+    },
+    {
+      name: "Water Management",
+      icon: "/assets/img/icon/water_management.png",
+      item: "16",
+    },
+    {
+      name: "Disposable",
+      icon: "/assets/img/icon/disposable.png",
+      item: "20",
+    },
+
+  ];
   return (
     <>
       {/* preloader */}
@@ -72,7 +141,7 @@ export default function HomePage() {
                       Delivering Innovation in <span>Medical Equipment &</span>  Healthcare Technology.
                     </h1>
                     <p data-animation="fadeInLeft" data-delay=".75s">
-                      We are committed to protect our commitment.
+                      We are committed to protecting our commitment.
                     </p>
                     <div
                       className="hero-btn"
@@ -185,32 +254,28 @@ export default function HomePage() {
               className="category-slider owl-carousel owl-theme wow fadeInUp"
               data-wow-delay=".25s"
             >
-              <div className="category-item">
-                <a href="#">
-                  <div className="category-info">
-                    <div className="icon">
-                      <img src="/assets/img/icon/medicine.svg" alt="" />
+              {categoryData.map((data, index) => (
+
+                <div className="category-item">
+                  <a href="#">
+                    <div className="category-info">
+                      <div className="icon">
+
+                        <img src={data.icon && data.icon !== "" ? data.icon : "/assets/img/no-image-found.jpg"}
+                          alt={data.name} />
+
+                      </div>
+                      <div className="content">
+                        <h4>{data.name}</h4>
+                        <p>{data.item} Items</p>
+                      </div>
                     </div>
-                    <div className="content">
-                      <h4>MGPS</h4>
-                      <p>30 Items</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="category-item">
-                <a href="#">
-                  <div className="category-info">
-                    <div className="icon">
-                      <img src="/assets/img/icon/health-care.svg" alt="" />
-                    </div>
-                    <div className="content">
-                      <h4>Oxygen Generator</h4>
-                      <p>25 Items</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
+                  </a>
+                </div>
+
+
+              ))}
+              {/* </div>
               <div className="category-item">
                 <a href="#">
                   <div className="category-info">
@@ -314,7 +379,7 @@ export default function HomePage() {
                     </div>
                   </div>
                 </a>
-              </div>
+              </div> */}
               {/* <div className="category-item">
                 <a href="#">
                   <div className="category-info">
@@ -1452,9 +1517,11 @@ export default function HomePage() {
           <div className="container">
             <div className="deal-wrap wow fadeInUp" data-wow-delay=".25s">
               <div className="deal-slider owl-carousel owl-theme">
-                <div className="deal-item">
-                  <div className="row align-items-center">
-                    <div className="col-lg-6">
+
+                {sliderData.map((team, index) => (
+                  <div className="deal-item">
+                    <div className="row align-items-center">
+                      {/* <div className="col-lg-6">
                       <div className="deal-content">
                         <div className="deal-info pb-20">
                           <span>Weekly Deal</span>
@@ -1471,16 +1538,18 @@ export default function HomePage() {
                           Shop Now <i className="fas fa-arrow-right" />
                         </a>
                       </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className="deal-img">
-                        <img src="/assets/img/deal/01.png" alt="" />
+                    </div> */}
+                      <div className="col-lg-12">
+                        <div className="deal-img">
+                          <img src={team.image && team.image !== "" ? team.image : "/assets/img/no-image-found.jpg"}
+                            alt={team.image} />
 
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="deal-item">
+                ))}
+                {/* <div className="deal-item">
                   <div className="row align-items-center">
                     <div className="col-lg-6">
                       <div className="deal-content">
@@ -1535,7 +1604,9 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
+
+
               </div>
             </div>
           </div>
@@ -1570,7 +1641,7 @@ export default function HomePage() {
                       <img src="/assets/img/icon/experience.svg" alt="" />
                     </div>
                     <b>
-                      30 Years Of <br /> Experience
+                      10 Years Of <br /> Experience
                     </b>
                   </div>
                   <div className="about-shape">
@@ -1585,35 +1656,26 @@ export default function HomePage() {
                       <i className="flaticon-drive" /> About Us
                     </span>
                     <h2 className="site-title">
-                      We Provide Best and Original <span>Medical</span> Product For
-                      You
+                      We Provide Best Medical Equipment & <span>Healthcare</span> Technology For You.
+
                     </h2>
                   </div>
                   <p>
-                    We are standard text ever since the when an unknown printer took
-                    a galley of type and scrambled it to make type but the majority
-                    have suffered alteration in some form by injected humour
-                    specimen book. It has survived not only five but also the leap
-                    into electronic remaining essentially by injected humour
-                    unchanged.
+                    Committed to excellence in healthcare, we provide reliable medical equipment and advanced technology solutions for hospitals, clinics, and healthcare institutions.
                   </p>
                   <div className="about-list">
                     <ul>
                       <li>
-                        <i className="fas fa-check-double" /> Streamlined Shipping
-                        Experience
+                        <i className="fas fa-check-double" /> High-Quality Equipment
                       </li>
                       <li>
-                        <i className="fas fa-check-double" /> Affordable Modern
-                        Design
+                        <i className="fas fa-check-double" /> Advanced Technology
                       </li>
                       <li>
-                        <i className="fas fa-check-double" /> Competitive Price
-                        &amp; Easy To Shop
+                        <i className="fas fa-check-double" /> Trusted Partner
                       </li>
                       <li>
-                        <i className="fas fa-check-double" /> We Made Awesome
-                        Products
+                        <i className="fas fa-check-double" /> Commitment to Excellence
                       </li>
                     </ul>
                   </div>
@@ -1642,15 +1704,12 @@ export default function HomePage() {
               <div className="col-lg-4">
                 <span className="site-title-tagline">Why Choose Us</span>
                 <h2 className="site-title">
-                  We Provide Premium Quality Furniture For You
+                  We Deliver Excellence in Medical Equipment and Healthcare Solutions.
                 </h2>
               </div>
               <div className="col-lg-4">
                 <p>
-                  There are many variations of passages available but the majority
-                  have suffered you are going to use a passage you need to be sure
-                  alteration in some form by injected humour randomised words even
-                  slightly believable.
+                  We are dedicated to delivering reliable, innovative, and high-performance healthcare solutions that empower medical professionals and institutions to provide better care with confidence.
                 </p>
               </div>
             </div>
@@ -1662,11 +1721,9 @@ export default function HomePage() {
                       <img src="/assets/img/icon/warranty.svg" alt="" />
                     </div>
                     <div className="choose-info">
-                      <h4>Original Products</h4>
+                      <h4>Certified Medical Equipment</h4>
                       <p>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when looking at
-                        its layout.
+                        All our products are sourced from trusted global manufacturers and meet international quality and safety standards to ensure reliability in every procedure.
                       </p>
                     </div>
                   </div>
@@ -1677,11 +1734,9 @@ export default function HomePage() {
                       <img src="/assets/img/icon/price.svg" alt="" />
                     </div>
                     <div className="choose-info">
-                      <h4>Affordable Price</h4>
+                      <h4>Advanced Healthcare Technology</h4>
                       <p>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when looking at
-                        its layout.
+                        We bring you cutting-edge medical devices and digital healthcare innovations designed to improve efficiency, accuracy, and patient outcomes.
                       </p>
                     </div>
                   </div>
@@ -1692,11 +1747,9 @@ export default function HomePage() {
                       <img src="/assets/img/icon/delivery.svg" alt="" />
                     </div>
                     <div className="choose-info">
-                      <h4>Free Shipping</h4>
+                      <h4>Nationwide Delivery & Support</h4>
                       <p>
-                        It is a long established fact that a reader will be
-                        distracted by the readable content of a page when looking at
-                        its layout.
+                        Fast, secure delivery across the country with professional after-sales support to keep your medical operations running smoothly.
                       </p>
                     </div>
                   </div>
@@ -2108,7 +2161,7 @@ export default function HomePage() {
         </div>
         {/* blog area end */}
         {/* newsletter area */}
-        <div className="newsletter-area pb-100">
+        {/* <div className="newsletter-area pb-100">
           <div className="container wow fadeInUp" data-wow-delay=".25s">
             <div className="newsletter-wrap">
               <div className="row">
@@ -2135,7 +2188,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* newsletter area end */}
         {/* instagram-area */}
         {/* <div className="instagram-area pb-100">

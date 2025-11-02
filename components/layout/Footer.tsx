@@ -10,26 +10,59 @@ export default function Footer() {
                                     <img src="/assets/img/logo/logo.png" alt="" />
                                 </a>
                                 <p className="mb-3">
-                                    We are many variations of the passages available but the majoro
-                                    have suffered alteration injected.
+                                    We are committed to protecting our commitment.
                                 </p>
                                 <ul className="footer-contact">
                                     <li>
                                         <a href="tel:+21236547898">
                                             <i className="far fa-phone" />
-                                            +880 1723435818
+                                            +880-1714112027
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="mailto:info@unisonbizltd.com.bd" target="_blank"
+                                            rel="noopener noreferrer">
                                             <i className="far fa-envelope" />
                                             <span
                                                 className=""
                                                 data-cfemail=""
                                             >
-                                                [info@unisonbizltd.com.bd]
+                                                info@unisonbizltd.com.bd
                                             </span>
                                         </a>
+                                    </li>
+                                    <li>
+                                        <h4 className="footer-widget-title mt-20 mb-0 pb-2">
+                                            Medical Division
+                                        </h4>
+                                    </li>
+                                    <li>
+                                        <a href="saiful.hasan@unisonbizltd.com.bd" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <i className="far fa-envelope" />
+                                            <span
+                                                className=""
+                                                data-cfemail=""
+                                            >
+                                                saiful.hasan@unisonbizltd.com.bd
+                                            </span>
+                                        </a>
+
+
+                                    </li>
+                                    <li>
+                                        <a href="unisonbizbd@gmail.com" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <i className="far fa-envelope" />
+                                            <span
+                                                className=""
+                                                data-cfemail=""
+                                            >
+                                                unisonbizbd@gmail.com
+                                            </span>
+                                        </a>
+
+
                                     </li>
                                     <li>
                                         <h4 className="footer-widget-title mt-20 mb-0 pb-2">
@@ -186,17 +219,19 @@ export default function Footer() {
                             <div className="col-12 col-lg-6 align-self-center">
                                 <div className="footer-social">
                                     <span>Follow Us:</span>
-                                    <a href="#">
+                                    <a href="https://www.facebook.com/share/1D2Yr22Dkq/" target="_blank"
+                                        rel="noopener noreferrer">
                                         <i className="fab fa-facebook-f" />
                                     </a>
-                                    <a href="#">
+                                    {/* <a href="#">
                                         <i className="fab fa-x-twitter" />
                                     </a>
                                     <a href="#">
                                         <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
+                                    </a> */}
+                                    <a href="https://www.linkedin.com/company/unisonbizbd/" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <i className="fab fa-linkedin-in" />
                                     </a>
                                 </div>
                             </div>

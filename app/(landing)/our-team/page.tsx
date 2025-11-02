@@ -1,4 +1,51 @@
 export default function OurTeamPage() {
+
+    const teamData = [
+        {
+            name: "Md. Kamrul Alam",
+            role: "Chairman",
+            image: "",
+            socials: {
+                facebook: "https://www.facebook.com/",
+                twitter: "",
+                linkedin: "https://www.linkedin.com/",
+                youtube: ""
+            }
+        },
+        {
+            name: "Md. Sopun Fakir",
+            role: "Managing Director",
+            image: "",
+            socials: {
+                facebook: "https://www.facebook.com/",
+                twitter: "",
+                linkedin: "https://www.linkedin.com/",
+                youtube: ""
+            }
+        },
+        {
+            name: "Md. Saiful Hasan",
+            role: "General Manager",
+            image: "",
+            socials: {
+                facebook: "https://www.facebook.com/",
+                twitter: "",
+                linkedin: "https://www.linkedin.com/",
+                youtube: ""
+            }
+        },
+        {
+            name: "Md. Fakrul Abadin",
+            role: "Head of Sales",
+            image: "",
+            socials: {
+                facebook: "https://www.facebook.com/",
+                twitter: "",
+                linkedin: "https://www.linkedin.com/",
+                youtube: ""
+            }
+        }
+    ];
     return <>
         <main className="main">
             {/* breadcrumb */}
@@ -36,238 +83,38 @@ export default function OurTeamPage() {
                         </div>
                     </div>
                     <div className="row mt-5">
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".25s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/01.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Chad Smith</a>
-                                        </h5>
-                                        <span>Senior Manager</span>
+                        {teamData.map((team, index) => (
+                            <div className="col-md-6 col-lg-3" key={index}>
+                                <div className="team-item wow fadeInUp" data-wow-delay={`${(index + 1) * 0.25}s`}>
+                                    <div className="team-img">
+                                        <img src={team.image && team.image !== "" ? team.image : "/assets/img/no-image-found.jpg"}
+                                            alt={team.name} />
+                                    </div>
+                                    <div className="team-content">
+                                        <div className="team-bio">
+                                            <h5><a href="#">{team.name}</a></h5>
+                                            <span>{team.role}</span>
+                                        </div>
+                                    </div>
+                                    <div className="team-social">
+                                        {team.socials.facebook && (
+                                            <a href={team.socials.facebook}><i className="fab fa-facebook-f" /></a>
+                                        )}
+                                        {team.socials.twitter && (
+                                            <a href={team.socials.twitter}><i className="fab fa-x-twitter" /></a>
+                                        )}
+                                        {team.socials.linkedin && (
+                                            <a href={team.socials.linkedin}><i className="fab fa-linkedin-in" /></a>
+                                        )}
+                                        {team.socials.youtube && (
+                                            <a href={team.socials.youtube}><i className="fab fa-youtube" /></a>
+                                        )}
                                     </div>
                                 </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".50s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/02.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Malissa Fie</a>
-                                        </h5>
-                                        <span>SEO Expert</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".75s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/03.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Arron Rodri</a>
-                                        </h5>
-                                        <span>CEO &amp; Founder</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay="1s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/04.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Tony Pinako</a>
-                                        </h5>
-                                        <span>Digital Marketer</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".25s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/01.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Chad Smith</a>
-                                        </h5>
-                                        <span>Senior Manager</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".50s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/02.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Malissa Fie</a>
-                                        </h5>
-                                        <span>SEO Expert</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".75s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/03.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Arron Rodri</a>
-                                        </h5>
-                                        <span>CEO &amp; Founder</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay="1s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/04.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Tony Pinako</a>
-                                        </h5>
-                                        <span>Digital Marketer</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
+
+
                     </div>
                 </div>
             </div>

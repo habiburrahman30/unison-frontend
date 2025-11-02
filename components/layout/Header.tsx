@@ -24,14 +24,14 @@ export default function Header() {
                                         </li>
                                         <li>
                                             <a href="tel:+21236547898">
-                                                <i className="far fa-headset" /> +880 1723435818
+                                                <i className="far fa-headset" /> +880-1714112027
                                             </a>
                                         </li>
-                                        <li className="help">
+                                        {/* <li className="help">
                                             <a href="#">
                                                 <i className="far fa-comment-question" /> Need Help?
                                             </a>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
                             </div>
@@ -98,16 +98,18 @@ export default function Header() {
                                         <li className="social">
                                             <div className="header-top-social">
                                                 <span>Follow Us: </span>
-                                                <a href="#">
+                                                <a href="https://www.facebook.com/share/1D2Yr22Dkq/" target="_blank"
+                                                    rel="noopener noreferrer">
                                                     <i className="fab fa-facebook" />
                                                 </a>
-                                                <a href="#">
+                                                {/* <a href="#">
                                                     <i className="fab fa-x-twitter" />
                                                 </a>
                                                 <a href="#">
                                                     <i className="fab fa-instagram" />
-                                                </a>
-                                                <a href="#">
+                                                </a> */}
+                                                <a href="https://www.linkedin.com/company/unisonbizbd/" target="_blank"
+                                                    rel="noopener noreferrer">
                                                     <i className="fab fa-linkedin" />
                                                 </a>
                                             </div>

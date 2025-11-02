@@ -1,4 +1,58 @@
 export default function CategoryPage() {
+
+    const categoryData = [
+        {
+            name: "MGPS",
+            icon: "/assets/img/icon/gas_pipeline.png",
+            item: "10",
+        },
+        {
+            name: "Oxygen Generator",
+            icon: "/assets/img/icon/02_genarator.png",
+            item: "5",
+        },
+        {
+            name: "MOT",
+            icon: "/assets/img/icon/mot.png",
+            item: "4",
+        },
+        {
+            name: "OT",
+            icon: "/assets/img/icon/ot.png",
+            item: "14",
+        },
+        {
+            name: "ICU",
+            icon: "/assets/img/icon/icu.png",
+            item: "8",
+        },
+        {
+            name: "NICU",
+            icon: "/assets/img/icon/nicu.png",
+            item: "19",
+        },
+        {
+            name: "Hospital Furniture",
+            icon: "/assets/img/icon/hospital_furniture.png",
+            item: "11",
+        },
+        {
+            name: "CSSD",
+            icon: "/assets/img/icon/safe.png",
+            item: "2",
+        },
+        {
+            name: "Water Management",
+            icon: "/assets/img/icon/water_management.png",
+            item: "16",
+        },
+        {
+            name: "Disposable",
+            icon: "/assets/img/icon/disposable.png",
+            item: "20",
+        },
+
+    ];
     return (
         <>
             <main className="main">
@@ -37,22 +91,28 @@ export default function CategoryPage() {
                             </div>
                         </div>
                         <div className="row g-3">
-                            <div className="col-6 col-md-4 col-lg-2">
-                                <div className="category-item">
-                                    <a href="#">
-                                        <div className="category-info">
-                                            <div className="icon">
-                                                <img src="/assets/img/icon/medicine.svg" alt="" />
+
+                            {categoryData.map((data, index) => (
+                                <div className="col-6 col-md-4 col-lg-2">
+                                    <div className="category-item">
+                                        <a href="#">
+                                            <div className="category-info">
+                                                <div className="icon">
+                                                    <img src={data.icon && data.icon !== "" ? data.icon : "/assets/img/no-image-found.jpg"}
+                                                        alt={data.name} />
+
+                                                </div>
+                                                <div className="content">
+                                                    <h4>{data.name}</h4>
+                                                    <p>{data.item} Items</p>
+                                                </div>
                                             </div>
-                                            <div className="content">
-                                                <h4>MGPS</h4>
-                                                <p>30 Items</p>
-                                            </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-6 col-md-4 col-lg-2">
+
+                            ))}
+                            {/* <div className="col-6 col-md-4 col-lg-2">
                                 <div className="category-item">
                                     <a href="#">
                                         <div className="category-info">
@@ -186,7 +246,7 @@ export default function CategoryPage() {
                                         </div>
                                     </a>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* <div className="col-6 col-md-4 col-lg-2">
                                 <div className="category-item">
                                     <a href="#">

@@ -40,8 +40,8 @@ export default function ContactPage() {
                                                         <i className="fal fa-map-location-dot" />
                                                     </div>
                                                     <div className="contact-info-content">
-                                                        <h5>Registered Office</h5>
-                                                        <p>152, Gawair Madrasha Road, Ashkona, Dakkinkhan, Dhaka-1230, Bangladesh</p>
+                                                        <h5>Sales Office & Mailing Address</h5>
+                                                        <p>House: 25, Road: 09, Block: H, Mirpur -2, Dhaka-1216 Bangladesh</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,8 +52,8 @@ export default function ContactPage() {
                                                     </div>
                                                     <div className="contact-info-content">
                                                         <h5>Call Us</h5>
-                                                        <p>+880 1723435818</p>
-                                                        <p>+880 1723435818</p>
+                                                        <p>+880-1714112027</p>
+                                                        <p>+880-1714112023</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,20 +66,29 @@ export default function ContactPage() {
                                                         <h5>Email Us</h5>
                                                         <p>
                                                             <a
-                                                                href="https://live.themewild.com/cdn-cgi/l/email-protection"
+                                                                href="info@unisonbizltd.com.bd" target="_blank"
+                                                                rel="noopener noreferrer"
                                                                 className="__cf_email__"
-                                                                data-cfemail="cda4a3aba28da8b5aca0bda1a8e3aea2a0"
                                                             >
-                                                                [info@unisonbizltd.com.bd]
+                                                                info@unisonbizltd.com.bd
                                                             </a>
                                                         </p>
                                                         <p>
                                                             <a
-                                                                href="https://live.themewild.com/cdn-cgi/l/email-protection"
+                                                                href="saiful.hasan@unisonbizltd.com.bd" target="_blank"
+                                                                rel="noopener noreferrer"
                                                                 className="__cf_email__"
-                                                                data-cfemail="b0c3c5c0c0dfc2c4f0d5c8d1ddc0dcd59ed3dfdd"
                                                             >
-                                                                [info@unisonbizltd.com.bd]
+                                                                saiful.hasan@unisonbizltd.com.bd
+                                                            </a>
+                                                        </p>
+                                                        <p>
+                                                            <a
+                                                                href="unisonbizbd@gmail.com" target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="__cf_email__"
+                                                            >
+                                                                unisonbizbd@gmail.com
                                                             </a>
                                                         </p>
                                                     </div>
@@ -92,10 +101,10 @@ export default function ContactPage() {
                                                     </div>
                                                     <div className="contact-info-content">
                                                         <h5>Open Time</h5>
-                                                        <p>Mon - Sat (10AM - 05PM)</p>
-                                                        <p>
+                                                        <p>Open 7 Days — 24 Hours</p>
+                                                        {/* <p>
                                                             Sunday - <span className="text-danger">Closed</span>
-                                                        </p>
+                                                        </p> */}
                                                     </div>
                                                 </div>
                                             </div>
@@ -176,7 +185,7 @@ export default function ContactPage() {
                 </div>
                 {/* end contact area */}
                 {/* newsletter area */}
-                <div className="newsletter-area pb-100">
+                {/* <div className="newsletter-area pb-100">
                     <div className="container wow fadeInUp" data-wow-delay=".25s">
                         <div className="newsletter-wrap">
                             <div className="row">
@@ -203,7 +212,7 @@ export default function ContactPage() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* newsletter area end */}
                 {/* map */}
                 <div className="contact-map">

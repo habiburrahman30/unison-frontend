@@ -1,6 +1,19 @@
 
 
-export default function ProductPage() {
+import products from "@/app/data/products";
+import brands from "@/app/data/brands";
+import categoryes from "@/app/data/categoryes";
+import { notFound } from "next/navigation";
+
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+
+    const { slug } = await params; // ✅ Must await
+
+    const product = products.find((item) => item.slug === slug);
+    const brand = brands.find((item) => item.id == product?.brand_id);
+    const category = categoryes.find((cat) => cat.id == product?.category_id);
+
+    if (!product) return notFound();
     return (
         <>
             <main className="main">
@@ -31,23 +44,28 @@ export default function ProductPage() {
                         <div className="row">
                             <div className="col-md-9 col-lg-6 col-xxl-5">
                                 <div className="shop-single-gallery">
-                                    <a
+                                    {/* <a
                                         className="shop-single-video popup-youtube"
                                         href="https://www.youtube.com/watch?v=ckHzmP1evNU"
                                         data-tooltip="tooltip"
                                         title="Watch Video"
                                     >
                                         <i className="far fa-play" />
-                                    </a>
+                                    </a> */}
                                     <div className="flexslider-thumbnails">
                                         <ul className="slides ">
-                                            <li
-                                                data-thumb="/assets/img/product/01.png"
-                                                rel="adjustX:10, adjustY:"
-                                            >
-                                                <img src="/assets/img/product/01.png" alt="#" />
-                                            </li>
-                                            <li data-thumb="/assets/img/product/02.png">
+
+                                            {product.images.map((img, index) => (
+
+                                                <li
+                                                    data-thumb={img}
+                                                    rel="adjustX:10, adjustY:"
+                                                >
+                                                    <img src={img} alt={product.name} />
+                                                </li>
+                                            ))}
+
+                                            {/* <li data-thumb="/assets/img/product/02.png">
                                                 <img src="/assets/img/product/02.png" alt="#" />
                                             </li>
                                             <li data-thumb="/assets/img/product/03.png">
@@ -55,57 +73,58 @@ export default function ProductPage() {
                                             </li>
                                             <li data-thumb="/assets/img/product/04.png">
                                                 <img src="/assets/img/product/04.png" alt="#" />
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-12 col-lg-6 col-xxl-6">
                                 <div className="shop-single-info">
-                                    <h4 className="shop-single-title">Surgical Face Mask</h4>
+                                    <h4 className="shop-single-title">{product.name}</h4>
 
                                     <h5 className="widget-title pt-20">
-                                        Registered Office
+                                        Product Description
                                     </h5>
 
                                     <p className="mb-3 ">
-                                        There are many variations of passages of Lorem Ipsum available,
-                                        but the majority have suffered alteration in some form, by
-                                        injected humour, or randomised words which don't look even
-                                        slightly believable.
+                                        {product.product_description}
                                     </p>
 
                                     <h5 className="widget-title pt-10">
-                                        Registered Office
+                                        Technical Discription
                                     </h5>
 
                                     <p className="mb-3 ">
-                                        There are many variations of passages of Lorem Ipsum available,
-                                        but the majority have suffered alteration in some form, by
-                                        injected humour, or randomised words which don't look even
-                                        slightly believable.
+                                        {product.technical_discription}
                                     </p>
 
-                                    {/* <div className="shop-single-sortinfo">
+                                    <div className="shop-single-sortinfo">
                                         <ul>
                                             <li>
-                                                Stock: <span>Available</span>
+
+                                                Stock: {product.stock > 0
+                                                    ? <span className="text-success">Available</span>
+                                                    : <span className="text-danger">Not Available</span>}
+
                                             </li>
                                             <li>
-                                                SKU: <span>656TYTR</span>
+                                                Origin: <span>{product.country_of_origin}</span>
                                             </li>
                                             <li>
-                                                Category: <span>Medicine</span>
+                                                Category: <span>{category?.name}</span>
                                             </li>
                                             <li>
-                                                Brand: <a href="#">Novak</a>
+                                                Brand: <a href={brand?.name}>{brand?.name}</a>
                                             </li>
-                                            <li>
-                                                Tags: <a href="#">Medicine</a>,<a href="#">Healthcare</a>,
-                                                <a href="#">Modern</a>,<a href="#">Shop</a>
-                                            </li>
+
                                         </ul>
-                                    </div> */}
+                                    </div>
+
+                                    <a href={product.product_url} target="_blank"
+                                        rel="noopener noreferrer" className="theme-btn mt-4">
+                                        View Product
+                                        <i className="fas fa-arrow-right" />
+                                    </a>
 
                                 </div>
                             </div>

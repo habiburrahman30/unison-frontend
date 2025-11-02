@@ -1,33 +1,51 @@
-export default function ProductGrid() {
-    return (<>
+import { Product } from "@/types/product";
+
+interface ProductGridProps {
+    products: Product[];
+}
+
+export default function ProductGrid({ products }: ProductGridProps) {
+
+    return (
         <div className="shop-item-wrap item-4">
             <div className="row g-4">
-                <div className="col-md-6 col-lg-4">
-                    <div className="product-item">
-                        <div className="product-img">
-                            <span className="type">Trending</span>
 
-                            <a href={`/products/${1}`}>
-                                <img src="/assets/img/product/01.png" alt="" />
-                            </a>
+                {products.map((product) => (
+                    <div className="col-md-6 col-lg-4" key={product.id}>
+                        <div className="product-item">
+                            <div className="product-img">
 
-                        </div>
-                        <div className="product-content">
-                            <h3 className="product-title">
-                                <a href="shop-single.html">Surgical Face Mask</a>
-                            </h3>
-                            <div className="product-rate">
-                                <i className="fas fa-star" />
-                                <i className="fas fa-star" />
-                                <i className="fas fa-star" />
-                                <i className="fas fa-star" />
-                                <i className="far fa-star" />
+                                {product.is_trending && <span className="type">Trending</span>}
+                                <a href={`/products/${product.slug}`}>
+                                    <img src={product.images?.length ? product.images[0] : "/assets/img/no-image-found.jpg"}
+                                        alt={product.name} />
+                                </a>
+
                             </div>
+                            <div className="product-content">
+                                <h3 className="product-title">
+                                    <a href={`/products/${product.slug}`}>{product.name} </a>
+                                </h3>
+                                <p className="price">
+                                    ${product.price} {product.old_price && <del>${product.old_price}</del>}
+                                </p>
+                                {/* <div className="product-rate">
+                                    <i className="fas fa-star" />
+                                    <i className="fas fa-star" />
+                                    <i className="fas fa-star" />
+                                    <i className="fas fa-star" />
+                                    <i className="far fa-star" />
+                                </div> */}
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-md-6 col-lg-4">
+                ))}
+
+                {products.length === 0 && (
+                    <p className="text-center mt-4">No products found.</p>
+                )}
+                {/* <div className="col-md-6 col-lg-4">
                     <div className="product-item">
                         <div className="product-img">
                             <span className="type hot">Hot</span>
@@ -492,9 +510,9 @@ export default function ProductGrid() {
 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
-    </>
+
     );
 }
