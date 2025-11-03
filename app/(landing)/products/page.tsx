@@ -67,10 +67,32 @@ export default function ProductsPage() {
         currentPage * PRODUCTS_PER_PAGE
     );
 
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-    }
+    const getPageNumbers = () => {
+        const pages: (number | string)[] = [];
+        const maxVisible = 1;
+
+        if (totalPages <= 5) {
+            for (let i = 1; i <= totalPages; i++) pages.push(i);
+        } else {
+            pages.push(1);
+
+            if (currentPage > maxVisible + 2) pages.push("...");
+
+            for (
+                let i = Math.max(2, currentPage - maxVisible);
+                i <= Math.min(totalPages - 1, currentPage + maxVisible);
+                i++
+            ) {
+                pages.push(i);
+            }
+
+            if (currentPage < totalPages - (maxVisible + 1)) pages.push("...");
+
+            pages.push(totalPages);
+        }
+
+        return pages;
+    };
 
     useEffect(() => {
         setCurrentPage(1);
@@ -154,20 +176,24 @@ export default function ProductsPage() {
                                                     All Categories
                                                 </a>
                                             </li>
-                                            {categoryes.map((cat, index) => (
-                                                <li key={cat.id}>
-                                                    <a href="#"
+                                            {categoryes.map((cat, index) => {
+                                                // Count products in this category
+                                                const count = products.filter(n => n.category_id === cat.id).length;
+                                                return (
+                                                    <li key={cat.id}>
+                                                        <a href="#"
 
-                                                        className={selectedCategory === cat.id ? "active" : ""}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            setSelectedCategory(cat.id);
-                                                        }}
-                                                    >
-                                                        {cat.name}<span>({cat.item})</span>
-                                                    </a>
-                                                </li>
-                                            ))}
+                                                            className={selectedCategory === cat.id ? "active" : ""}
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setSelectedCategory(cat.id);
+                                                            }}
+                                                        >
+                                                            {cat.name} {count > 0 ? <span>({count})</span> : ''}
+                                                        </a>
+                                                    </li>
+                                                )
+                                            })}
                                         </ul>
                                     </div>
                                     <div className="shop-widget">
@@ -184,35 +210,39 @@ export default function ProductsPage() {
                                                         onChange={() => setSelectedBrands([])}
                                                     />
                                                     <label className="form-check-label" htmlFor="brand2">
-                                                        All Brands<span>({brands.length})</span>
+                                                        All Brands<span>({products.length})</span>
                                                     </label>
                                                 </div>
                                             </li>
 
-                                            {brands.map((brand) => (
-                                                <li key={brand.id}>
-                                                    <div className="form-check">
-                                                        <input
-                                                            className="form-check-input"
-                                                            type="checkbox"
-                                                            id={`brand-${brand.id}`}
-                                                            checked={selectedBrands.includes(brand.id)}
-                                                            onChange={() => {
-                                                                if (selectedBrands.includes(brand.id)) {
-                                                                    // remove from selection
-                                                                    setSelectedBrands(selectedBrands.filter((id) => id !== brand.id));
-                                                                } else {
-                                                                    // add to selection
-                                                                    setSelectedBrands([...selectedBrands, brand.id]);
-                                                                }
-                                                            }}
-                                                        />
-                                                        <label className="form-check-label" htmlFor={`brand-${brand.id}`}>
-                                                            {brand.name} <span>({brand.item})</span>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            ))}
+                                            {brands.map((brand) => {
+                                                // Count products in this category
+                                                const count = products.filter(n => n.category_id === brand.id).length;
+                                                return (
+                                                    <li key={brand.id}>
+                                                        <div className="form-check">
+                                                            <input
+                                                                className="form-check-input"
+                                                                type="checkbox"
+                                                                id={`brand-${brand.id}`}
+                                                                checked={selectedBrands.includes(brand.id)}
+                                                                onChange={() => {
+                                                                    if (selectedBrands.includes(brand.id)) {
+                                                                        // remove from selection
+                                                                        setSelectedBrands(selectedBrands.filter((id) => id !== brand.id));
+                                                                    } else {
+                                                                        // add to selection
+                                                                        setSelectedBrands([...selectedBrands, brand.id]);
+                                                                    }
+                                                                }}
+                                                            />
+                                                            <label className="form-check-label" htmlFor={`brand-${brand.id}`}>
+                                                                {brand.name} {count > 0 ? <span>({count})</span> : ''}
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                )
+                                            })}
                                             {/* <li>
                                                 <div className="form-check">
                                                     <input
@@ -460,58 +490,41 @@ export default function ProductsPage() {
                                 {/* <ProductList /> */}
                                 {/* grid and list view */}
                                 {/* pagination */}
-                                {paginatedProducts.length > 0 && (
 
-
-                                    <div className="pagination-area mt-50">
+                                {products.length > 0 && (
+                                    <div className="pagination-area mt-60">
                                         <div aria-label="Page navigation example">
                                             <ul className="pagination">
-                                                {/* Previous Button */}
-                                                <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                                                    <a
-                                                        className="page-link"
-                                                        href="#"
-                                                        aria-label="Previous"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            if (currentPage > 1) setCurrentPage(currentPage - 1);
-                                                        }}
+                                                <li className="page-item">
+                                                    <a className="page-link" href="#" aria-label="Previous"
+
+                                                        //  disabled={currentPage === 1}
+                                                        onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
                                                     >
                                                         <span aria-hidden="true">
                                                             <i className="far fa-arrow-left" />
                                                         </span>
                                                     </a>
                                                 </li>
+                                                {getPageNumbers().map((num, i) =>
+                                                    num === "..." ? (
+                                                        <li key={i} className="page-item">
+                                                            <span className="page-link">...</span>
+                                                        </li>
+                                                    ) : (
 
-                                                {/* Page Numbers */}
-                                                {pageNumbers.map((num) => (
-                                                    <li
-                                                        key={num}
-                                                        className={`page-item ${currentPage === num ? "active" : ""}`}
-                                                    >
-                                                        <a
-                                                            className="page-link"
-                                                            href="#"
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setCurrentPage(num);
-                                                            }}
-                                                        >
-                                                            {num}
-                                                        </a>
-                                                    </li>
-                                                ))}
+                                                        <li key={i} className={`page-item ${currentPage === num ? "active" : ""}`}>
+                                                            <a className="page-link" href="#" onClick={() => setCurrentPage(Number(num))}>
+                                                                {num}
+                                                            </a>
+                                                        </li>
+                                                    )
+                                                )}
 
-                                                {/* Next Button */}
-                                                <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
-                                                    <a
-                                                        className="page-link"
-                                                        href="#"
-                                                        aria-label="Next"
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-                                                        }}
+                                                <li className="page-item">
+                                                    <a className="page-link" href="#" aria-label="Next"
+                                                        //  disabled={currentPage === totalPages}
+                                                        onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
                                                     >
                                                         <span aria-hidden="true">
                                                             <i className="far fa-arrow-right" />
@@ -522,45 +535,8 @@ export default function ProductsPage() {
                                         </div>
                                     </div>
                                 )}
-                                {/* <div className="pagination-area mt-50">
-                                    <div aria-label="Page navigation example">
-                                        <ul className="pagination">
-                                            <li className="page-item">
-                                                <a className="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">
-                                                        <i className="far fa-arrow-left" />
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li className="page-item active">
-                                                <a className="page-link" href="#">
-                                                    1
-                                                </a>
-                                            </li>
-                                            <li className="page-item">
-                                                <a className="page-link" href="#">
-                                                    2
-                                                </a>
-                                            </li>
-                                            <li className="page-item">
-                                                <span className="page-link">...</span>
-                                            </li>
-                                            <li className="page-item">
-                                                <a className="page-link" href="#">
-                                                    10
-                                                </a>
-                                            </li>
-                                            <li className="page-item">
-                                                <a className="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">
-                                                        <i className="far fa-arrow-right" />
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div> */}
                                 {/* pagination end */}
+
                             </div>
                         </div>
                     </div>
