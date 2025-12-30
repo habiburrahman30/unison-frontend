@@ -282,7 +282,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                         </div> */}
                         {/* shop single details end */}
                         {/* related item */}
-                        <div className="product-area related-item pt-40">
+                        {/* <div className="product-area related-item pt-40">
                             <div className="container px-0">
                                 <div className="row">
                                     <div className="col-12">
@@ -303,19 +303,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                                     <img src="/assets/img/product/07.png" alt="" />
                                                 </a>
                                                 <div className="product-action-wrap">
-                                                    {/* <div className="product-action">
-                                                        <a
-                                                            href="#"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#quickview"
-                                                            data-bs-placement="right"
-                                                            data-tooltip="tooltip"
-                                                            title="Quick View"
-                                                        >
-                                                            <i className="far fa-eye" />
-                                                        </a>
 
-                                                    </div> */}
                                                 </div>
                                             </div>
                                             <div className="product-content">
@@ -407,7 +395,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         {/* related item end */}
                     </div>
                 </div>

@@ -420,7 +420,7 @@ export default function HomePage() {
 
         {/* feature area end */}
         {/* popular item */}
-        <div className="product-area pb-100">
+        {/* <div className="product-area pb-100">
           <div className="container">
             <div className="row g-4">
               <div className="col-lg-9">
@@ -1452,13 +1452,13 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* popular item end */}
         {/* big banner */}
 
         {/* big banner end */}
         {/* brand area */}
-        <div className="brand-area mb-5">
+        {/* <div className="brand-area mb-5">
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -1503,7 +1503,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* brand area end */}
         {/* video area */}
 
@@ -1636,14 +1636,14 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                  <div className="about-experience">
+                  {/* <div className="about-experience">
                     <div className="about-experience-icon">
                       <img src="/assets/img/icon/experience.svg" alt="" />
                     </div>
                     <b>
                       10 Years Of <br /> Experience
                     </b>
-                  </div>
+                  </div> */}
                   <div className="about-shape">
                     <img src="/assets/img/shape/01.png" alt="" />
                   </div>
@@ -2023,7 +2023,7 @@ export default function HomePage() {
         </div>
         {/* testimonial area end */}
         {/* blog area */}
-        <div className="blog-area py-100">
+        {/* <div className="blog-area py-100">
           <div className="container">
             <div className="row">
               <div className="col-lg-6 mx-auto">
@@ -2052,11 +2052,7 @@ export default function HomePage() {
                             <i className="far fa-user-circle" /> By Alicia Davis
                           </a>
                         </li>
-                        {/* <li>
-                          <a href="#">
-                            <i className="far fa-comments" /> 2.5k Comments
-                          </a>
-                        </li> */}
+
                       </ul>
                     </div>
                     <h4 className="blog-title">
@@ -2092,11 +2088,7 @@ export default function HomePage() {
                             <i className="far fa-user-circle" /> By Habibbur Rahman
                           </a>
                         </li>
-                        {/* <li>
-                          <a href="#">
-                            <i className="far fa-comments" /> 3.1k Comments
-                          </a>
-                        </li> */}
+
                       </ul>
                     </div>
                     <h4 className="blog-title">
@@ -2131,11 +2123,7 @@ export default function HomePage() {
                             <i className="far fa-user-circle" /> By Alicia Davis
                           </a>
                         </li>
-                        {/* <li>
-                          <a href="#">
-                            <i className="far fa-comments" /> 1.6k Comments
-                          </a>
-                        </li> */}
+
                       </ul>
                     </div>
                     <h4 className="blog-title">
@@ -2158,7 +2146,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* blog area end */}
         {/* newsletter area */}
         {/* <div className="newsletter-area pb-100">

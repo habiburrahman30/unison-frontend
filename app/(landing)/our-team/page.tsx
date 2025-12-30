@@ -90,7 +90,7 @@ export default function OurTeamPage() {
                                         <img src={team.image && team.image !== "" ? team.image : "/assets/img/no-image-found.jpg"}
                                             alt={team.name} />
                                     </div>
-                                    <div className="team-content">
+                                    {/* <div className="team-content">
                                         <div className="team-bio">
                                             <h5><a href="#">{team.name}</a></h5>
                                             <span>{team.role}</span>
@@ -109,7 +109,7 @@ export default function OurTeamPage() {
                                         {team.socials.youtube && (
                                             <a href={team.socials.youtube}><i className="fab fa-youtube" /></a>
                                         )}
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         ))}
