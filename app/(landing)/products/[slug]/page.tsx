@@ -1,19 +1,23 @@
 
 
-import products from "@/app/data/products";
-import brands from "@/app/data/brands";
-import categoryes from "@/app/data/categoryes";
 import { notFound } from "next/navigation";
+import { getProductBySlug } from "@/lib/api/products";
+import Image from "next/image";
+import Link from "next/link";
 
-export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+interface PageProps {
+    params: Promise<{
+        slug: string;
+    }>;
+}
 
-    const { slug } = await params; // ✅ Must await
+export default async function ProductPage({ params }: PageProps) {
+    const { slug } = await params;
+    const product = await getProductBySlug(slug);
 
-    const product = products.find((item) => item.slug === slug);
-    const brand = brands.find((item) => item.id == product?.brand_id);
-    const category = categoryes.find((cat) => cat.id == product?.category_id);
-
-    if (!product) return notFound();
+    if (!product) {
+        notFound();
+    }
     return (
         <>
             <main className="main">
@@ -28,11 +32,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                             <h4 className="breadcrumb-title">Shop Single</h4>
                             <ul className="breadcrumb-menu">
                                 <li>
-                                    <a href="index-2.html">
+                                    <a href="/">
                                         <i className="far fa-home" /> Home
                                     </a>
                                 </li>
-                                <li className="active">Shop Single</li>
+
+                                <li>
+                                    {/* <Link href="/products" className="hover:text-blue-600"> */}
+                                    Products
+                                    {/* </Link> */}
+                                </li>
+
+                                <li key={product.category_id}>
+
+                                    {/* <Link href={`/products?category_id=${product.category_id}`} className="hover:text-blue-600"> */}
+                                    {product.category.name}
+                                    {/* </Link> */}
+                                </li>
+
+                                <li className="text-gray-900 font-medium">{product.name}</li>
                             </ul>
                         </div>
                     </div>
@@ -58,6 +76,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                             {product.images.map((img, index) => (
 
                                                 <li
+                                                    key={index}
                                                     data-thumb={img}
                                                     rel="adjustX:10, adjustY:"
                                                 >
@@ -95,7 +114,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                     </h5>
 
                                     <p className="mb-3 ">
-                                        {product.technical_discription}
+                                        {product.technical_description}
                                     </p>
 
                                     <div className="shop-single-sortinfo">
@@ -111,10 +130,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                                                 Origin: <span>{product.country_of_origin}</span>
                                             </li>
                                             <li>
-                                                Category: <span>{category?.name}</span>
+                                                Category: <span>{product.category?.name}</span>
                                             </li>
                                             <li>
-                                                Brand: <a href={brand?.name}>{brand?.name}</a>
+                                                Brand: <a href={product.brand?.name}>{product.brand?.name}</a>
                                             </li>
 
                                         </ul>

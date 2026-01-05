@@ -27,11 +27,24 @@ export async function POST(request: NextRequest) {
     const { name, description, image } = body;
 
     if (!name) {
-      return ApiResponse.error("Name is required", 400);
+      return ApiResponse.error("Category name is required", 400);
+    }
+
+    // Check if category already exists
+    const existingCategory = await prisma.category.findUnique({
+      where: { name },
+    });
+
+    if (existingCategory) {
+      return ApiResponse.error("Category with this name already exists", 400);
     }
 
     const category = await prisma.category.create({
-      data: { name, description, image },
+      data: {
+        name: name.trim(),
+        description: description?.trim() || null,
+        image: image || null,
+      },
     });
 
     return ApiResponse.success(category, "Category created successfully", 201);

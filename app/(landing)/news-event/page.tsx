@@ -126,8 +126,8 @@ export default function NewsAndEventPage() {
                         <div className="row g-4">
                             <div className="col-lg-8 col-12">
                                 <div className="row g-4">
-                                    {filteredNews.map((item, index) => (
-                                        <div className="col-md-6">
+                                    {filteredNews.map((item) => (
+                                        <div className="col-md-6" key={item.id}>
                                             <div className="blog-item wow fadeInUp" data-wow-delay=".25s">
                                                 <div className="blog-item-img">
                                                     <img src={item.image} alt={item.title} />

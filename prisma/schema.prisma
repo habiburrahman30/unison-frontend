@@ -14,15 +14,15 @@ datasource db {
 }
 
 model User {
-  id               Int       @id @default(autoincrement())
-  name             String
-  email            String    @unique
-  password         String
-  role             Role      @default(USER)
-  resetToken       String?
-  resetTokenExpiry DateTime?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  id                 Int       @id @default(autoincrement())
+  name               String
+  email              String    @unique
+  password           String
+  role               Role      @default(USER)
+  reset_token        String?
+  reset_token_expiry DateTime?
+  created_at         DateTime  @default(now())
+  updated_at         DateTime  @updatedAt
 
   @@map("users")
 }
@@ -33,19 +33,33 @@ enum Role {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String?
-  price       Decimal  @db.Decimal(10, 2)
-  stock       Int      @default(0)
-  images      String[]
-  categoryId  Int
-  brandId     Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id   Int    @id @default(autoincrement())
+  name String
+  slug String @unique
 
-  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  brand    Brand    @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  manufacturer      String
+  country_of_origin String
+  product_url       String
+
+  product_description   String
+  technical_description String?
+
+  price     Decimal  @db.Decimal(10, 2)
+  old_price Decimal? @db.Decimal(10, 2)
+
+  stock       Int     @default(0)
+  is_trending Boolean @default(false)
+
+  images String[]
+
+  category_id Int
+  brand_id    Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  category Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  brand    Brand    @relation(fields: [brand_id], references: [id], onDelete: Cascade)
 
   @@map("products")
 }
@@ -55,8 +69,8 @@ model Category {
   name        String    @unique
   description String?
   image       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
   products    Product[]
 
   @@map("categories")
@@ -67,24 +81,24 @@ model Brand {
   name        String    @unique
   description String?
   logo        String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
   products    Product[]
 
   @@map("brands")
 }
 
 model TeamMember {
-  id          Int      @id @default(autoincrement())
-  name        String
-  position    String
-  bio         String?
-  image       String?
-  email       String?
-  phone       String?
-  socialLinks Json?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  name         String
+  position     String
+  bio          String?
+  image        String?
+  email        String?
+  phone        String?
+  social_links Json?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
 
   @@map("team_members")
 }
@@ -95,39 +109,39 @@ model Gallery {
   description String?
   image       String
   category    String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 
   @@map("gallery")
 }
 
 model Testimonial {
-  id        Int      @id @default(autoincrement())
-  name      String
-  position  String?
-  company   String?
-  content   String
-  rating    Int      @default(5)
-  image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  name       String
+  position   String?
+  company    String?
+  content    String
+  rating     Int      @default(5)
+  image      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@map("testimonials")
 }
 
 model News {
-  id         Int      @id @default(autoincrement())
-  title      String
-  slug       String   @unique
-  content    String
-  excerpt    String?
-  image      String?
-  categoryId Int
-  published  Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  content     String
+  excerpt     String?
+  image       String?
+  category_id Int
+  published   Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 
-  category NewsCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category NewsCategory @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
   @@map("news")
 }
@@ -136,8 +150,8 @@ model NewsCategory {
   id          Int      @id @default(autoincrement())
   name        String   @unique
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
   news        News[]
 
   @@map("news_categories")

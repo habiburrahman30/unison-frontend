@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-arp="">
       <head>
         {/* meta tags */}
         <meta charSet="UTF-8" />

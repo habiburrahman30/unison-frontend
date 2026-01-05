@@ -1,6 +1,19 @@
-import Link from "next/link";
 
-export default function Header() {
+
+
+import Link from "next/link";
+import { getCategories } from "@/lib/api/categories";
+
+
+
+export default async function Header() {
+    const page = 1;
+
+    const data = await getCategories({
+        page,
+        limit: 50,
+    });
+
     return (
         <header className="header">
             {/* header top */}
@@ -38,63 +51,7 @@ export default function Header() {
                             <div className="col-12 col-md-6 col-lg-6 col-xl-7">
                                 <div className="header-top-right">
                                     <ul className="header-top-list">
-                                        {/* <li>
-                        <a href="#">
-                          <i className="far fa-timer" /> Daily Deal
-                        </a>
-                      </li>
-                      <li>
-                        <div className="dropdown">
-                          <a
-                            href="#"
-                            className="dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="far fa-usd" /> USD
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              USD
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              EUR
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              AUD
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              CUD
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="dropdown">
-                          <a
-                            href="#"
-                            className="dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                          >
-                            <i className="far fa-globe-americas" /> EN
-                          </a>
-                          <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">
-                              EN
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              FR
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              DE
-                            </a>
-                            <a className="dropdown-item" href="#">
-                              RU
-                            </a>
-                          </div>
-                        </div>
-                      </li> */}
+
                                         <li className="social">
                                             <div className="header-top-social">
                                                 <span>Follow Us: </span>
@@ -130,19 +87,7 @@ export default function Header() {
                             <img src="/assets/img/logo/logo.png" alt="logo" />
                         </a>
                         <div className="mobile-menu-right">
-                            {/* <div className="mobile-menu-btn">
-                                <a href="#" className="nav-right-link search-box-outer">
-                                    <i className="far fa-search" />
-                                </a>
-                                <a href="wishlist.html" className="nav-right-link">
-                                    <i className="far fa-heart" />
-                                    <span>2</span>
-                                </a>
-                                <a href="shop-cart.html" className="nav-right-link">
-                                    <i className="far fa-shopping-bag" />
-                                    <span>5</span>
-                                </a>
-                            </div> */}
+
                             <button
                                 className="navbar-toggler"
                                 type="button"
@@ -199,125 +144,22 @@ export default function Header() {
                                         >
                                             Product
                                         </Link> */}
-                                        <ul className="dropdown-menu fade-down">
-                                            <li>
-                                                <a className="dropdown-item" href={"/products"}>
-                                                    MGPS
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    Oxygen Generator
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    MOT
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    OT
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    ICU
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    NICU
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    Hospital Furniture
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    CSSD
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    Water Management
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item" href="brand.html">
-                                                    Disposable
-                                                </a>
-                                            </li>
-                                            {/* <li className="dropdown-submenu">
-                                                <a className="dropdown-item dropdown-toggle" href="#">
-                                                    Medical Equipment
-                                                </a>
-                                                <ul className="dropdown-menu">
-                                                    <li>
-                                                        <a className="dropdown-item" href="category.html">
-                                                            ICU/NICU/CCU
-                                                        </a>
+                                        {data.categories.length > 0 && (
+                                            <ul className="dropdown-menu fade-down" style={{ width: "400px" }}>
+                                                {data.categories.map((cat: any) => (
+                                                    <li key={cat.id}>
+
+                                                        <Link
+                                                            className="dropdown-item"
+                                                            href={`/products?category_id=${cat.id}`}
+                                                        >
+                                                            {cat.name}
+                                                        </Link>
                                                     </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Neurology/Neurosurgery
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Radiation Oncology
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Rediology & Imaging
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Oxygen Generator
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Cardilogy
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Burn & Plastic Surgery
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Ophthalmology
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Orthopedics
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            OT Equipment
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Medical Gas Pipeline
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a className="dropdown-item" href="category-2.html">
-                                                            Hospital Bed & Furniture
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li> */}
-                                        </ul>
+                                                ))}
+                                            </ul>
+                                        )}
+
                                     </li>
                                     <li className="nav-item dropdown">
                                         <a
@@ -378,9 +220,9 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                </nav>
-            </div>
+                </nav >
+            </div >
             {/* navbar end */}
-        </header>
+        </header >
     );
 }

@@ -1,10 +1,14 @@
-import { Product } from "@/types/product";
+"use client";
 
-interface ProductGridProps {
-    products: Product[];
+import { Product } from "@/types/product";
+import { ProductWithRelations } from "@/lib/api/products";
+import Link from "next/link";
+import EmptyProductsCard from "@/components/EmptyProductsCard";
+interface Props {
+    products: ProductWithRelations[];
 }
 
-export default function ProductGrid({ products }: ProductGridProps) {
+export default function ProductGrid({ products }: Props) {
 
     return (
         <div className="shop-item-wrap item-4">
@@ -15,11 +19,19 @@ export default function ProductGrid({ products }: ProductGridProps) {
                         <div className="product-item">
                             <div className="product-img">
 
-                                {product.is_trending && <span className="type">Trending</span>}
-                                <a href={`/products/${product.slug}`}>
-                                    <img src={product.images?.length ? product.images[0] : "/assets/img/no-image-found.jpg"}
-                                        alt={product.name} />
-                                </a>
+                                {product.stock === 0 && <span className="type oos">Out Of Stock</span>}
+                                {product.stock > 0 && product.is_trending && <span className="type">Trending</span>}
+
+                                <Link href={`/products/${product.slug}`}>
+                                    <img
+                                        src={
+                                            product.images?.length
+                                                ? product.images[0]
+                                                : "/assets/img/no-image-found.jpg"
+                                        }
+                                        alt={product.name}
+                                    />
+                                </Link>
 
                             </div>
                             <div className="product-content">
@@ -27,7 +39,8 @@ export default function ProductGrid({ products }: ProductGridProps) {
                                     <a href={`/products/${product.slug}`}>{product.name} </a>
                                 </h3>
                                 <p className="price">
-                                    ${product.price} {product.old_price && <del>${product.old_price}</del>}
+                                    ${Number(product.price).toFixed(2)}{" "}
+                                    {product.old_price && <del>${Number(product.old_price).toFixed(2)}</del>}
                                 </p>
                                 {/* <div className="product-rate">
                                     <i className="fas fa-star" />
@@ -43,7 +56,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
                 ))}
 
                 {products.length === 0 && (
-                    <p className="text-center mt-4">No products found.</p>
+                    <EmptyProductsCard />
                 )}
                 {/* <div className="col-md-6 col-lg-4">
                     <div className="product-item">

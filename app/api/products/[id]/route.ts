@@ -2,14 +2,22 @@ import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { ApiResponse } from "@/lib/utils/response";
 import { handlePrismaError } from "@/lib/utils/errorHandler";
+import { slugify } from "@/lib/slugify";
 
+// GET - Get single product by ID
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const id = parseInt(params.id);
+
+    if (isNaN(id)) {
+      return ApiResponse.error("Invalid product ID", 400);
+    }
+
     const product = await prisma.product.findUnique({
-      where: { id: parseInt(params.id) },
+      where: { id },
       include: {
         category: true,
         brand: true,
@@ -27,26 +35,54 @@ export async function GET(
   }
 }
 
-export async function PUT(
+// PATCH - Update product
+export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const id = parseInt(params.id);
     const body = await request.json();
-    const { name, description, price, stock, images, categoryId, brandId } =
-      body;
 
-    const updateData: any = {};
-    if (name) updateData.name = name;
-    if (description !== undefined) updateData.description = description;
-    if (price) updateData.price = price;
-    if (stock !== undefined) updateData.stock = stock;
-    if (images) updateData.images = images;
-    if (categoryId) updateData.categoryId = categoryId;
-    if (brandId) updateData.brandId = brandId;
+    if (isNaN(id)) {
+      return ApiResponse.error("Invalid product ID", 400);
+    }
+
+    // Check if product exists
+    const existingProduct = await prisma.product.findUnique({
+      where: { id },
+    });
+
+    if (!existingProduct) {
+      return ApiResponse.error("Product not found", 404);
+    }
+
+    // If name is being updated and slug is not provided, regenerate slug
+    if (body.name && !body.slug) {
+      body.slug = slugify(body.name);
+    }
+
+    // If slug is being updated, check if it's unique
+    if (body.slug && body.slug !== existingProduct.slug) {
+      const slugExists = await prisma.product.findUnique({
+        where: { slug: body.slug },
+      });
+
+      if (slugExists) {
+        return ApiResponse.error("Product with this slug already exists", 400);
+      }
+    }
+
+    // Parse numeric fields if they exist
+    const updateData: any = { ...body };
+    if (body.price) updateData.price = parseFloat(body.price);
+    if (body.old_price) updateData.old_price = parseFloat(body.old_price);
+    if (body.stock !== undefined) updateData.stock = parseInt(body.stock);
+    if (body.category_id) updateData.category_id = parseInt(body.category_id);
+    if (body.brand_id) updateData.brand_id = parseInt(body.brand_id);
 
     const product = await prisma.product.update({
-      where: { id: parseInt(params.id) },
+      where: { id },
       data: updateData,
       include: {
         category: true,
@@ -61,13 +97,29 @@ export async function PUT(
   }
 }
 
+// DELETE - Delete product
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const id = parseInt(params.id);
+
+    if (isNaN(id)) {
+      return ApiResponse.error("Invalid product ID", 400);
+    }
+
+    // Check if product exists
+    const existingProduct = await prisma.product.findUnique({
+      where: { id },
+    });
+
+    if (!existingProduct) {
+      return ApiResponse.error("Product not found", 404);
+    }
+
     await prisma.product.delete({
-      where: { id: parseInt(params.id) },
+      where: { id },
     });
 
     return ApiResponse.success(null, "Product deleted successfully");

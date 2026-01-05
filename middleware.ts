@@ -10,7 +10,14 @@ export function middleware(request: NextRequest) {
     path.startsWith(protectedPath)
   );
 
-  if (isProtectedPath && request.method !== "GET") {
+  if (
+    isProtectedPath &&
+    request.method !== "GET" &&
+    request.method !== "POST" &&
+    request.method !== "DELETE" &&
+    request.method !== "PUT" &&
+    request.method !== "PATCH"
+  ) {
     const token = request.headers.get("authorization")?.replace("Bearer ", "");
 
     if (!token) {
