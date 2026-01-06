@@ -6,11 +6,13 @@ import Link from "next/link";
 import { createProduct } from "@/lib/api/products";
 import toast, { Toaster } from "react-hot-toast";
 import { slugify } from "@/lib/slugify";
+import { Category } from "@/lib/api/categories";
+import { Brand } from "@/lib/api/brands";
 
 export default function CreateProductPage() {
     const router = useRouter();
-    const [categories, setCategories] = useState([]);
-    const [brands, setBrands] = useState([]);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [brands, setBrands] = useState<Brand[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -127,7 +129,7 @@ export default function CreateProductPage() {
         // Fetch brands
         fetch("/api/brands")
             .then((res) => res.json())
-            .then((data) => setBrands(data.data || []));
+            .then((data) => setBrands(data.data.brands || []));
     }, []);
     return (
 
@@ -332,7 +334,7 @@ export default function CreateProductPage() {
                                                 onChange={handleChange}
                                                 required>
                                                 <option value="">Select Category</option>
-                                                {categories.map((cat: any) => (
+                                                {Array.isArray(categories) && categories.map((cat) => (
                                                     <option key={cat.id} value={cat.id}>
                                                         {cat.name}
                                                     </option>
@@ -353,11 +355,13 @@ export default function CreateProductPage() {
                                                 onChange={handleChange}
                                                 required>
                                                 <option value="">Select Brand</option>
-                                                {brands.map((brand: any) => (
-                                                    <option key={brand.id} value={brand.id}>
-                                                        {brand.name}
-                                                    </option>
-                                                ))}
+
+                                                {Array.isArray(brands) &&
+                                                    brands.map((brand) => (
+                                                        <option key={brand.id} value={brand.id}>
+                                                            {brand.name}
+                                                        </option>
+                                                    ))}
                                             </select>
 
                                         </div>

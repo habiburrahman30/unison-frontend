@@ -43,7 +43,7 @@ export default function ProductsSidebar({ products }: Props) {
         // Fetch brands
         fetch("/api/brands")
             .then((res) => res.json())
-            .then((data) => setBrands(data.data || []));
+            .then((data) => setBrands(data.data.brands || []));
     }, []);
 
     return (
@@ -75,7 +75,7 @@ export default function ProductsSidebar({ products }: Props) {
                             All Categories<span>({categories.length})</span>
                         </a>
                     </li>
-                    {categories.map((data) => {
+                    {Array.isArray(categories) && categories.map((data) => {
                         return (
                             <li key={data.id}>
                                 <Link
@@ -110,7 +110,7 @@ export default function ProductsSidebar({ products }: Props) {
                         </div>
                     </li>
 
-                    {brands.map((data) => {
+                    {Array.isArray(brands) && brands.map((data) => {
                         return (
                             <li key={data.id}>
                                 <div className="form-check">

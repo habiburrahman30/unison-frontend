@@ -122,7 +122,7 @@ export default function TestimonialsTable({ testimonials, pagination }: Props) {
                             <td>
                                 {data.company && (
                                     <>
-                                        {data.designation && "at "}
+                                        {data.designation}
                                         <span className="badge badge-info">{data.company}</span>
                                     </>
                                 )}

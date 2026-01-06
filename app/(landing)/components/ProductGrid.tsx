@@ -38,10 +38,10 @@ export default function ProductGrid({ products }: Props) {
                                 <h3 className="product-title">
                                     <a href={`/products/${product.slug}`}>{product.name} </a>
                                 </h3>
-                                <p className="price">
+                                {/* <p className="price">
                                     ${Number(product.price).toFixed(2)}{" "}
                                     {product.old_price && <del>${Number(product.old_price).toFixed(2)}</del>}
-                                </p>
+                                </p> */}
                                 {/* <div className="product-rate">
                                     <i className="fas fa-star" />
                                     <i className="fas fa-star" />

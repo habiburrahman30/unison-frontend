@@ -73,7 +73,7 @@ export default async function ProductPage({ params }: PageProps) {
                                     <div className="flexslider-thumbnails">
                                         <ul className="slides ">
 
-                                            {product.images.map((img, index) => (
+                                            {Array.isArray(product.images) && product.images.map((img, index) => (
 
                                                 <li
                                                     key={index}

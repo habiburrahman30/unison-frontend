@@ -1,4 +1,21 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Category } from "@/lib/api/categories";
+
 export default function Footer() {
+    const router = useRouter();
+    const [categories, setCategories] = useState<Category[]>([]);
+
+    useEffect(() => {
+        // Fetch categories
+        fetch("/api/categories")
+            .then((res) => res.json())
+            .then((data) => setCategories(data.data || []));
+
+
+    }, []);
     return (
         <footer className="footer-area ft-bg">
             <div className="footer-widget">
@@ -122,29 +139,18 @@ export default function Footer() {
                         </div>
                         <div className="col-md-6 col-lg-3">
                             <div className="footer-widget-box list">
-                                <h4 className="footer-widget-title">Browse Category</h4>
+                                <h4 className="footer-widget-title">All Categories</h4>
                                 <ul className="footer-list">
-                                    <li>
-                                        <a href={"/products"}>MGPS</a>
-                                    </li>
-                                    <li>
-                                        <a href={"/products"}>Oxygen Generator</a>
-                                    </li>
-                                    <li>
-                                        <a href={"/products"}>MOT</a>
-                                    </li>
-                                    <li>
-                                        <a href={"/products"}>OT</a>
-                                    </li>
-                                    <li>
-                                        <a href={"/products"}>ICU</a>
-                                    </li>
-                                    <li>
-                                        <a href={"/products"}>Hospital Furniture</a>
-                                    </li>
-                                    <li>
-                                        <a href={"/products"}>CSSD</a>
-                                    </li>
+
+                                    {Array.isArray(categories) &&
+                                        categories.map((data) => (
+
+                                            <li key={data.id}>
+                                                <a href={"/products"}>{data.name}</a>
+                                            </li>
+                                        ))}
+
+
                                 </ul>
                             </div>
                         </div>
