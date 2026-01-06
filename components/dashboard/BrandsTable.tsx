@@ -96,46 +96,53 @@ export default function BrandsTable({ brands, pagination }: Props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {brands.map((brand) => (
-                        <tr key={brand.id}>
-                            {brand.logo && (
-                                <td>
-                                    <div className="table-list-img w-15">
+                    {brands.map((data) => (
+                        <tr key={data.id}>
+                            <td>
+                                <div className="" style={{ "padding": "3px" }}>
+                                    {data.logo ? (<Image
+                                        src={data.logo}
+                                        alt={data.name}
+                                        width={80}
+                                        height={80}
+                                        className="rounded-2"
+                                    />
+                                    ) : (
                                         <Image
-                                            src={brand.logo}
-                                            alt={brand.name}
+                                            src="/assets/img/no-image-found.jpg"
+                                            alt="Default Testimonial"
                                             width={80}
                                             height={80}
-                                            className="rounded-3"
+                                            className="rounded-2"
                                         />
-                                    </div>
-                                </td>
+                                    )}
 
-                            )}
+                                </div>
+                            </td>
                             <td>
 
-                                <span className="table-list-code">{brand.name}</span>
+                                <span className="table-list-code">{data.name}</span>
                             </td>
-                            <td>{brand.description ?? ''}</td>
-                            <td><span className="badge badge-info">{brand._count?.products || 0}</span></td>
+                            <td>{data.description ?? ''}</td>
+                            <td><span className="badge badge-info">{data._count?.products || 0}</span></td>
                             <td>
 
 
                                 <Link
-                                    href={`/admin/brands/${brand.id}/edit`}
+                                    href={`/admin/brands/${data.id}/edit`}
                                     className="btn btn-outline-secondary btn-sm rounded-2"
                                 >
                                     <i className="far fa-pen" />
 
                                 </Link>
                                 <button
-                                    onClick={() => handleDelete(brand)}
-                                    disabled={isDeleting === brand.id}
+                                    onClick={() => handleDelete(data)}
+                                    disabled={isDeleting === data.id}
                                     className="btn btn-outline-danger btn-sm rounded-2"
                                     data-tooltip="tooltip"
                                     title="Delete"
                                 >
-                                    {isDeleting === brand.id ? "Deleting..." : <i className="far fa-trash-can" />}
+                                    {isDeleting === data.id ? "Deleting..." : <i className="far fa-trash-can" />}
                                 </button>
                             </td>
                         </tr>

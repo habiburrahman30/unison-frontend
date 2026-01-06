@@ -98,20 +98,27 @@ export default function CategoriesTable({ categories, pagination }: Props) {
                 <tbody>
                     {categories.map((data) => (
                         <tr key={data.id}>
-                            {data.image && (
-                                <td>
-                                    <div className="table-list-img w-15">
+                            <td>
+                                <div className="" style={{ "padding": "3px" }}>
+                                    {data.image ? (<Image
+                                        src={data.image}
+                                        alt={data.name}
+                                        width={80}
+                                        height={80}
+                                        className="rounded-2"
+                                    />
+                                    ) : (
                                         <Image
-                                            src={data.image}
-                                            alt={data.name}
+                                            src="/assets/img/no-image-found.jpg"
+                                            alt="Default Testimonial"
                                             width={80}
                                             height={80}
-                                            className="rounded-3"
+                                            className="rounded-2"
                                         />
-                                    </div>
-                                </td>
+                                    )}
 
-                            )}
+                                </div>
+                            </td>
                             <td>
 
                                 <span className="table-list-code">{data.name}</span>

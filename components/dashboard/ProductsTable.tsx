@@ -118,33 +118,40 @@ export default function ProductsTable({ products, pagination }: Props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product) => (
-                        <tr key={product.id}>
+                    {products.map((data) => (
+                        <tr key={data.id}>
+
                             <td>
-                                <div className="table-list-img w-15">
-
-                                    {product.images[0] && (
-
-
+                                <div className="" style={{ "padding": "3px" }}>
+                                    {data.images[0] ? (<Image
+                                        src={data.images[0]}
+                                        alt={data.name}
+                                        width={80}
+                                        height={80}
+                                        className="rounded-2"
+                                    />
+                                    ) : (
                                         <Image
-                                            src={product.images[0]}
-                                            alt={product.name}
+                                            src="/assets/img/no-image-found.jpg"
+                                            alt="Default Testimonial"
                                             width={80}
                                             height={80}
-                                            className="rounded-3"
+                                            className="rounded-2"
                                         />
                                     )}
+
                                 </div>
                             </td>
-                            <td>
-                                <span className="table-list-code"> {product.name}</span>
-                            </td>
-                            <td><span className="badge badge-info">{product.category.name}</span></td>
-                            <td> <span className="badge badge-info">{product.brand.name}</span></td>
-                            <td><span className="badge badge-info">{product.manufacturer}</span></td>
 
                             <td>
-                                {product.stock > 0
+                                <span className="table-list-code"> {data.name}</span>
+                            </td>
+                            <td><span className="badge badge-info">{data.category.name}</span></td>
+                            <td> <span className="badge badge-info">{data.brand.name}</span></td>
+                            <td><span className="badge badge-info">{data.manufacturer}</span></td>
+
+                            <td>
+                                {data.stock > 0
                                     ? <span className="badge badge-success text-success">Available</span>
                                     : <span className="badge badge-danger text-danger">Not Available</span>
                                 }
@@ -152,7 +159,7 @@ export default function ProductsTable({ products, pagination }: Props) {
 
                             <td>
                                 <Link
-                                    href={`/admin/products/${product.id}/edit`}
+                                    href={`/admin/products/${data.id}/edit`}
                                     className="btn btn-outline-secondary btn-sm rounded-2"
                                 >
                                     <i className="far fa-pen" />
@@ -160,13 +167,13 @@ export default function ProductsTable({ products, pagination }: Props) {
                                 </Link>
 
                                 <button
-                                    onClick={() => handleDelete(product)}
-                                    disabled={isDeleting === product.id}
+                                    onClick={() => handleDelete(data)}
+                                    disabled={isDeleting === data.id}
                                     className="btn btn-outline-danger btn-sm rounded-2"
                                     data-tooltip="tooltip"
                                     title="Delete"
                                 >
-                                    {isDeleting === product.id ? "Deleting..." : <i className="far fa-trash-can" />}
+                                    {isDeleting === data.id ? "Deleting..." : <i className="far fa-trash-can" />}
                                 </button>
                             </td>
                         </tr>
