@@ -1,9 +1,7 @@
 
-
-
 import Link from "next/link";
 import { getCategories } from "@/lib/api/categories";
-
+import WhatsAppWidget from "../landing/WhatsAppWidget";
 
 
 export default async function Header() {
@@ -221,8 +219,12 @@ export default async function Header() {
                         </div>
                     </div>
                 </nav >
+
             </div >
             {/* navbar end */}
+
+            {/* Floating WhatsApp Widget */}
+            <WhatsAppWidget />
         </header >
     );
 }
