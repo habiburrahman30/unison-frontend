@@ -7,17 +7,17 @@ import { deleteUploadedFile } from "@/lib/utils/fileUtils";
 // GET - Single brand
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid brand ID", 400);
     }
 
     const brand = await prisma.brand.findUnique({
-      where: { id },
+      where: { id: Number(id) },
       include: {
         _count: {
           select: { products: true },
@@ -39,19 +39,19 @@ export async function GET(
 // PATCH - Update brand
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
     const body = await request.json();
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid brand ID", 400);
     }
 
     // Check if brand exists
     const existingBrand = await prisma.brand.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     if (!existingBrand) {
@@ -71,7 +71,7 @@ export async function PATCH(
 
     // Update brand
     const brand = await prisma.brand.update({
-      where: { id },
+      where: { id: Number(id) },
       data: {
         name: body.name?.trim(),
         description: body.description?.trim() || null,
@@ -89,17 +89,17 @@ export async function PATCH(
 // DELETE - Delete brand and associated logo
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid brand ID", 400);
     }
 
     const brand = await prisma.brand.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     if (!brand) {
@@ -107,7 +107,7 @@ export async function DELETE(
     }
 
     await prisma.brand.delete({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     // Delete brand logo if exists

@@ -7,17 +7,17 @@ import { slugify } from "@/lib/slugify";
 // GET - Get single product by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid product ID", 400);
     }
 
     const product = await prisma.product.findUnique({
-      where: { id },
+      where: { id: Number(id) },
       include: {
         category: true,
         brand: true,
@@ -38,19 +38,19 @@ export async function GET(
 // PATCH - Update product
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
     const body = await request.json();
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid product ID", 400);
     }
 
     // Check if product exists
     const existingProduct = await prisma.product.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     if (!existingProduct) {
@@ -82,7 +82,7 @@ export async function PATCH(
     if (body.brand_id) updateData.brand_id = parseInt(body.brand_id);
 
     const product = await prisma.product.update({
-      where: { id },
+      where: { id: Number(id) },
       data: updateData,
       include: {
         category: true,
@@ -100,18 +100,18 @@ export async function PATCH(
 // DELETE - Delete product
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid product ID", 400);
     }
 
     // Check if product exists
     const existingProduct = await prisma.product.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     if (!existingProduct) {
@@ -119,7 +119,7 @@ export async function DELETE(
     }
 
     await prisma.product.delete({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     return ApiResponse.success(null, "Product deleted successfully");

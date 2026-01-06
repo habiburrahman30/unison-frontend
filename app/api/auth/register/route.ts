@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         name: true,
         email: true,
         role: true,
-        createdAt: true,
+        created_at: true,
       },
     });
 

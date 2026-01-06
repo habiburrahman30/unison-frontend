@@ -28,7 +28,7 @@ export async function PUT(request: NextRequest) {
         name: true,
         email: true,
         role: true,
-        updatedAt: true,
+        updated_at: true,
       },
     });
 

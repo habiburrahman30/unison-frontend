@@ -6,11 +6,12 @@ import { deleteUploadedFile } from "@/lib/utils/fileUtils";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const category = await prisma.category.findUnique({
-      where: { id: parseInt(params.id) },
+      where: { id: Number(id) },
       include: {
         products: {
           take: 10,
@@ -36,19 +37,19 @@ export async function GET(
 // PATCH - Update category
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
     const body = await request.json();
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid category ID", 400);
     }
 
     // Check if category exists
     const existingCategory = await prisma.category.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     if (!existingCategory) {
@@ -68,7 +69,7 @@ export async function PATCH(
 
     // Update category
     const category = await prisma.category.update({
-      where: { id },
+      where: { id: Number(id) },
       data: {
         name: body.name?.trim(),
         description: body.description?.trim() || null,
@@ -85,18 +86,18 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
 
-    if (isNaN(id)) {
+    if (isNaN(Number(id))) {
       return ApiResponse.error("Invalid category ID", 400);
     }
 
     // Get the category to retrieve the image path
     const category = await prisma.category.findUnique({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     if (!category) {
@@ -105,7 +106,7 @@ export async function DELETE(
 
     // Delete the category from database
     await prisma.category.delete({
-      where: { id },
+      where: { id: Number(id) },
     });
 
     // Delete associated image if exists
