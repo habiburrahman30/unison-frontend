@@ -12,8 +12,8 @@ export function proxy(request: NextRequest) {
 
   if (
     isProtectedPath &&
-    // ["HEAD"].includes(request.method)
-    ["POST", "PUT", "PATCH", "DELETE"].includes(request.method)
+    ["HEAD"].includes(request.method)
+    // ["POST", "PUT", "PATCH", "DELETE"].includes(request.method)
   ) {
     const token = request.headers.get("authorization")?.replace("Bearer ", "");
 
