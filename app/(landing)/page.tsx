@@ -1,7 +1,10 @@
 "use client";
 
 import HomeCategoryCard from "@/components/landing/HomeCategoryCard"
-
+import TestimonialCard from "@/components/landing/TestimonialCard";
+import { Testimonial } from "@/lib/api/testimonials";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const sliderData = [
@@ -16,8 +19,33 @@ export default function HomePage() {
     },
 
   ];
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
 
+
+  useEffect(() => {
+    // Fetch Testimonial
+    fetch("/api/testimonials?is_active=true&limit=100")
+      .then((res) => res.json())
+      .then((data) => setTestimonials(data.data.testimonials || []));
+
+
+  }, []);
+
+
+  const renderStars = (rating: number) => {
+    return (
+      <div className="testimonial-rating">
+        {[...Array(5)].map((_, i) => (
+          <i
+            key={i}
+            className={`fa${i < rating ? "s" : "r"} fa-star`}
+            style={{ color: "#ffa500" }}
+          ></i>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -1642,149 +1670,58 @@ export default function HomePage() {
               className="testimonial-slider owl-carousel owl-theme wow fadeInUp"
               data-wow-delay=".25s"
             >
-              <div className="testimonial-item">
-                <div className="testimonial-author">
-                  <div className="testimonial-author-img">
-                    <img src="/assets/img/testimonial/01.jpg" alt="" />
+              {testimonials.map((data) => (
+                <div className="testimonial-item" key={data.id}>
+                  <div className="testimonial-author">
+                    <div className="testimonial-author-img">
+                      {data.image ? (
+                        <img
+                          src={data.image}
+                          alt={data.name}
+                        />
+                      ) : (
+                        <div
+                          className="testimonial-placeholder"
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            borderRadius: "50%",
+                            backgroundColor: "#e0e0e0",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: "24px",
+                            color: "#666",
+                          }}
+                        >
+                          {data.name.charAt(0).toUpperCase()}
+                        </div>
+                      )
+                      }
+                    </div>
+                    <div className="testimonial-author-info">
+                      <h4>{data.name}</h4>
+                      <p>{data.designation ?? ""}</p>
+                    </div>
                   </div>
-                  <div className="testimonial-author-info">
-                    <h4>Sylvia H Green</h4>
-                    <p>Customer</p>
+                  <div className="testimonial-quote">
+                    <p>
+                      {data.message}
+                    </p>
                   </div>
-                </div>
-                <div className="testimonial-quote">
-                  <p>
-                    There are many variations of long passages available but the
-                    content majority have suffered to the editor page when looking
-                    at its layout alteration in some injected.
-                  </p>
-                </div>
-                <div className="testimonial-rate">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                </div>
-                <div className="testimonial-quote-icon">
-                  <img src="/assets/img/icon/quote.svg" alt="" />
-                </div>
-              </div>
-              <div className="testimonial-item">
-                <div className="testimonial-author">
-                  <div className="testimonial-author-img">
-                    <img src="/assets/img/testimonial/02.jpg" alt="" />
+                  <div className="testimonial-rate">
+                    {renderStars(data.rating)}
                   </div>
-                  <div className="testimonial-author-info">
-                    <h4>Gordo Novak</h4>
-                    <p>Customer</p>
-                  </div>
-                </div>
-                <div className="testimonial-quote">
-                  <p>
-                    There are many variations of long passages available but the
-                    content majority have suffered to the editor page when looking
-                    at its layout alteration in some injected.
-                  </p>
-                </div>
-                <div className="testimonial-rate">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                </div>
-                <div className="testimonial-quote-icon">
-                  <img src="/assets/img/icon/quote.svg" alt="" />
-                </div>
-              </div>
-              <div className="testimonial-item">
-                <div className="testimonial-author">
-                  <div className="testimonial-author-img">
-                    <img src="/assets/img/testimonial/03.jpg" alt="" />
-                  </div>
-                  <div className="testimonial-author-info">
-                    <h4>Reid E Butt</h4>
-                    <p>Customer</p>
+                  <div className="testimonial-quote-icon">
+                    <img src="/assets/img/icon/quote.svg" alt={data.name} />
                   </div>
                 </div>
-                <div className="testimonial-quote">
-                  <p>
-                    There are many variations of long passages available but the
-                    content majority have suffered to the editor page when looking
-                    at its layout alteration in some injected.
-                  </p>
-                </div>
-                <div className="testimonial-rate">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                </div>
-                <div className="testimonial-quote-icon">
-                  <img src="/assets/img/icon/quote.svg" alt="" />
-                </div>
-              </div>
-              <div className="testimonial-item">
-                <div className="testimonial-author">
-                  <div className="testimonial-author-img">
-                    <img src="/assets/img/testimonial/04.jpg" alt="" />
-                  </div>
-                  <div className="testimonial-author-info">
-                    <h4>Parker Jimenez</h4>
-                    <p>Customer</p>
-                  </div>
-                </div>
-                <div className="testimonial-quote">
-                  <p>
-                    There are many variations of long passages available but the
-                    content majority have suffered to the editor page when looking
-                    at its layout alteration in some injected.
-                  </p>
-                </div>
-                <div className="testimonial-rate">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                </div>
-                <div className="testimonial-quote-icon">
-                  <img src="/assets/img/icon/quote.svg" alt="" />
-                </div>
-              </div>
-              <div className="testimonial-item">
-                <div className="testimonial-author">
-                  <div className="testimonial-author-img">
-                    <img src="/assets/img/testimonial/05.jpg" alt="" />
-                  </div>
-                  <div className="testimonial-author-info">
-                    <h4>Heruli Nez</h4>
-                    <p>Customer</p>
-                  </div>
-                </div>
-                <div className="testimonial-quote">
-                  <p>
-                    There are many variations of long passages available but the
-                    content majority have suffered to the editor page when looking
-                    at its layout alteration in some injected.
-                  </p>
-                </div>
-                <div className="testimonial-rate">
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                  <i className="fas fa-star" />
-                </div>
-                <div className="testimonial-quote-icon">
-                  <img src="/assets/img/icon/quote.svg" alt="" />
-                </div>
-              </div>
+              ))}
+
             </div>
           </div>
         </div>
+
         {/* testimonial area end */}
         {/* blog area */}
         {/* <div className="blog-area py-100">
