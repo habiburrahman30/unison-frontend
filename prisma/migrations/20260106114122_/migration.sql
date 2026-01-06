@@ -96,11 +96,12 @@ CREATE TABLE "public"."gallery" (
 CREATE TABLE "public"."testimonials" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "position" TEXT,
+    "designation" TEXT,
     "company" TEXT,
-    "content" TEXT NOT NULL,
     "rating" INTEGER NOT NULL DEFAULT 5,
+    "message" TEXT NOT NULL,
     "image" TEXT,
+    "is_active" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 

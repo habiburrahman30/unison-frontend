@@ -24,6 +24,9 @@ export default function AdminLayout({
         { label: "Brands", href: "/admin/brands", icon: "fa-copyright" },
         { label: "News", href: "/admin/news", icon: "fa-newspaper" },
         { label: "News Categories", href: "/admin/news-categories", icon: "fa-folder" },
+        { label: "Testimonials", href: "/admin/testimonials", icon: "fa-comment" },
+        { label: "Gallery", href: "/admin/gallery", icon: "fa-images" },
+        { label: "Teams", href: "/admin/teams", icon: "fa-users" },
     ];
 
     const isActive = (item: any) => {
