@@ -113,6 +113,7 @@ export default function ProductsTable({ products, pagination }: Props) {
                         <th>Category</th>
                         <th>Brand</th>
                         <th>Origin</th>
+                        <th>Stock</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -138,10 +139,17 @@ export default function ProductsTable({ products, pagination }: Props) {
                             <td>
                                 <span className="table-list-code"> {product.name}</span>
                             </td>
-                            <td>{product.category.name}</td>
-                            <td> {product.brand.name}</td>
-                            <td>{product.manufacturer}</td>
-                            <td><span className="badge badge-success">Available</span></td>
+                            <td><span className="badge badge-info">{product.category.name}</span></td>
+                            <td> <span className="badge badge-info">{product.brand.name}</span></td>
+                            <td><span className="badge badge-info">{product.manufacturer}</span></td>
+
+                            <td>
+                                {product.stock > 0
+                                    ? <span className="badge badge-success text-success">Available</span>
+                                    : <span className="badge badge-danger text-danger">Not Available</span>
+                                }
+                            </td>
+
                             <td>
                                 <Link
                                     href={`/admin/products/${product.id}/edit`}
