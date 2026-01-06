@@ -103,28 +103,37 @@ export default function TestimonialsTable({ testimonials, pagination }: Props) {
                 <tbody>
                     {testimonials.map((data) => (
                         <tr key={data.id}>
-                            {data.image && (
-                                <td>
-                                    <div className="table-list-img w-15">
+
+                            <td>
+                                <div className="" style={{ "padding": "3px" }}>
+                                    {data.image ? (<Image
+                                        src={data.image}
+                                        alt={data.name}
+                                        width={80}
+                                        height={80}
+                                        className="rounded-2"
+                                    />
+                                    ) : (
                                         <Image
-                                            src={data.image}
-                                            alt={data.name}
+                                            src="/assets/img/no-image-found.jpg"
+                                            alt="Default Testimonial"
                                             width={80}
                                             height={80}
-                                            className="rounded-3"
+                                            className="rounded-2"
                                         />
-                                    </div>
-                                </td>
+                                    )}
 
-                            )}
+                                </div>
+                            </td>
+
+
 
                             <td>{data.name}</td>
                             <td>
                                 {data.company && (
-                                    <>
-                                        {data.designation}
-                                        <span className="badge badge-info">{data.company}</span>
-                                    </>
+
+                                    <span className="badge badge-info">{data.company}</span>
+
                                 )}
                             </td>
                             <td>

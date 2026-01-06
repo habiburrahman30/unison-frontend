@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { verifyToken } from "./lib/utils/jwt";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const protectedPaths = ["/api/products", "/api/categories", "/api/brands"];
   const path = request.nextUrl.pathname;
 
@@ -12,11 +12,8 @@ export function middleware(request: NextRequest) {
 
   if (
     isProtectedPath &&
-    request.method !== "GET" &&
-    request.method !== "POST" &&
-    request.method !== "DELETE" &&
-    request.method !== "PUT" &&
-    request.method !== "PATCH"
+    // ["HEAD"].includes(request.method)
+    ["POST", "PUT", "PATCH", "DELETE"].includes(request.method)
   ) {
     const token = request.headers.get("authorization")?.replace("Bearer ", "");
 
@@ -29,7 +26,7 @@ export function middleware(request: NextRequest) {
 
     try {
       verifyToken(token);
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { success: false, message: "Invalid or expired token" },
         { status: 401 }
