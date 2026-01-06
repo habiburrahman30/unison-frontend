@@ -4,10 +4,11 @@ import { ApiResponse } from "@/lib/utils/response";
 import { handlePrismaError } from "@/lib/utils/errorHandler";
 import { deleteUploadedFile } from "@/lib/utils/fileUtils";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+interface RouteParams {
+  params: Promise<{ id: string }>;
+}
+
+export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     const { id } = await params;
     const category = await prisma.category.findUnique({
