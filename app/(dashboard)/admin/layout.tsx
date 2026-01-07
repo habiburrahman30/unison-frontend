@@ -43,27 +43,7 @@ export default function AdminLayout({
 
     return (
         <main className="main">
-            {/* breadcrumb */}
-            <div className="site-breadcrumb">
-                <div
-                    className="site-breadcrumb-bg"
-                    style={{ background: "url(/assets/img/breadcrumb/01.jpg)" }}
-                />
-                <div className="container">
-                    <div className="site-breadcrumb-wrap">
-                        <h4 className="breadcrumb-title">Dashboard</h4>
-                        <ul className="breadcrumb-menu">
-                            <li>
-                                <Link href="/">
-                                    <i className="far fa-home" /> Home
-                                </Link>
-                            </li>
-                            <li className="active">Dashboard</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {/* breadcrumb end */}
+
 
             {/* admin area */}
             <div className="user-area bg pt-100 pb-80">
