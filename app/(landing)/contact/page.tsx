@@ -82,15 +82,6 @@ export default function ContactPage() {
                                                                 saiful.hasan@unisonbizltd.com.bd
                                                             </a>
                                                         </p>
-                                                        <p>
-                                                            <a
-                                                                href="unisonbizbd@gmail.com" target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="__cf_email__"
-                                                            >
-                                                                unisonbizbd@gmail.com
-                                                            </a>
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
