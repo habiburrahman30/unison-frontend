@@ -34,7 +34,7 @@ export default async function Header() {
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="tel:+21236547898">
+                                            <a href="tel:+88 01723-435818">
                                                 <i className="far fa-headset" /> +88 01723-435818
                                             </a>
                                         </li>
