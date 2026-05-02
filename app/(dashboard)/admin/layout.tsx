@@ -22,11 +22,11 @@ export default function AdminLayout({
         { label: "Products", href: "/admin/products", icon: "fa-box" },
         { label: "Categories", href: "/admin/categories", icon: "fa-tags" },
         { label: "Brands", href: "/admin/brands", icon: "fa-copyright" },
-        { label: "News", href: "/admin/news", icon: "fa-newspaper" },
-        { label: "News Categories", href: "/admin/news-categories", icon: "fa-folder" },
-        { label: "Testimonials", href: "/admin/testimonials", icon: "fa-comment" },
-        { label: "Gallery", href: "/admin/gallery", icon: "fa-images" },
-        { label: "Teams", href: "/admin/teams", icon: "fa-users" },
+        // { label: "News", href: "/admin/news", icon: "fa-newspaper" },
+        // { label: "News Categories", href: "/admin/news-categories", icon: "fa-folder" },
+        // { label: "Testimonials", href: "/admin/testimonials", icon: "fa-comment" },
+        // { label: "Gallery", href: "/admin/gallery", icon: "fa-images" },
+        // { label: "Teams", href: "/admin/teams", icon: "fa-users" },
     ];
 
     const isActive = (item: any) => {
@@ -55,11 +55,11 @@ export default function AdminLayout({
                             <div className="sidebar">
                                 <div className="sidebar-top">
                                     <div className="sidebar-profile-img">
-                                        <img src="/assets/img/account/04.jpg" alt="" />
+                                        <img src="/assets/img/logo/dashboard-logo.png" alt="" />
 
                                     </div>
-                                    <h5>Habibur Rahman</h5>
-                                    <p>hmhabib999@gmail.com</p>
+                                    <h5>Unison Biz Limited</h5>
+                                    <p>unisonbizbd@gmail.com</p>
                                 </div>
                                 <ul className="sidebar-list">
                                     {menu.map(item => (

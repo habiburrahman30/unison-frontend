@@ -43,8 +43,8 @@ model Product {
   country_of_origin String
   product_url       String
 
-  product_description   String
-  technical_description String?
+  product_description   String  @db.LongText
+  technical_description String? @db.LongText
 
   price     Decimal  @db.Decimal(10, 2)
   old_price Decimal? @db.Decimal(10, 2)
