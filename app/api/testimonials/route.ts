@@ -15,8 +15,8 @@ export async function GET(request: NextRequest) {
     const where: any = {};
     if (search) {
       where.OR = [
-        { name: { contains: search, mode: "insensitive" } },
-        { company: { contains: search, mode: "insensitive" } },
+        { name: { contains: search } },
+        { company: { contains: search } },
       ];
     }
     if (isActive !== null && isActive !== undefined) {
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     return ApiResponse.success(
       testimonial,
       "Testimonial created successfully",
-      201
+      201,
     );
   } catch (error: any) {
     console.error("Create testimonial error:", error);

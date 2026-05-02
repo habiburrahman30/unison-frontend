@@ -23,9 +23,9 @@ export async function GET(request: NextRequest) {
 
     if (search) {
       where.OR = [
-        { name: { contains: search, mode: "insensitive" } },
-        { manufacturer: { contains: search, mode: "insensitive" } },
-        { product_description: { contains: search, mode: "insensitive" } },
+        { name: { contains: search } },
+        { manufacturer: { contains: search } },
+        { product_description: { contains: search } },
       ];
     }
 
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     ) {
       return ApiResponse.error(
         "Required fields: name, manufacturer, country_of_origin, product_url, product_description, price, category_id, brand_id",
-        400
+        400,
       );
     }
 
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
     if (existingProduct) {
       return ApiResponse.error(
         "Product with this slug already exists. Please provide a unique slug.",
-        400
+        400,
       );
     }
 

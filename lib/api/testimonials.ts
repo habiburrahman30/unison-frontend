@@ -36,8 +36,8 @@ export async function getTestimonials(params?: {
   const where: any = {};
   if (params?.search) {
     where.OR = [
-      { name: { contains: params.search, mode: "insensitive" } },
-      { company: { contains: params.search, mode: "insensitive" } },
+      { name: { contains: params.search } },
+      { company: { contains: params.search } },
     ];
   }
   if (params?.is_active !== undefined) {
@@ -67,7 +67,7 @@ export async function getTestimonials(params?: {
 
 // SERVER-SIDE: Get single testimonial
 export async function getTestimonialById(
-  id: number
+  id: number,
 ): Promise<Testimonial | null> {
   return await prisma.testimonial.findUnique({
     where: { id },
@@ -94,7 +94,7 @@ export async function createTestimonial(data: any): Promise<Testimonial> {
 // CLIENT-SIDE: Update testimonial
 export async function updateTestimonial(
   id: number,
-  data: any
+  data: any,
 ): Promise<Testimonial> {
   const response = await fetch(`/api/testimonials/${id}`, {
     method: "PATCH",

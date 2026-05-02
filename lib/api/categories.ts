@@ -30,7 +30,7 @@ export async function getCategories(params?: {
 
   const where: any = {};
   if (params?.search) {
-    where.name = { contains: params.search, mode: "insensitive" };
+    where.name = { contains: params.search };
   }
 
   const [categories, total] = await Promise.all([

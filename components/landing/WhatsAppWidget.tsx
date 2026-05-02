@@ -16,7 +16,7 @@ export default function WhatsAppWidget() {
 
         <FloatingWhatsApp
 
-            phoneNumber="8801742077650"
+            phoneNumber="8801723435818"
             accountName="Unison Support"
             chatMessage="Hi! How can we help you?"
             statusMessage="Typically replies within 1 hour"

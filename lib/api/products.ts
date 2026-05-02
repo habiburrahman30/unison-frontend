@@ -61,7 +61,7 @@ function serializeProduct(product: any): ProductWithRelations {
 
 // SERVER-SIDE: Fetch products with filters (using Prisma)
 export async function getProducts(
-  params?: GetProductsParams
+  params?: GetProductsParams,
 ): Promise<ProductsResponse> {
   const page = params?.page || 1;
   const limit = params?.limit || 10;
@@ -74,9 +74,9 @@ export async function getProducts(
 
   if (params?.search) {
     where.OR = [
-      { name: { contains: params.search, mode: "insensitive" } },
-      { manufacturer: { contains: params.search, mode: "insensitive" } },
-      { product_description: { contains: params.search, mode: "insensitive" } },
+      { name: { contains: params.search } },
+      { manufacturer: { contains: params.search } },
+      { product_description: { contains: params.search } },
     ];
   }
 
@@ -120,7 +120,7 @@ export async function getProducts(
 
 // SERVER-SIDE: Fetch single product by ID
 export async function getProductById(
-  id: number
+  id: number,
 ): Promise<ProductWithRelations | null> {
   const product = await prisma.product.findUnique({
     where: { id },
@@ -147,7 +147,7 @@ export async function getProductById(
 
 // SERVER-SIDE: Fetch single product by slug
 export async function getProductBySlug(
-  slug: string
+  slug: string,
 ): Promise<ProductWithRelations | null> {
   const product = await prisma.product.findUnique({
     where: { slug },
@@ -174,7 +174,7 @@ export async function getProductBySlug(
 
 // SERVER-SIDE: Fetch trending products
 export async function getTrendingProducts(
-  limit: number = 10
+  limit: number = 10,
 ): Promise<ProductWithRelations[]> {
   const products = await prisma.product.findMany({
     where: { is_trending: true },
@@ -221,7 +221,7 @@ export async function createProduct(data: any): Promise<ProductWithRelations> {
 
 export async function updateProduct(
   id: number,
-  data: any
+  data: any,
 ): Promise<ProductWithRelations> {
   const response = await fetch(`/api/products/${id}`, {
     method: "PATCH",
