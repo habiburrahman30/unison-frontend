@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Select from "react-select";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createProduct } from "@/lib/api/products";
@@ -22,13 +23,13 @@ export default function CreateProductPage() {
         product_url: "",
         product_description: "",
         technical_description: "",
-        price: "",
+        price: 0,
         old_price: "",
         stock: "0",
         is_trending: false,
         images: [""],
-        category_id: "",
-        brand_id: "",
+        category_id: 0,
+        brand_id: 0,
     });
 
     const handleChange = (
@@ -77,9 +78,9 @@ export default function CreateProductPage() {
                 !formData.country_of_origin ||
                 !formData.product_url ||
                 !formData.product_description ||
-                !formData.price ||
-                !formData.category_id ||
-                !formData.brand_id
+                // !formData.price ||
+                formData.category_id === 0 ||
+                formData.brand_id === 0
             ) {
                 toast.error("Please fill in all required fields");
                 setIsSubmitting(false);
@@ -95,13 +96,13 @@ export default function CreateProductPage() {
                 product_url: formData.product_url,
                 product_description: formData.product_description,
                 technical_description: formData.technical_description || undefined,
-                price: parseFloat(formData.price),
+                price: formData.price ?? 0,
                 old_price: formData.old_price ? parseFloat(formData.old_price) : undefined,
                 stock: parseInt(formData.stock),
                 is_trending: formData.is_trending,
                 images: formData.images.filter((img) => img.trim() !== ""),
-                category_id: parseInt(formData.category_id),
-                brand_id: parseInt(formData.brand_id),
+                category_id: formData.category_id,
+                brand_id: formData.brand_id,
             };
 
             await createProduct(productData);
@@ -122,15 +123,32 @@ export default function CreateProductPage() {
 
     useEffect(() => {
         // Fetch categories
-        fetch("/api/categories")
+        fetch("/api/categories?limit=1000")
             .then((res) => res.json())
             .then((data) => setCategories(data.data || []));
 
         // Fetch brands
-        fetch("/api/brands")
+        fetch("/api/brands?limit=1000")
             .then((res) => res.json())
             .then((data) => setBrands(data.data.brands || []));
     }, []);
+
+
+    type OptionType = {
+        value: number;
+        label: string;
+    };
+
+    const categoryOptions: OptionType[] = categories.map((cat) => ({
+        value: cat.id,
+        label: cat.name,
+    }));
+
+    const brandOptions: OptionType[] = brands.map((brand) => ({
+        value: brand.id,
+        label: brand.name,
+    }));
+
     return (
 
         <>
@@ -269,7 +287,8 @@ export default function CreateProductPage() {
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <label>
-                                                Price <span className="text-danger">*</span>
+                                                Price
+                                                {/* <span className="text-danger">*</span> */}
                                             </label>
                                             <input
                                                 type="number"
@@ -280,7 +299,7 @@ export default function CreateProductPage() {
                                                 min="0"
                                                 value={formData.price}
                                                 onChange={handleChange}
-                                                required
+
                                             />
                                         </div>
                                     </div>
@@ -321,6 +340,7 @@ export default function CreateProductPage() {
 
 
 
+
                                     {/* Category */}
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -328,20 +348,23 @@ export default function CreateProductPage() {
                                                 Category <span className="text-danger">*</span>
                                             </label>
 
-                                            <select name="category_id"
-                                                className="form-control"
-                                                value={formData.category_id}
-                                                onChange={handleChange}
-                                                required>
-                                                <option value="">Select Category</option>
-                                                {Array.isArray(categories) && categories.map((cat) => (
-                                                    <option key={cat.id} value={cat.id}>
-                                                        {cat.name}
-                                                    </option>
-                                                ))}
-                                            </select>
+                                            <Select<OptionType>
+                                                options={categoryOptions}
+                                                value={categoryOptions.find(
+                                                    (opt) => opt.value === formData.category_id
+                                                )}
+                                                onChange={(selected) =>
+                                                    setFormData((prev) => ({
+                                                        ...prev,
+                                                        category_id: selected ? selected.value : 0,
+                                                    }))
+                                                }
+                                                placeholder="Select Category"
+                                                isClearable
+                                            />
                                         </div>
                                     </div>
+
 
                                     {/* Brand */}
                                     <div className="col-md-6">
@@ -349,23 +372,25 @@ export default function CreateProductPage() {
                                             <label>
                                                 Brand <span className="text-danger">*</span>
                                             </label>
-                                            <select name="brand_id"
-                                                className="form-control"
-                                                value={formData.brand_id}
-                                                onChange={handleChange}
-                                                required>
-                                                <option value="">Select Brand</option>
 
-                                                {Array.isArray(brands) &&
-                                                    brands.map((brand) => (
-                                                        <option key={brand.id} value={brand.id}>
-                                                            {brand.name}
-                                                        </option>
-                                                    ))}
-                                            </select>
-
+                                            <Select<OptionType>
+                                                options={brandOptions}
+                                                value={brandOptions.find(
+                                                    (opt) => opt.value === formData.brand_id
+                                                )}
+                                                onChange={(selected) =>
+                                                    setFormData((prev) => ({
+                                                        ...prev,
+                                                        brand_id: selected ? selected.value : 0,
+                                                    }))
+                                                }
+                                                placeholder="Select Brand"
+                                                isClearable
+                                            />
                                         </div>
                                     </div>
+
+
 
                                     {/* Images */}
                                     <div className="col-md-12">

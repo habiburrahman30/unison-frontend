@@ -6,7 +6,12 @@ export default async function TestimonialPage() {
         is_active: true,
         limit: 100,
     });
-
+    const customers = [
+        { id: 1, name: "Ayesha Rahman", img: "https://i.pravatar.cc/150?img=1" },
+        { id: 2, name: "Tanvir Hasan", img: "https://i.pravatar.cc/150?img=2" },
+        { id: 3, name: "Nusrat Jahan", img: "https://i.pravatar.cc/150?img=3" },
+        { id: 4, name: "Rahim Uddin", img: "https://i.pravatar.cc/150?img=4" },
+    ];
     return (
         <><main className="main">
             {/* breadcrumb */}
@@ -38,6 +43,8 @@ export default async function TestimonialPage() {
                     </div>
                 
             </div> */}
+
+
 
             {data.testimonials.length > 0 && (
                 <div className="testimonial-area bg py-80">
@@ -72,6 +79,17 @@ export default async function TestimonialPage() {
                 </div>
             )}
             {/* testimonial area end */}
+
+
+
+            {/* <div className="p-4 bg-white border border-gray-200 hover:-translate-y-1 transition duration-300 rounded-lg shadow shadow-black/10 max-w-80">
+                <img className="rounded-md max-h-40 w-full object-cover" src="https://images.unsplash.com/photo-1560264418-c4445382edbc?q=80&w=400" alt="officeImage" />
+                <p className="text-gray-900 text-xl font-semibold ml-2 mt-4">
+                    Your Card Title
+                </p>
+
+            </div> */}
+
         </main>
         </>
     );

@@ -9,13 +9,19 @@ import { useState, useEffect } from "react";
 export default function HomePage() {
   const sliderData = [
     {
-      image: "/assets/img/deal/01.webp",
+      image: "/assets/img/deal/1.webp",
     },
     {
-      image: "/assets/img/deal/02.webp",
+      image: "/assets/img/deal/5.png",
     },
     {
-      image: "/assets/img/deal/03.webp",
+      image: "/assets/img/deal/2.webp",
+    },
+    {
+      image: "/assets/img/deal/3.webp",
+    },
+    {
+      image: "/assets/img/deal/4.webp",
     },
 
   ];
@@ -1313,25 +1319,25 @@ export default function HomePage() {
                 {sliderData.map((team, index) => (
                   <div className="deal-item" key={index}>
                     <div className="row align-items-center">
-                      {/* <div className="col-lg-6">
-                      <div className="deal-content">
-                        <div className="deal-info pb-20">
-                          <span>Weekly Deal</span>
-                          <h1>Best Deal For This Week</h1>
-                          <p>
-                            There are many variations of passages available but the
-                            majority have suffered alteration in some form by
-                            injected humour, or randomised words which don't look
-                            even slightly believable.
-                          </p>
-                        </div>
+                      <div className="col-lg-6">
+                        <div className="deal-content">
+                          <div className="deal-info pb-20">
+                            <span>Weekly Deal</span>
+                            <h1>Best Deal For This Week</h1>
+                            <p>
+                              There are many variations of passages available but the
+                              majority have suffered alteration in some form by
+                              injected humour, or randomised words which don't look
+                              even slightly believable.
+                            </p>
+                          </div>
 
-                        <a href={"/products"} className="theme-btn theme-btn2">
-                          Shop Now <i className="fas fa-arrow-right" />
-                        </a>
+                          <a href={"/products"} className="theme-btn theme-btn2">
+                            Shop Now <i className="fas fa-arrow-right" />
+                          </a>
+                        </div>
                       </div>
-                    </div> */}
-                      <div className="col-lg-12">
+                      <div className="col-lg-6">
                         <div className="deal-img">
                           <img src={team.image && team.image !== "" ? team.image : "/assets/img/no-image-found.jpg"}
                             alt={team.image} />
@@ -1509,7 +1515,7 @@ export default function HomePage() {
               <div className="row g-4">
                 <div className="col-lg-4">
                   <div className="choose-item">
-                    <div className="choose-icon">
+                    <div className="choose-icon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                       <img src="/assets/img/icon/warranty.svg" alt="" />
                     </div>
                     <div className="choose-info">
@@ -1522,8 +1528,8 @@ export default function HomePage() {
                 </div>
                 <div className="col-lg-4">
                   <div className="choose-item">
-                    <div className="choose-icon">
-                      <img src="/assets/img/icon/price.svg" alt="" />
+                    <div className="choose-icon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                      <img src="/assets/img/icon/warranty.svg" alt="" />
                     </div>
                     <div className="choose-info">
                       <h4>Advanced Healthcare Technology</h4>
@@ -1535,8 +1541,8 @@ export default function HomePage() {
                 </div>
                 <div className="col-lg-4">
                   <div className="choose-item">
-                    <div className="choose-icon">
-                      <img src="/assets/img/icon/delivery.svg" alt="" />
+                    <div className="choose-icon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                      <img src="/assets/img/icon/warranty.svg" alt="" />
                     </div>
                     <div className="choose-info">
                       <h4>Nationwide Delivery & Support</h4>

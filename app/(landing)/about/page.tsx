@@ -38,14 +38,14 @@ export default function AboutPage() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="about-experience">
+                                {/* <div className="about-experience">
                                     <div className="about-experience-icon">
                                         <img src="/assets/img/icon/experience.svg" alt="" />
                                     </div>
                                     <b>
                                         30 Years Of <br /> Experience
                                     </b>
-                                </div>
+                                </div> */}
                                 <div className="about-shape">
                                     <img src="/assets/img/shape/01.png" alt="" />
                                 </div>
@@ -58,32 +58,25 @@ export default function AboutPage() {
                                         <i className="flaticon-drive" /> About Us
                                     </span>
                                     <h2 className="site-title">
-                                        We Provide Best and Original <span>Medical</span> Product For
-                                        You
+                                        We Provide Best Medical Equipment & <span>Healthcare</span> Technology For You.
                                     </h2>
                                 </div>
                                 <p>
-                                    We are standard text ever since the when an unknown printer took a
-                                    galley of type and scrambled it to make type but the majority have
-                                    suffered alteration in some form by injected humour specimen book.
-                                    It has survived not only five but also the leap into electronic
-                                    remaining essentially by injected humour unchanged.
+                                    Committed to excellence in healthcare, we provide reliable medical equipment and advanced technology solutions for hospitals, clinics, and healthcare institutions.
                                 </p>
                                 <div className="about-list">
                                     <ul>
                                         <li>
-                                            <i className="fas fa-check-double" /> Streamlined Shipping
-                                            Experience
+                                            <i className="fas fa-check-double" /> High-Quality Equipment
                                         </li>
                                         <li>
-                                            <i className="fas fa-check-double" /> Affordable Modern Design
+                                            <i className="fas fa-check-double" /> Advanced Technology
                                         </li>
                                         <li>
-                                            <i className="fas fa-check-double" /> Competitive Price &amp;
-                                            Easy To Shop
+                                            <i className="fas fa-check-double" /> Trusted Partner
                                         </li>
                                         <li>
-                                            <i className="fas fa-check-double" /> We Made Awesome Products
+                                            <i className="fas fa-check-double" /> Commitment to Excellence
                                         </li>
                                     </ul>
                                 </div>
@@ -103,7 +96,7 @@ export default function AboutPage() {
                     <div className="row">
                         <div className="col-lg-3 col-sm-6">
                             <div className="counter-box">
-                                <div className="icon">
+                                <div className="icon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <img src="/assets/img/icon/sale.svg" alt="" />
                                 </div>
                                 <div className="counter-info">
@@ -124,7 +117,7 @@ export default function AboutPage() {
                         </div>
                         <div className="col-lg-3 col-sm-6">
                             <div className="counter-box">
-                                <div className="icon">
+                                <div className="icon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <img src="/assets/img/icon/rate.svg" alt="" />
                                 </div>
                                 <div className="counter-info">
@@ -145,7 +138,7 @@ export default function AboutPage() {
                         </div>
                         <div className="col-lg-3 col-sm-6">
                             <div className="counter-box">
-                                <div className="icon">
+                                <div className="icon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <img src="/assets/img/icon/employee.svg" alt="" />
                                 </div>
                                 <div className="counter-info">
@@ -166,7 +159,7 @@ export default function AboutPage() {
                         </div>
                         <div className="col-lg-3 col-sm-6">
                             <div className="counter-box">
-                                <div className="icon">
+                                <div className="icon" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <img src="/assets/img/icon/award.svg" alt="" />
                                 </div>
                                 <div className="counter-info">
@@ -351,7 +344,7 @@ export default function AboutPage() {
             </div>
             {/* testimonial area end */}
             {/* video area */}
-            <div className="video-area">
+            <div className="video-area mb-80">
                 <div className="container-fluid px-0">
                     <div
                         className="video-content"
@@ -369,193 +362,8 @@ export default function AboutPage() {
                 </div>
             </div>
             {/* video area end */}
-            {/* team-area */}
-            <div className="team-area pt-100 pb-50">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-6 mx-auto">
-                            <div className="site-heading text-center">
-                                <span className="site-title-tagline">Our Team</span>
-                                <h2 className="site-title">
-                                    Meet Our Expert <span>Team</span>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row mt-5">
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".25s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/01.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Chad Smith</a>
-                                        </h5>
-                                        <span>Senior Manager</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".50s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/02.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Malissa Fie</a>
-                                        </h5>
-                                        <span>SEO Expert</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay=".75s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/03.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Arron Rodri</a>
-                                        </h5>
-                                        <span>CEO &amp; Founder</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6 col-lg-3">
-                            <div className="team-item wow fadeInUp" data-wow-delay="1s">
-                                <div className="team-img">
-                                    <img src="/assets/img/team/04.jpg" alt="thumb" />
-                                </div>
-                                <div className="team-content">
-                                    <div className="team-bio">
-                                        <h5>
-                                            <a href="#">Tony Pinako</a>
-                                        </h5>
-                                        <span>Digital Marketer</span>
-                                    </div>
-                                </div>
-                                <div className="team-social">
-                                    <a href="#">
-                                        <i className="fab fa-facebook-f" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-x-twitter" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-linkedin-in" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-youtube" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/* team-area end */}
-            {/* feature area */}
-            <div className="feature-area pb-50">
-                <div className="container wow fadeInUp" data-wow-delay=".25s">
-                    <div className="feature-wrap">
-                        <div className="row g-0">
-                            <div className="col-12 col-md-6 col-lg-3">
-                                <div className="feature-item">
-                                    <div className="feature-icon">
-                                        <i className="fal fa-truck" />
-                                    </div>
-                                    <div className="feature-content">
-                                        <h4>Free Delivery</h4>
-                                        <p>Orders Over $120</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-6 col-lg-3">
-                                <div className="feature-item">
-                                    <div className="feature-icon">
-                                        <i className="fal fa-sync" />
-                                    </div>
-                                    <div className="feature-content">
-                                        <h4>Get Refund</h4>
-                                        <p>Within 30 Days Returns</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-6 col-lg-3">
-                                <div className="feature-item">
-                                    <div className="feature-icon">
-                                        <i className="fal fa-wallet" />
-                                    </div>
-                                    <div className="feature-content">
-                                        <h4>Safe Payment</h4>
-                                        <p>100% Secure Payment</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-6 col-lg-3">
-                                <div className="feature-item">
-                                    <div className="feature-icon">
-                                        <i className="fal fa-headset" />
-                                    </div>
-                                    <div className="feature-content">
-                                        <h4>24/7 Support</h4>
-                                        <p>Feel Free To Call Us</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             {/* feature area end */}
             {/* instagram-area */}
             {/* <div className="instagram-area py-100">
@@ -630,46 +438,8 @@ export default function AboutPage() {
                 </div>
             </div> */}
             {/* instagram-area end */}
-            {/* brand area */}
-            <div className="brand-area bg pt-50 pb-50">
-                <div className="container wow fadeInUp" data-wow-delay=".25s">
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="text-center">
-                                <h2 className="site-title">
-                                    Trusted by over <span>3.2k+</span> companies
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="brand-slider pt-40 pb-40 owl-carousel owl-theme">
-                        <div className="brand-item">
-                            <img src="/assets/img/brand/01.png" alt="" />
-                        </div>
-                        <div className="brand-item">
-                            <img src="/assets/img/brand/02.png" alt="" />
-                        </div>
-                        <div className="brand-item">
-                            <img src="/assets/img/brand/03.png" alt="" />
-                        </div>
-                        <div className="brand-item">
-                            <img src="/assets/img/brand/04.png" alt="" />
-                        </div>
-                        <div className="brand-item">
-                            <img src="/assets/img/brand/05.png" alt="" />
-                        </div>
-                        <div className="brand-item">
-                            <img src="/assets/img/brand/06.png" alt="" />
-                        </div>
-                    </div>
-                    <div className="text-center">
-                        <a href="#" className="theme-btn">
-                            View All Brands <i className="fas fa-arrow-right" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {/* brand area end */}
+
+
         </main>
     </>;
 }
