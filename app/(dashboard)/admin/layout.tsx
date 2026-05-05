@@ -1,13 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { logoutAction } from "@/app/actions/auth";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function AdminLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === "unauthenticated") router.push("/login");
+    }, [status, router]);
+
+    if (status === "loading") return <div>Loading...</div>;
 
     let pathname = usePathname();
     // normalize: remove trailing slash
@@ -54,13 +67,15 @@ export default function AdminLayout({
                         <div className="col-lg-3">
                             <div className="sidebar">
                                 <div className="sidebar-top">
-                                    <div className="sidebar-profile-img">
+                                    <Link href="/"><div className="sidebar-profile-img">
                                         <img src="/assets/img/logo/dashboard-logo.png" alt="" />
 
                                     </div>
-                                    <h5>Unison Biz Limited</h5>
-                                    <p>unisonbizbd@gmail.com</p>
+                                    </Link>
+                                    <h5>{session?.user?.name}</h5>
+                                    <p>{session?.user?.email}</p>
                                 </div>
+
                                 <ul className="sidebar-list">
                                     {menu.map(item => (
                                         <li key={item.href}>
@@ -73,12 +88,20 @@ export default function AdminLayout({
                                         </li>
                                     ))}
 
-                                    <li>
+                                    {/* <li>
                                         <Link href="/">
                                             <i className="far fa-sign-out" /> Logout
                                         </Link>
-                                    </li>
+                                    </li> */}
                                 </ul>
+                                <form action={logoutAction}>
+                                    <button
+                                        type="submit"
+                                        className="bg-red-500 mt-5 hover:bg-red-600 text-white w-full text-center py-2 px-4 rounded cursor-pointer border-0"
+                                    >
+                                        <i className="far fa-sign-out" /> Logout
+                                    </button>
+                                </form>
                             </div>
                         </div>
 

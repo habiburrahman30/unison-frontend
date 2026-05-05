@@ -6,6 +6,11 @@ import { Testimonial } from "@/lib/api/testimonials";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
+
 export default function HomePage() {
   const sliderData = [
     {
@@ -1660,6 +1665,72 @@ export default function HomePage() {
         <div className="testimonial-area ts-bg py-80">
           <div className="container">
             <div className="row">
+              <div className="col-lg-6 mx-auto wow fadeInDown" data-wow-delay=".25s">
+                <div className="site-heading text-center">
+                  <span className="site-title-tagline">Testimonials</span>
+                  <h2 className="site-title text-white">
+                    What Our Client Say's <span>About Us</span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              spaceBetween={24}
+              slidesPerView={1}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="wow fadeInUp pb-12"
+              data-wow-delay=".25s"
+              style={{ paddingBottom: '50px' }}
+            >
+              {testimonials.slice(0, 10).map((item) => (
+                <SwiperSlide key={item.id}>
+                  <div className="testimonial-item" style={{ height: '100%', boxSizing: 'border-box' }}>
+                    <div className="testimonial-author">
+                      <div className="testimonial-author-img">
+                        <img
+                          src={item.image || "/assets/img/no-image-found.jpg"}
+                          alt={item.name || "No image"}
+
+                          style={{
+                            width: '60px',
+                            height: '60px',
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                            display: 'block',
+                          }}
+                        />
+                      </div>
+                      <div className="testimonial-author-info">
+                        <h4>{item.name}</h4>
+                        <p>{item.designation}</p>
+                      </div>
+                    </div>
+                    <div className="testimonial-quote">
+                      <p>{item.message}</p>
+                    </div>
+                    <div className="testimonial-rate">
+                      {renderStars(item.rating)}
+                    </div>
+                    <div className="testimonial-quote-icon">
+                      <img src="/assets/img/icon/quote.svg" alt="quote" />
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+        {/* testimonial area */}
+        {/* <div className="testimonial-area ts-bg py-80">
+          <div className="container">
+            <div className="row">
               <div
                 className="col-lg-6 mx-auto wow fadeInDown"
                 data-wow-delay=".25s"
@@ -1726,7 +1797,7 @@ export default function HomePage() {
 
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* testimonial area end */}
         {/* blog area */}

@@ -8,9 +8,12 @@ interface Stats {
     brands: number;
     news: number;
     newsCategories: number;
+    testimonials: number;
 }
 
 export default function AdminDashboard() {
+
+
     const [stats, setStats] = useState<Stats | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -74,7 +77,7 @@ export default function AdminDashboard() {
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4">
-                        <div className="dashboard-widget color-2">
+                        <div className="dashboard-widget color-3">
                             <div className="dashboard-widget-info">
                                 <h1>{stats?.news || 0}</h1>
                                 <span>News</span>
@@ -92,6 +95,17 @@ export default function AdminDashboard() {
                             </div>
                             <div className="dashboard-widget-icon">
                                 <i className="fal fa-folder" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="dashboard-widget color-2">
+                            <div className="dashboard-widget-info">
+                                <h1>{stats?.testimonials || 0}</h1>
+                                <span>Customer</span>
+                            </div>
+                            <div className="dashboard-widget-icon">
+                                <i className="fal fa-users" />
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
-
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/lib/auth";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
@@ -29,13 +30,16 @@ const geistMono = Geist_Mono({
 
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const session = await auth();
+
   return (
-    <html lang="en" data-arp="">
+    <html lang="en" data-arp="" suppressHydrationWarning>
       <head>
 
         <meta charSet="UTF-8" />
@@ -57,12 +61,12 @@ export default function RootLayout({
         <link rel="stylesheet" href="/assets/css/nice-select.min.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
       </head>
-      <body
+      <body suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased home-2`}
       >
-
-        {children}
-
+        <SessionProvider session={session}>
+          {children}
+        </SessionProvider>
 
         {/* <!-- js --> */}
         {/* <Script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></Script> */}

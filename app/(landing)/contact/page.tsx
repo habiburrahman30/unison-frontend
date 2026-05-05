@@ -1,3 +1,4 @@
+import ContactForm from "@/components/landing/ContactForm";
 
 
 export default function ContactPage() {
@@ -112,9 +113,10 @@ export default function ContactPage() {
                                                 when looking at its layout.{" "}
                                             </p>
                                         </div>
-                                        <form
+                                        <ContactForm />
+                                        {/* <form
                                             method="post"
-                                            action="https://live.themewild.com/medion//assets/php/contact.php"
+                                            action=""
                                             id="contact-form"
                                         >
                                             <div className="row">
@@ -167,7 +169,7 @@ export default function ContactPage() {
                                             <div className="col-md-12 my-3">
                                                 <div className="form-messege text-success" />
                                             </div>
-                                        </form>
+                                        </form> */}
                                     </div>
                                 </div>
                             </div>

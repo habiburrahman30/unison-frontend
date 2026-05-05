@@ -21,3 +21,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.testimonial-area .swiper-pagination-bullet {
+  background-color: #03A297;
+  opacity: 0.4;
+  width: 8px;
+  height: 8px;
+}
+
+.testimonial-area .swiper-pagination-bullet-active {
+  background-color: #03A297;
+  opacity: 1;
+  width: 15px;
+  height: 8px;
+  border-radius: 4px;
+}

@@ -12,12 +12,14 @@ export async function GET(request: NextRequest) {
       brandsCount,
       newsCount,
       newsCategoriesCount,
+      testimonialsCount,
     ] = await Promise.all([
       prisma.product.count(),
       prisma.category.count(),
       prisma.brand.count(),
       prisma.news.count(),
       prisma.newsCategory.count(),
+      prisma.testimonial.count(),
     ]);
 
     const stats = {
@@ -26,6 +28,7 @@ export async function GET(request: NextRequest) {
       brands: brandsCount,
       news: newsCount,
       newsCategories: newsCategoriesCount,
+      testimonials: testimonialsCount,
     };
 
     return ApiResponse.success(stats);

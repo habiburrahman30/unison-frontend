@@ -1,42 +1,36 @@
+import NextAuth from "next-auth";
+import { authConfig } from "@/lib/auth.config";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { verifyToken } from "./lib/utils/jwt";
 
-export function proxy(request: NextRequest) {
-  const protectedPaths = ["/api/products", "/api/categories", "/api/brands"];
-  const path = request.nextUrl.pathname;
+const { auth } = NextAuth(authConfig);
 
-  const isProtectedPath = protectedPaths.some((protectedPath) =>
-    path.startsWith(protectedPath)
-  );
+export default auth((req) => {
+  const session = req.auth;
+  const { pathname } = req.nextUrl;
 
-  if (
-    isProtectedPath &&
-    ["HEAD"].includes(request.method)
-    // ["POST", "PUT", "PATCH", "DELETE"].includes(request.method)
-  ) {
-    const token = request.headers.get("authorization")?.replace("Bearer ", "");
+  const isLoggedIn = !!session?.user;
+  const isAdmin = session?.user?.role === "ADMIN";
 
-    if (!token) {
-      return NextResponse.json(
-        { success: false, message: "Authentication required" },
-        { status: 401 }
-      );
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isAuthRoute = pathname === "/login" || pathname === "/register";
+
+  if (isAdminRoute) {
+    if (!isLoggedIn) {
+      return NextResponse.redirect(new URL("/login", req.nextUrl));
     }
-
-    try {
-      verifyToken(token);
-    } catch {
-      return NextResponse.json(
-        { success: false, message: "Invalid or expired token" },
-        { status: 401 }
-      );
+    if (!isAdmin) {
+      return NextResponse.redirect(new URL("/", req.nextUrl));
     }
+    return NextResponse.next();
+  }
+
+  if (isAuthRoute && isLoggedIn) {
+    return NextResponse.redirect(new URL("/admin", req.nextUrl));
   }
 
   return NextResponse.next();
-}
+});
 
 export const config = {
-  matcher: "/api/:path*",
+  matcher: ["/admin/:path*", "/login", "/register"],
 };

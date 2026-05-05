@@ -138,7 +138,7 @@ export default function NewsAndEventPage() {
                                                 <div className="blog-item-info">
                                                     <div className="blog-item-meta">
                                                         <ul>
-                                                            <li>
+                                                            <li key={item.id}>
                                                                 <a href="#">
                                                                     <i className="far fa-user-circle" /> By {item.author}
                                                                 </a>
@@ -226,7 +226,7 @@ export default function NewsAndEventPage() {
                                                 // Count news in this category
                                                 const count = news.filter(n => n.category_id === cat.id).length;
                                                 return (
-                                                    <a href="#">
+                                                    <a key={cat.id} href="#">
                                                         <i className="far fa-arrow-right" />
                                                         {cat.name} {count > 0 ? <span>({count})</span> : ''}
                                                     </a>
@@ -240,7 +240,7 @@ export default function NewsAndEventPage() {
                                         <h5 className="widget-title">Recent Post</h5>
                                         {recentNews.map((item) => (
 
-                                            <div className="recent-post-item">
+                                            <div key={item.id} className="recent-post-item">
                                                 <div className="recent-post-img">
                                                     <img src={item.image} alt={item.title} />
                                                 </div>
