@@ -3,6 +3,37 @@
 import { signIn, signOut } from "@/lib/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+
+const prisma = new PrismaClient();
+
+export async function registerAction(formData: FormData) {
+  const name = formData.get("name") as string;
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  if (!name || !email || !password) {
+    return { error: "All fields are required" };
+  }
+
+  if (password.length < 6) {
+    return { error: "Password must be at least 6 characters" };
+  }
+
+  const existing = await prisma.user.findUnique({ where: { email } });
+  if (existing) {
+    return { error: "Email already registered" };
+  }
+
+  const hashed = await bcrypt.hash(password, 12);
+
+  await prisma.user.create({
+    data: { name, email, password: hashed },
+  });
+
+  return { success: true };
+}
 
 export async function loginAction(formData: FormData) {
   let redirectTo = "";
@@ -11,7 +42,7 @@ export async function loginAction(formData: FormData) {
     await signIn("credentials", {
       email: formData.get("email"),
       password: formData.get("password"),
-      redirect: false, // ← critical: disable built-in redirect
+      redirect: false,
     });
     redirectTo = "/admin";
   } catch (error) {
@@ -21,7 +52,6 @@ export async function loginAction(formData: FormData) {
     return { error: "Something went wrong. Please try again." };
   }
 
-  // Redirect OUTSIDE of try/catch — this is the key fix
   if (redirectTo) redirect(redirectTo);
 }
 

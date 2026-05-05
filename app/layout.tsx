@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Unison Biz Limited official website",
   keywords: ["Unison", "Business", "Corporate"],
   icons: {
-    icon: "/assets/img/logo/favicon.png",
+    icon: "app/favicon.ico",
   },
 };
 
@@ -50,7 +50,7 @@ export default async function RootLayout({
 
         <title>Unison Biz Limited</title>
 
-        <link rel="icon" type="image/x-icon" href="/assets/img/logo/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="app/favicon.ico" />
 
         <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/assets/css/all-fontawesome.min.css" />
