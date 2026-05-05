@@ -29,7 +29,7 @@ export default async function EditTestimonialPage({ params }: PageProps) {
         <div className="row">
             <div className="col-lg-12">
                 <div className="user-card">
-                    <h4 className="user-card-title">Edit Testimonial</h4>
+                    <h4 className="user-card-title">Edit Customer</h4>
                     <div className="user-form">
                         <EditTestimonialForm testimonial={testimonial} />
                     </div>

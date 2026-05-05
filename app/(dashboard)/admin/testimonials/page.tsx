@@ -18,7 +18,7 @@ export default async function AdminTestimonialsPage({ searchParams }: PageProps)
 
     const data = await getTestimonials({
         page,
-        limit: 20,
+        limit: 1000,
         search,
     });
 
@@ -27,14 +27,14 @@ export default async function AdminTestimonialsPage({ searchParams }: PageProps)
             <div className="col-lg-12">
                 <div className="user-card">
                     <div className="user-card-header">
-                        <h4 className="user-card-title">Testimonials</h4>
+                        <h4 className="user-card-title">Customers</h4>
                         <div className="user-card-header-right">
                             <Link
                                 href="/admin/testimonials/create"
                                 className="theme-btn"
                             >
                                 <span className="far fa-plus-circle" />
-                                Add Testimonial
+                                Add Customer
                             </Link>
 
                         </div>

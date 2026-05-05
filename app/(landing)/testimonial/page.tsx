@@ -1,4 +1,5 @@
 import TestimonialCard from "@/components/landing/TestimonialCard";
+import TestimonialSlider from "@/components/landing/TestimonialSlider";
 import { getTestimonials } from "@/lib/api/testimonials";
 
 export default async function TestimonialPage() {
@@ -22,14 +23,14 @@ export default async function TestimonialPage() {
                 />
                 <div className="container">
                     <div className="site-breadcrumb-wrap">
-                        <h4 className="breadcrumb-title">Testimonials</h4>
+                        <h4 className="breadcrumb-title">Customers</h4>
                         <ul className="breadcrumb-menu">
                             <li>
                                 <a href={"/"}>
                                     <i className="far fa-home" /> Home
                                 </a>
                             </li>
-                            <li className="active">Testimonials</li>
+                            <li className="active">Customers</li>
                         </ul>
                     </div>
                 </div>
@@ -52,14 +53,16 @@ export default async function TestimonialPage() {
                         <div className="row">
                             <div className="col-lg-6 mx-auto wow fadeInDown" data-wow-delay=".25s">
                                 <div className="site-heading text-center">
-                                    <span className="site-title-tagline">Testimonials</span>
+                                    <span className="site-title-tagline">Customers</span>
                                     <h2 className="site-title">
                                         What Our Client Say's <span>About Us</span>
                                     </h2>
                                 </div>
                             </div>
                         </div>
-                        <div
+                        {/* Client component for Swiper */}
+                        <TestimonialSlider testimonials={data.testimonials} />
+                        {/* <div
                             className="testimonial-slider owl-carousel owl-theme wow fadeInUp"
                             data-wow-delay=".25s"
                         >
@@ -69,7 +72,7 @@ export default async function TestimonialPage() {
                                     testimonial={testimonial}
                                 />
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             )}

@@ -37,3 +37,13 @@ body {
   height: 8px;
   border-radius: 4px;
 }
+
+/* Deal section Landing*/
+.deal-wrap .swiper-wrapper {
+  align-items: center;
+}
+
+.deal-wrap .swiper-slide {
+  width: 100% !important;
+  flex-shrink: 0;
+}

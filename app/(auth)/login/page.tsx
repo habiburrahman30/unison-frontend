@@ -1,12 +1,9 @@
 "use client";
 
 import { loginAction } from "@/app/actions/auth";
-import { useSearchParams } from "next/navigation";
-import { useState, Suspense } from "react";
+import { useState } from "react";
 
-function LoginForm() {
-    const searchParams = useSearchParams();
-    const registered = searchParams.get("registered");
+export default function LoginPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -16,18 +13,17 @@ function LoginForm() {
         setError("");
 
         const formData = new FormData(e.currentTarget);
+        const result = await loginAction(formData);
 
-        try {
-            const result = await loginAction(formData);
-            // Only reaches here on error — success redirects server-side
-            if (result?.error) {
-                setError(result.error);
-            }
-        } catch {
-            // Next.js redirect() throws internally — this is expected on success
-            // Do nothing, the redirect will complete
-        } finally {
+        if (result?.error) {
+            setError(result.error);
             setLoading(false);
+            return;
+        }
+
+        if (result?.success) {
+            // Full page reload — forces session cookie to be read fresh
+            window.location.href = "/admin";
         }
     }
 
@@ -36,19 +32,13 @@ function LoginForm() {
             <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
                 <h1 className="text-2xl font-bold mb-6 text-center">Sign In</h1>
 
-                {registered && (
-                    <div className="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg text-sm">
-                        Account created! Please sign in.
-                    </div>
-                )}
-
                 {error && (
                     <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
                         {error}
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" suppressHydrationWarning>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                             Email
@@ -57,6 +47,7 @@ function LoginForm() {
                             name="email"
                             type="email"
                             required
+                            suppressHydrationWarning
                             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="you@example.com"
                         />
@@ -70,6 +61,7 @@ function LoginForm() {
                             name="password"
                             type="password"
                             required
+                            suppressHydrationWarning
                             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="••••••••"
                         />
@@ -78,8 +70,9 @@ function LoginForm() {
                     <button
                         type="submit"
                         disabled={loading}
+                        suppressHydrationWarning
                         className="w-full text-white py-2 rounded-lg font-medium disabled:opacity-50 transition hover:opacity-90"
-                        style={{ backgroundColor: '#03A297' }}
+                        style={{ backgroundColor: "#03A297" }}
                     >
                         {loading ? "Signing in..." : "Sign In"}
                     </button>
@@ -93,13 +86,5 @@ function LoginForm() {
                 </p> */}
             </div>
         </div>
-    );
-}
-
-export default function LoginPage() {
-    return (
-        <Suspense>
-            <LoginForm />
-        </Suspense>
     );
 }

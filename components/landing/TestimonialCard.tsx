@@ -2,10 +2,10 @@ import type { Testimonial } from "@/lib/api/testimonials";
 import Image from "next/image";
 interface Props {
     testimonial: Testimonial;
-    key: number;
+    id: number;
 }
 
-export default function TestimonialCard({ testimonial, key }: Props) {
+export default function TestimonialCard({ testimonial, id }: Props) {
 
     const renderStars = (rating: number) => {
         return (
@@ -29,10 +29,10 @@ export default function TestimonialCard({ testimonial, key }: Props) {
                 src={testimonial.image || "/assets/img/no-image-found.jpg"}
                 alt={testimonial.name || "No image"}
             />
-            <p className="text-gray-900 text-xl font-semibold ml-2 mt-4">
+            <div className="text-gray-900 text-xl font-semibold ml-2 mt-4">
                 <p>{testimonial.name ?? ""}</p>
 
-            </p>
+            </div>
             {renderStars(testimonial.rating)}
             <p className="text-sm text-gray-500">
                 {testimonial.designation || ""}

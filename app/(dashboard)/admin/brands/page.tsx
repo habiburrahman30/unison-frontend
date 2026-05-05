@@ -16,7 +16,7 @@ export default async function AdminBrandsPage({ searchParams }: PageProps) {
 
     const data = await getBrands({
         page,
-        limit: 20,
+        limit: 100,
         search,
     });
 

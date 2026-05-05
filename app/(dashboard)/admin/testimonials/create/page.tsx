@@ -8,7 +8,7 @@ export default function CreateTestimonialPage() {
         <div className="row">
             <div className="col-lg-12">
                 <div className="user-card">
-                    <h4 className="user-card-title">Create Testimonial</h4>
+                    <h4 className="user-card-title">Create Customer</h4>
                     <div className="user-form">
                         <CreateTestimonialForm />
                     </div>

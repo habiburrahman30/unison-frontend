@@ -1,4 +1,19 @@
+"use client";
+
+import { Brand } from "@/lib/api/brands";
+import { useEffect, useState } from "react";
+
 export default function BrandsPage() {
+    const [brands, setBrands] = useState<Brand[]>([]);
+    useEffect(() => {
+
+        // Fetch Brands
+        fetch("/api/brands?is_active=true&limit=100")
+            .then((res) => res.json())
+            .then((data) => setBrands(data.data.brands || []));
+
+
+    }, []);
     return (
         <>
             <main className="main">
@@ -24,156 +39,39 @@ export default function BrandsPage() {
                 </div>
                 {/* breadcrumb end */}
                 {/* brand area */}
-                <div className="brand-area2 py-90">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6 mx-auto">
-                                <div className="site-heading text-center">
-                                    <span className="site-title-tagline">Brands</span>
-                                    <h2 className="site-title">
-                                        Our Popular <span>Brands</span>
-                                    </h2>
+                {brands.length > 0 && (
+                    <div className="brand-area2 py-90">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-6 mx-auto">
+                                    <div className="site-heading text-center">
+                                        <span className="site-title-tagline">Brands</span>
+                                        <h2 className="site-title">
+                                            Our Popular <span>Brands</span>
+                                        </h2>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row g-4">
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.asp.com">
-                                        <img src="/assets/img/brand/01.png" alt="" />
-                                    </a>
-                                </div>
+                            <div className="row g-4">
+                                {brands.map((item) => (
+
+                                    <div className="col-md-6 col-lg-2">
+                                        <div className="brand-item">
+                                            <a href="#" key={item.id}>
+                                                <img
+                                                    src={item.logo || "/assets/img/no-image-found.jpg"}
+                                                    alt={item.name}
+                                                />
+                                            </a>
+                                        </div>
+                                    </div>
+                                ))}
+
                             </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.pardo.es/en/">
-                                        <img src="/assets/img/brand/02.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.mindray.com/">
-                                        <img src="/assets/img/brand/03.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.mentice.com/">
-                                        <img src="/assets/img/brand/04.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.meissa.com.tr/en/">
-                                        <img src="/assets/img/brand/04.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.precisionuk.co.uk/">
-                                        <img src="/assets/img/brand/05.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.olidef.com.br/en/">
-                                        <img src="/assets/img/brand/06.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.medifa.com/">
-                                        <img src="/assets/img/brand/06.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://www.sterilmed.com.tr/">
-                                        <img src="/assets/img/brand/05.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="https://oxymat.com/" target="_blank"
-                                        rel="noopener noreferrer">
-                                        <img src="/assets/img/brand/04.png" alt="Oxymat Logo" />
-                                    </a>
-                                </div>
-                            </div>
-                            {/* <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/03.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/02.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/01.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/02.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/03.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/04.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/05.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-2">
-                                <div className="brand-item">
-                                    <a href="#">
-                                        <img src="/assets/img/brand/06.png" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-12">
-                                <div className="text-center mt-4">
-                                    <a href="#" className="theme-btn">
-                                        <span className="fas fa-arrow-rotate-left" /> Load More
-                                    </a>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
-                </div>
+                )}
+
                 {/* brand area end */}
             </main>
 

@@ -66,7 +66,7 @@ export default function CreateTestimonialForm() {
         };
         reader.readAsDataURL(file);
 
-        toast.success("Image selected. It will be uploaded when you create the testimonial.");
+        toast.success("Image selected. It will be uploaded when you create the customer.");
     };
 
     const handleRemoveImage = () => {
@@ -165,15 +165,15 @@ export default function CreateTestimonialForm() {
                 throw new Error(result.message || "Failed to create testimonial");
             }
 
-            toast.success("Testimonial created successfully!");
+            toast.success("Customer created successfully!");
 
             setTimeout(() => {
                 router.push("/admin/testimonials");
                 router.refresh();
             }, 1500);
         } catch (error: any) {
-            console.error("Error creating testimonial:", error);
-            toast.error(error.message || "Failed to create testimonial");
+            console.error("Error creating customer:", error);
+            toast.error(error.message || "Failed to create customer");
             setIsSubmitting(false);
         }
     };
@@ -275,13 +275,13 @@ export default function CreateTestimonialForm() {
                     <div className="col-md-12">
                         <div className="form-group">
                             <label>
-                                Testimonial Message <span className="text-danger">*</span>
+                                Customer Message <span className="text-danger">*</span>
                             </label>
                             <textarea
                                 name="message"
                                 className="form-control"
                                 rows={5}
-                                placeholder="Enter testimonial message"
+                                placeholder="Enter customer message"
                                 value={formData.message}
                                 onChange={handleChange}
                                 required
@@ -403,7 +403,7 @@ export default function CreateTestimonialForm() {
                                 </>
                             ) : (
                                 <>
-                                    <span className="far fa-save" /> Create Testimonial
+                                    <span className="far fa-save" /> Create Customer
                                 </>
                             )}
                         </button>

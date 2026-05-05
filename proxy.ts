@@ -11,16 +11,18 @@ export default auth((req) => {
   const isLoggedIn = !!session?.user;
   const isAdmin = session?.user?.role === "ADMIN";
 
+  // ← Never block auth API routes
+  if (pathname.startsWith("/api/auth")) {
+    return NextResponse.next();
+  }
+
   const isAdminRoute = pathname.startsWith("/admin");
   const isAuthRoute = pathname === "/login" || pathname === "/register";
 
   if (isAdminRoute) {
-    if (!isLoggedIn) {
+    if (!isLoggedIn)
       return NextResponse.redirect(new URL("/login", req.nextUrl));
-    }
-    if (!isAdmin) {
-      return NextResponse.redirect(new URL("/", req.nextUrl));
-    }
+    if (!isAdmin) return NextResponse.redirect(new URL("/", req.nextUrl));
     return NextResponse.next();
   }
 
@@ -33,4 +35,5 @@ export default auth((req) => {
 
 export const config = {
   matcher: ["/admin/:path*", "/login", "/register"],
+  // ↑ /api/auth is NOT in matcher so it's never intercepted
 };

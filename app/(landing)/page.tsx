@@ -10,6 +10,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import DealSlider from "@/components/landing/DealSlider";
+import { Brand } from "@/lib/api/brands";
 
 export default function HomePage() {
   const sliderData = [
@@ -31,6 +33,7 @@ export default function HomePage() {
 
   ];
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [brands, setBrands] = useState<Brand[]>([]);
 
 
 
@@ -39,6 +42,11 @@ export default function HomePage() {
     fetch("/api/testimonials?is_active=true&limit=100")
       .then((res) => res.json())
       .then((data) => setTestimonials(data.data.testimonials || []));
+
+    // Fetch Brands
+    fetch("/api/brands?is_active=true&limit=100")
+      .then((res) => res.json())
+      .then((data) => setBrands(data.data.brands || []));
 
 
   }, []);
@@ -1261,52 +1269,51 @@ export default function HomePage() {
 
         {/* big banner end */}
         {/* brand area */}
-        {/* <div className="brand-area mb-5">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="site-heading-inline">
-                  <h2 className="site-title">Popular Brands</h2>
-                  <a href={"/brands"}>
-                    All Brands <i className="fas fa-angle-double-right" />
-                  </a>
+        {brands.length > 0 && (
+          <div className="brand-area mb-5">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <div className="site-heading-inline">
+                    <h2 className="site-title">Popular Brands</h2>
+                    <a href={"/brands"}>
+                      All Brands <i className="fas fa-angle-double-right" />
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="brand-slider owl-carousel owl-theme">
-              <div className="brand-item">
-                <a href="#">
-                  <img src="/assets/img/brand/01.png" alt="" />
-                </a>
-              </div>
-              <div className="brand-item">
-                <a href="#">
-                  <img src="/assets/img/brand/02.png" alt="" />
-                </a>
-              </div>
-              <div className="brand-item">
-                <a href="#">
-                  <img src="/assets/img/brand/03.png" alt="" />
-                </a>
-              </div>
-              <div className="brand-item">
-                <a href="#">
-                  <img src="/assets/img/brand/04.png" alt="" />
-                </a>
-              </div>
-              <div className="brand-item">
-                <a href="#">
-                  <img src="/assets/img/brand/05.png" alt="" />
-                </a>
-              </div>
-              <div className="brand-item">
-                <a href="#">
-                  <img src="/assets/img/brand/06.png" alt="" />
-                </a>
-              </div>
+              <Swiper
+                modules={[Autoplay]}
+                spaceBetween={20}
+                slidesPerView={2}
+                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                loop={true}
+                breakpoints={{
+                  480: { slidesPerView: 3 },
+                  768: { slidesPerView: 4 },
+                  1024: { slidesPerView: 5 },
+                  1280: { slidesPerView: 6 },
+                }}
+                style={{ width: '100%', padding: '10px 0' }}
+              >
+                {brands.slice(0, 20).map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <div className="brand-item" style={{ textAlign: 'center' }}>
+                      <a href="#" key={item.id}>
+                        <img
+                          src={item.logo || "/assets/img/no-image-found.jpg"}
+                          alt={item.name}
+                          style={{ maxHeight: '60px', objectFit: 'contain', width: '100%' }}
+                        />
+                      </a>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
-        </div> */}
+        )}
+
         {/* brand area end */}
         {/* video area */}
 
@@ -1315,105 +1322,7 @@ export default function HomePage() {
 
         {/* product list end */}
         {/* deal area */}
-        <div className="deal-area pt-50 pb-50">
-          <div className="deal-text-shape">Deal</div>
-          <div className="container">
-            <div className="deal-wrap wow fadeInUp" data-wow-delay=".25s">
-              <div className="deal-slider owl-carousel owl-theme">
-
-                {sliderData.map((team, index) => (
-                  <div className="deal-item" key={index}>
-                    <div className="row align-items-center">
-                      <div className="col-lg-6">
-                        <div className="deal-content">
-                          <div className="deal-info pb-20">
-                            <span>Weekly Deal</span>
-                            <h1>Best Deal For This Week</h1>
-                            <p>
-                              There are many variations of passages available but the
-                              majority have suffered alteration in some form by
-                              injected humour, or randomised words which don't look
-                              even slightly believable.
-                            </p>
-                          </div>
-
-                          <a href={"/products"} className="theme-btn theme-btn2">
-                            Shop Now <i className="fas fa-arrow-right" />
-                          </a>
-                        </div>
-                      </div>
-                      <div className="col-lg-6">
-                        <div className="deal-img">
-                          <img src={team.image && team.image !== "" ? team.image : "/assets/img/no-image-found.jpg"}
-                            alt={team.image} />
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                {/* <div className="deal-item">
-                  <div className="row align-items-center">
-                    <div className="col-lg-6">
-                      <div className="deal-content">
-                        <div className="deal-info pb-20">
-                          <span>Weekly Deal</span>
-                          <h1>Best Deal For This Week</h1>
-                          <p>
-                            There are many variations of passages available but the
-                            majority have suffered alteration in some form by
-                            injected humour, or randomised words which don't look
-                            even slightly believable.
-                          </p>
-                        </div>
-
-                        <a href={"/products"} className="theme-btn theme-btn2">
-                          Shop Now <i className="fas fa-arrow-right" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className="deal-img">
-                        <img src="/assets/img/deal/02.png" alt="" />
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="deal-item">
-                  <div className="row align-items-center">
-                    <div className="col-lg-6">
-                      <div className="deal-content">
-                        <div className="deal-info pb-20">
-                          <span>Weekly Deal</span>
-                          <h1>Best Deal For This Week</h1>
-                          <p>
-                            There are many variations of passages available but the
-                            majority have suffered alteration in some form by
-                            injected humour, or randomised words which don't look
-                            even slightly believable.
-                          </p>
-                        </div>
-
-                        <a href={"/products"} className="theme-btn theme-btn2">
-                          Shop Now <i className="fas fa-arrow-right" />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className="deal-img">
-                        <img src="/assets/img/deal/03.png" alt="" />
-
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-
-
-              </div>
-            </div>
-          </div>
-        </div>
+        <DealSlider />
         {/* deal area end */}
         {/* about area */}
         <div className="about-area py-100">
@@ -1662,71 +1571,73 @@ export default function HomePage() {
         </div>
         {/* gallery-area end */}
         {/* testimonial area */}
-        <div className="testimonial-area ts-bg py-80">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6 mx-auto wow fadeInDown" data-wow-delay=".25s">
-                <div className="site-heading text-center">
-                  <span className="site-title-tagline">Testimonials</span>
-                  <h2 className="site-title text-white">
-                    What Our Client Say's <span>About Us</span>
-                  </h2>
+        {testimonials.length > 0 && (
+          <div className="testimonial-area ts-bg py-80">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-6 mx-auto wow fadeInDown" data-wow-delay=".25s">
+                  <div className="site-heading text-center">
+                    <span className="site-title-tagline">Customers</span>
+                    <h2 className="site-title text-white">
+                      What Our Client Say's <span>About Us</span>
+                    </h2>
+                  </div>
                 </div>
               </div>
+
+              <Swiper
+                modules={[Autoplay, Pagination]}
+                spaceBetween={24}
+                slidesPerView={1}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                pagination={{ clickable: true }}
+                breakpoints={{
+                  768: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+                className="wow fadeInUp pb-12"
+                data-wow-delay=".25s"
+                style={{ paddingBottom: '50px' }}
+              >
+                {testimonials.slice(0, 10).map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <div className="testimonial-item" style={{ height: '100%', boxSizing: 'border-box' }}>
+                      <div className="testimonial-author">
+                        <div className="testimonial-author-img">
+                          <img
+                            src={item.image || "/assets/img/no-image-found.jpg"}
+                            alt={item.name || "No image"}
+
+                            style={{
+                              width: '60px',
+                              height: '60px',
+                              borderRadius: '50%',
+                              objectFit: 'cover',
+                              display: 'block',
+                            }}
+                          />
+                        </div>
+                        <div className="testimonial-author-info">
+                          <h4>{item.name}</h4>
+                          <p>{item.designation}</p>
+                        </div>
+                      </div>
+                      <div className="testimonial-quote">
+                        <p>{item.message}</p>
+                      </div>
+                      <div className="testimonial-rate">
+                        {renderStars(item.rating)}
+                      </div>
+                      <div className="testimonial-quote-icon">
+                        <img src="/assets/img/icon/quote.svg" alt="quote" />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
-
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              spaceBetween={24}
-              slidesPerView={1}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              pagination={{ clickable: true }}
-              breakpoints={{
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              className="wow fadeInUp pb-12"
-              data-wow-delay=".25s"
-              style={{ paddingBottom: '50px' }}
-            >
-              {testimonials.slice(0, 10).map((item) => (
-                <SwiperSlide key={item.id}>
-                  <div className="testimonial-item" style={{ height: '100%', boxSizing: 'border-box' }}>
-                    <div className="testimonial-author">
-                      <div className="testimonial-author-img">
-                        <img
-                          src={item.image || "/assets/img/no-image-found.jpg"}
-                          alt={item.name || "No image"}
-
-                          style={{
-                            width: '60px',
-                            height: '60px',
-                            borderRadius: '50%',
-                            objectFit: 'cover',
-                            display: 'block',
-                          }}
-                        />
-                      </div>
-                      <div className="testimonial-author-info">
-                        <h4>{item.name}</h4>
-                        <p>{item.designation}</p>
-                      </div>
-                    </div>
-                    <div className="testimonial-quote">
-                      <p>{item.message}</p>
-                    </div>
-                    <div className="testimonial-rate">
-                      {renderStars(item.rating)}
-                    </div>
-                    <div className="testimonial-quote-icon">
-                      <img src="/assets/img/icon/quote.svg" alt="quote" />
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
           </div>
-        </div>
+        )}
         {/* testimonial area */}
         {/* <div className="testimonial-area ts-bg py-80">
           <div className="container">
