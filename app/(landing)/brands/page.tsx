@@ -47,7 +47,7 @@ export default function BrandsPage() {
                                     <div className="site-heading text-center">
                                         <span className="site-title-tagline">Brands</span>
                                         <h2 className="site-title">
-                                            Our Popular <span>Brands</span>
+                                            Our Channel <span>Partner</span>
                                         </h2>
                                     </div>
                                 </div>

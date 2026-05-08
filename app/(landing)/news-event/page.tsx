@@ -138,11 +138,11 @@ export default function NewsAndEventPage() {
                                                 <div className="blog-item-info">
                                                     <div className="blog-item-meta">
                                                         <ul>
-                                                            <li key={item.id}>
+                                                            {/* <li key={item.id}>
                                                                 <a href="#">
                                                                     <i className="far fa-user-circle" /> By {item.author}
                                                                 </a>
-                                                            </li>
+                                                            </li> */}
 
                                                         </ul>
                                                     </div>

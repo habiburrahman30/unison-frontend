@@ -149,7 +149,8 @@ export default function HomePage() {
                 <div className="col-lg-6">
                   <div className="hero-right">
                     <div className="hero-img">
-                      <img src="/assets/img/hero/hero-4.png" alt="" />
+                      {/* <img src="/assets/img/hero/hero-4.png" alt="" /> */}
+
                     </div>
                     {/* <div className="hero-img-info">
                       <div className="icon">
@@ -1275,7 +1276,7 @@ export default function HomePage() {
               <div className="row">
                 <div className="col-12">
                   <div className="site-heading-inline">
-                    <h2 className="site-title">Popular Brands</h2>
+                    <h2 className="site-title">Our Channel Partner</h2>
                     <a href={"/brands"}>
                       All Brands <i className="fas fa-angle-double-right" />
                     </a>
@@ -1342,7 +1343,7 @@ export default function HomePage() {
                       <div className="col-5 align-self-end">
                         <img
                           className="img-2"
-                          src="/assets/img/about/02.jpg"
+                          src="/assets/img/about/04.jpeg"
                           alt=""
                         />
                       </div>
@@ -1368,14 +1369,62 @@ export default function HomePage() {
                       <i className="flaticon-drive" /> About Us
                     </span>
                     <h2 className="site-title">
-                      We Provide Best Medical Equipment & <span>Healthcare</span> Technology For You.
+                      Unison Biz Limited Provide Best Medical Equipment & <span>Healthcare</span> Technology For You.
 
                     </h2>
                   </div>
-                  <p>
-                    Committed to excellence in healthcare, we provide reliable medical equipment and advanced technology solutions for hospitals, clinics, and healthcare institutions.
-                  </p>
-                  <div className="about-list">
+                  <div className="max-w-4xl mx-auto p-6 text-[22px] leading-relaxed font-serif text-black">
+
+                    <p className="mb-3">
+                      <strong>UNISON BIZ LIMITED</strong> is a leading provider of advanced and
+                      sophisticated medical technology solutions in Bangladesh. The company
+                      specializes in the <strong>supply, installation, servicing, and technical support</strong> of
+                      cutting-edge electro-medical equipment and healthcare technologies.
+                    </p>
+
+                    <p className="mb-3">
+                      Since its inception, Unison Biz Limited has been committed to delivering{" "}
+                      <strong>high-quality products and dependable services</strong> that enhance
+                      the effectiveness and efficiency of healthcare institutions across the
+                      nation. Guided by strong corporate philosophy and brand commitment, the
+                      company strives to be a trusted and respected name among{" "}
+                      <strong>employees, business partners, clients, and society.</strong>
+                    </p>
+
+                    <p className="mb-3">
+                      Unison Biz Limited imports high-end medical equipment and technologies
+                      from the <strong>United Kingdom, the United States, China, India, and other European countries</strong>,
+                      ensuring that healthcare professionals in Bangladesh have access to
+                      globally recognized and reliable medical solutions.
+                    </p>
+
+                    <p className="mb-3">
+                      The company is supported by a team of{" "}
+                      <strong>26 experienced professionals</strong>, including{" "}
+                      <strong>six qualified engineers</strong> (postgraduate, graduate, and
+                      diploma holders) and a group of skilled{" "}
+                      <strong>technical service specialists</strong>, backed by dedicated teams
+                      managing <strong>sales, administration, and finance.</strong>
+                    </p>
+
+                    <p className="mb-3">
+                      Over the years, Unison Biz Limited has successfully served{" "}
+                      <strong>
+                        tertiary-level referral medical college hospitals, district hospitals,
+                        500-bed secondary-level project hospitals,
+                      </strong>{" "}
+                      as well as numerous <strong>private clinics and diagnostic centers</strong>{" "}
+                      across Bangladesh.
+                    </p>
+
+                    <p>
+                      With a strong focus on <strong>innovation, quality assurance, and customer satisfaction</strong>,
+                      Unison Biz Limited continues to play a vital role in{" "}
+                      <strong>advancing healthcare technology</strong> and contributing to the
+                      growth and modernization of Bangladesh’s medical infrastructure.
+                    </p>
+                  </div>
+                  {/* <div className="about-list">
                     <ul>
                       <li>
                         <i className="fas fa-check-double" /> High-Quality Equipment
@@ -1390,8 +1439,9 @@ export default function HomePage() {
                         <i className="fas fa-check-double" /> Commitment to Excellence
                       </li>
                     </ul>
-                  </div>
-                  <a href={"/contact"} className="theme-btn mt-4">
+                  </div>*/}
+
+                  <a href={"/about"} className="theme-btn mt-4">
                     Discover More
                     <i className="fas fa-arrow-right" />
                   </a>
