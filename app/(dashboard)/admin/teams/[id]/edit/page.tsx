@@ -1,36 +1,25 @@
-import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import EditBrandForm from "@/components/dashboard/EditBrandForm";
+import { getTeamMemberById } from "@/lib/api/teams";
+import EditTeamForm from "@/components/dashboard/EditTeamForm";
+
 
 interface PageProps {
-    params: Promise<{
-        id: string;
-    }>;
+    params: Promise<{ id: string }>;
 }
 
 export default async function EditTeamPage({ params }: PageProps) {
     const { id } = await params;
-    const brandId = parseInt(id);
+    const member = await getTeamMemberById(Number(id));
 
-    if (isNaN(brandId)) {
-        notFound();
-    }
-
-    const brand = await prisma.brand.findUnique({
-        where: { id: brandId },
-    });
-
-    if (!brand) {
-        notFound();
-    }
+    if (!member) notFound();
 
     return (
         <div className="row">
             <div className="col-lg-12">
                 <div className="user-card">
-                    <h4 className="user-card-title">Edit Team</h4>
+                    <h4 className="user-card-title">Edit Team Member</h4>
                     <div className="user-form">
-                        <EditBrandForm brand={brand} />
+                        <EditTeamForm member={member} />
                     </div>
                 </div>
             </div>

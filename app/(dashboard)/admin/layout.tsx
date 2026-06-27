@@ -32,14 +32,14 @@ export default function AdminLayout({
 
     const menu = [
         { label: "Dashboard", href: "/admin", exact: true, icon: "fa-gauge-high" },
-        { label: "Products", href: "/admin/products", icon: "fa-box" },
-        { label: "Categories", href: "/admin/categories", icon: "fa-tags" },
         { label: "Brands", href: "/admin/brands", icon: "fa-copyright" },
-        // { label: "News", href: "/admin/news", icon: "fa-newspaper" },
-        // { label: "News Categories", href: "/admin/news-categories", icon: "fa-folder" },
-        { label: "Customers", href: "/admin/testimonials", icon: "fa-comment" },
-        // { label: "Gallery", href: "/admin/gallery", icon: "fa-images" },
-        // { label: "Teams", href: "/admin/teams", icon: "fa-users" },
+        { label: "Categories", href: "/admin/categories", icon: "fa-tags" },
+        { label: "Products", href: "/admin/products", icon: "fa-box" },
+        { label: "News Categories", href: "/admin/news-categories", icon: "fa-tags" },
+        { label: "News", href: "/admin/news", icon: "fa-newspaper" },
+        { label: "Customers", href: "/admin/testimonials", icon: "fal fa-users" },
+        { label: "Teams", href: "/admin/teams", icon: "fa-users" },
+        { label: "Gallery", href: "/admin/gallery", icon: "fa-images" },
     ];
 
     const isActive = (item: any) => {

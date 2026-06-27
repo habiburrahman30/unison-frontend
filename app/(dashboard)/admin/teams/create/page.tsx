@@ -1,5 +1,4 @@
-import CreateBrandForm from "@/components/dashboard/CreateBrandForm";
-
+import CreateTeamForm from "@/components/dashboard/CreateTeamForm";
 
 
 export default function CreateTeamPage() {
@@ -7,9 +6,9 @@ export default function CreateTeamPage() {
         <div className="row">
             <div className="col-lg-12">
                 <div className="user-card">
-                    <h4 className="user-card-title">Create Team</h4>
+                    <h4 className="user-card-title">Add Team Member</h4>
                     <div className="user-form">
-                        <CreateBrandForm />
+                        <CreateTeamForm />
                     </div>
                 </div>
             </div>

@@ -1,5 +1,4 @@
-import CreateBrandForm from "@/components/dashboard/CreateBrandForm";
-
+import CreateGalleryForm from "@/components/dashboard/CreateGalleryForm";
 
 
 export default function CreateGalleryPage() {
@@ -7,9 +6,9 @@ export default function CreateGalleryPage() {
         <div className="row">
             <div className="col-lg-12">
                 <div className="user-card">
-                    <h4 className="user-card-title">Create Gallery</h4>
+                    <h4 className="user-card-title">Add Gallery Image</h4>
                     <div className="user-form">
-                        <CreateBrandForm />
+                        <CreateGalleryForm />
                     </div>
                 </div>
             </div>

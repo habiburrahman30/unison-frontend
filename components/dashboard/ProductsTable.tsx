@@ -103,6 +103,11 @@ export default function ProductsTable({ products, pagination }: Props) {
     };
 
 
+    const handlePageChange = (page: number) => {
+        router.push(`?page=${page}&limit=${pagination.limit}`);
+    };
+
+
     return (
         <div className="table-responsive">
             <table className="table table-borderless text-nowrap">
@@ -220,100 +225,53 @@ export default function ProductsTable({ products, pagination }: Props) {
 
             {/* pagination */}
 
-            {pagination.totalPages > 1 && (
-                <div className="pagination-area mt-4 mb-3">
-                    <div aria-label="Page navigation example">
-                        <ul className="pagination">
+            {/* Dynamic Pagination */}
+            <div className="pagination-area mt-4 mb-3">
+                <div aria-label="Page navigation">
+                    <ul className="pagination">
 
-                            {/* Previous Button */}
-                            <li className={`page-item ${pagination.page === 1 ? "disabled" : ""}`}>
-                                <a className="page-link"
-                                    href={pagination.page > 1 ? buildPageUrl(pagination.page - 1) : "#"}
-                                    aria-label="Previous"
-                                    onClick={(e) => {
-                                        if (pagination.page === 1) {
-                                            e.preventDefault();
-                                        }
-                                    }}>
-                                    <span aria-hidden="true">
-                                        <i className="far fa-angle-double-left" />
-                                    </span>
-                                </a>
-                            </li>
-
-                            {/* First page if not visible */}
-                            {getPageNumbers()[0] > 1 && (
-                                <>
-                                    <li className="page-item">
-                                        <a className="page-link" href={buildPageUrl(1)}>
-                                            1
-                                        </a>
-                                    </li>
-                                    {getPageNumbers()[0] > 2 && (
-                                        <li className="page-item disabled">
-                                            <span className="page-link">...</span>
-                                        </li>
-                                    )}
-
-                                </>
-                            )}
-
-                            {/* Page Numbers */}
-                            {getPageNumbers().map((pageNum) => (
-                                <li
-                                    key={pageNum}
-                                    className={`page-item ${pagination.page === pageNum ? "active" : ""
-                                        }`}
-                                >
-                                    <a className="page-link" href={buildPageUrl(pageNum)}>
-                                        {pageNum}
-                                    </a>
-                                </li>
-                            ))}
-
-                            {/* Last page if not visible */}
-                            {getPageNumbers()[getPageNumbers().length - 1] < pagination.totalPages && (
-                                <>
-
-                                    {getPageNumbers()[getPageNumbers().length - 1] < pagination.totalPages - 1 && (
-                                        <li className="page-item disabled">
-                                            <span className="page-link">...</span>
-                                        </li>
-                                    )}
-
-                                    <li className="page-item">
-                                        <a className="page-link" href={buildPageUrl(pagination.totalPages)}>
-                                            {pagination.totalPages}
-                                        </a>
-                                    </li>
-                                </>
-                            )}
-                            {/* Next Button */}
-                            <li
-                                className={`page-item ${pagination.page === pagination.totalPages ? "disabled" : ""
-                                    }`}
+                        {/* Previous Button */}
+                        <li className={`page-item ${pagination.page <= 1 ? "disabled" : ""}`}>
+                            <button
+                                className="page-link"
+                                onClick={() => handlePageChange(pagination.page - 1)}
+                                disabled={pagination.page <= 1}
                             >
-                                <a className="page-link"
-                                    href={
-                                        pagination.page < pagination.totalPages
-                                            ? buildPageUrl(pagination.page + 1)
-                                            : "#"
-                                    }
-                                    aria-label="Next"
-                                    onClick={(e) => {
-                                        if (pagination.page === pagination.totalPages) {
-                                            e.preventDefault();
-                                        }
-                                    }}>
-                                    <span aria-hidden="true">
-                                        <i className="far fa-angle-double-right" />
-                                    </span>
-                                </a>
+                                <i className="far fa-angle-double-left" />
+                            </button>
+                        </li>
+
+                        {/* Page Numbers */}
+                        {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((page) => (
+                            <li key={page} className={`page-item ${pagination.page === page ? "active" : ""}`}>
+                                <button
+                                    className="page-link"
+                                    onClick={() => handlePageChange(page)}
+                                >
+                                    {page}
+                                </button>
                             </li>
-                        </ul>
-                    </div>
+                        ))}
+
+                        {/* Next Button */}
+                        <li className={`page-item ${pagination.page >= pagination.totalPages ? "disabled" : ""}`}>
+                            <button
+                                className="page-link"
+                                onClick={() => handlePageChange(pagination.page + 1)}
+                                disabled={pagination.page >= pagination.totalPages}
+                            >
+                                <i className="far fa-angle-double-right" />
+                            </button>
+                        </li>
+
+                    </ul>
                 </div>
-            )}
+
+                {/* Optional: Show total info */}
+                <small className="text-muted">
+                    Showing {(pagination.page - 1) * pagination.limit + 1}–{Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} results
+                </small>
+            </div>
             {/* pagination end */}
         </div >
     );

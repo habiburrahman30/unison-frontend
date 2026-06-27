@@ -6,6 +6,7 @@ import { Suspense, use } from "react";
 interface PageProps {
     searchParams: Promise<{
         page?: string;
+        limit?: string;
         search?: string;
         category_id?: string;
         brand_id?: string;
@@ -18,13 +19,14 @@ export default async function ProductsPage({ searchParams }: PageProps) {
     const params = await searchParams;
 
     const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
     const search = params.search || "";
     const categoryId = params.category_id ? Number(params.category_id) : undefined;
     const brandId = params.brand_id ? Number(params.brand_id) : undefined;
 
     const data = await getProducts({
         page,
-        limit: 20,
+        limit,
         search,
         category_id: categoryId,
         brand_id: brandId,

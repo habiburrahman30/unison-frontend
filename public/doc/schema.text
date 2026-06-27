@@ -1,0 +1,73 @@
+#AdminTeamsPage
+
+This is schema
+
+```
+
+model TeamMember {
+
+  id           Int      @id @default(autoincrement())
+
+  name         String
+
+  position     String
+
+  bio          String?
+
+  image        String?
+
+  email        String?
+
+  phone        String?
+
+  social_links Json?
+
+  created_at   DateTime @default(now())
+
+  updated_at   DateTime @updatedAt
+
+  @@map("team_members")
+
+}
+
+```
+
+create teams
+
+1. GET
+
+2. POST
+
+3. PATCH
+
+4. DELETE
+
+app>admin>teams
+
+1. [id]
+
+   1. edit
+
+      1. page.tsx
+
+2. create
+
+   1. page.tsx
+
+3. page.tsx
+
+app>api>teams
+
+1. route.ts
+
+2. [id]>route.ts
+
+app>api>upload>teams
+
+1. route.ts
+
+lib>api
+
+1. teams.ts
+
+Create this Teams step by step

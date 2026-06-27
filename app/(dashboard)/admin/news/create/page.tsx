@@ -1,9 +1,25 @@
 "use client";
 
+import CreateNewsForm from "@/components/dashboard/CreateNewsForm";
+import { Category } from "@/lib/api/news-categories";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 
 export default function CreateNewsPage() {
+
+    const [categories, setCategories] = useState<Category[]>([]);
+
+
+    useEffect(() => {
+        // Fetch categories
+        fetch("/api/news-categories?limit=1000")
+            .then((res) => res.json())
+            .then((data) => setCategories(data.data || []));
+
+
+    }, []);
+
     return (
 
         <div className="row">
@@ -11,79 +27,7 @@ export default function CreateNewsPage() {
                 <div className="user-card">
                     <h4 className="user-card-title">Create News</h4>
                     <div className="user-form">
-                        <form action="#">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>First Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            defaultValue="Antoni"
-                                            placeholder="First Name"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            defaultValue="Jonson"
-                                            placeholder="Last Name"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Email</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            defaultValue="antoni@example.com"
-                                            placeholder="Email"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            defaultValue="+2 134 562 458"
-                                            placeholder="Phone"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-md-12">
-                                    <div className="form-group">
-                                        <label>Address</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            defaultValue="New York, USA"
-                                            placeholder="Address"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col text-start">
-
-                                    <Link href="/admin/news" className="theme-btn">
-                                        <span className="far fa-arrow-left" /> Back
-                                    </Link>
-                                </div>
-
-                                <div className="col text-end">
-                                    <button type="submit" className="theme-btn">
-                                        <span className="far fa-user" /> Save Changes
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        <CreateNewsForm categories={categories} />
                     </div>
                 </div>
             </div>

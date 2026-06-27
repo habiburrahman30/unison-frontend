@@ -6,6 +6,7 @@ import Link from "next/link";
 interface PageProps {
     searchParams: Promise<{
         page?: string;
+        limit?: string;
         search?: string;
     }>;
 }
@@ -13,13 +14,15 @@ interface PageProps {
 export default async function AdminCategoriesPage({ searchParams }: PageProps) {
     const params = await searchParams;
     const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 5;
     const search = params.search || "";
 
     const data = await getCategories({
         page,
-        limit: 20,
+        limit,
         search,
     });
+
     return (
         <div className="row">
             <div className="col-lg-12">

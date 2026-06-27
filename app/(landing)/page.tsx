@@ -13,6 +13,15 @@ import 'swiper/css/pagination'
 import DealSlider from "@/components/landing/DealSlider";
 import { Brand } from "@/lib/api/brands";
 
+
+
+interface GalleryItem {        // ✅ add here, before the component
+  id: number;
+  title: string;
+  description: string | null;
+  image: string;
+}
+
 export default function HomePage() {
   const sliderData = [
     {
@@ -34,8 +43,9 @@ export default function HomePage() {
   ];
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [brands, setBrands] = useState<Brand[]>([]);
+  const [gallery, setGallery] = useState<GalleryItem[]>([]);
 
-
+  console.log(gallery);
 
   useEffect(() => {
     // Fetch Testimonial
@@ -47,6 +57,11 @@ export default function HomePage() {
     fetch("/api/brands?is_active=true&limit=100")
       .then((res) => res.json())
       .then((data) => setBrands(data.data.brands || []));
+
+    // Fetch Gallery
+    fetch("/api/gallery?limit=100")
+      .then((res) => res.json())
+      .then((data) => setGallery(data.data.data || []));
 
 
   }, []);
@@ -1324,8 +1339,10 @@ export default function HomePage() {
         {/* product list end */}
         {/* deal area */}
         <DealSlider />
+
         {/* deal area end */}
         {/* about area */}
+
         <div className="about-area py-100">
           <div className="container">
             <div className="row align-items-center">
@@ -1521,6 +1538,7 @@ export default function HomePage() {
           </div>
         </div>
         {/* choose-area end*/}
+
         {/* gallery-area */}
         <div className="gallery-area py-100">
           <div className="container">
@@ -1534,92 +1552,48 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="row g-4 popup-gallery">
-              <div className="col-md-12 col-lg-6">
-                <div
-                  className="gallery-item gallery-btn-active wow fadeInUp"
-                  data-wow-delay=".25s"
-                >
-                  <div className="gallery-img">
-                    <img src="/assets/img/gallery/01.jpg" alt="" />
-                    <a
-                      className="popup-img gallery-link"
-                      href="/assets/img/gallery/01.jpg"
-                    >
-                      <i className="fal fa-plus" />
-                    </a>
-                  </div>
-                </div>
+
+            {gallery.length > 0 && (
+              <div className="row g-4 popup-gallery">
+                {gallery.map((item, index) => {
+                  const colClass = [
+                    "col-md-12 col-lg-6",
+                    "col-md-4 col-lg-3",
+                    "col-md-4 col-lg-3",
+                    "col-md-4 col-lg-3",
+                    "col-md-4 col-lg-3",
+                    "col-md-8 col-lg-6",
+                  ][index % 6];
+
+                  const wowClass = index % 2 === 0 ? "fadeInUp" : "fadeInDown";
+                  const isFirst = index === 0;
+
+                  return (
+                    <div className={colClass} key={item.id}>
+                      <div
+                        className={`gallery-item wow ${wowClass} ${isFirst ? "gallery-btn-active" : ""}`}
+                        data-wow-delay=".25s"
+                      >
+                        <div className="gallery-img">
+                          <img src={item.image} alt={item.title} />
+
+                          <a className="popup-img gallery-link"
+                            href={item.image}
+                            title={item.title}
+                          >
+                            <i className="fal fa-plus" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="col-md-4 col-lg-3">
-                <div className="gallery-item wow fadeInDown" data-wow-delay=".25s">
-                  <div className="gallery-img">
-                    <img src="/assets/img/gallery/02.jpg" alt="" />
-                    <a
-                      className="popup-img gallery-link"
-                      href="/assets/img/gallery/02.jpg"
-                    >
-                      <i className="fal fa-plus" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4 col-lg-3">
-                <div className="gallery-item wow fadeInUp" data-wow-delay=".25s">
-                  <div className="gallery-img">
-                    <img src="/assets/img/gallery/03.jpg" alt="" />
-                    <a
-                      className="popup-img gallery-link"
-                      href="/assets/img/gallery/03.jpg"
-                    >
-                      <i className="fal fa-plus" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4 col-lg-3">
-                <div className="gallery-item wow fadeInDown" data-wow-delay=".25s">
-                  <div className="gallery-img">
-                    <img src="/assets/img/gallery/04.jpg" alt="" />
-                    <a
-                      className="popup-img gallery-link"
-                      href="/assets/img/gallery/04.jpg"
-                    >
-                      <i className="fal fa-plus" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4 col-lg-3">
-                <div className="gallery-item wow fadeInUp" data-wow-delay=".25s">
-                  <div className="gallery-img">
-                    <img src="/assets/img/gallery/05.jpg" alt="" />
-                    <a
-                      className="popup-img gallery-link"
-                      href="/assets/img/gallery/05.jpg"
-                    >
-                      <i className="fal fa-plus" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-8 col-lg-6">
-                <div className="gallery-item wow fadeInDown" data-wow-delay=".25s">
-                  <div className="gallery-img">
-                    <img src="/assets/img/gallery/06.jpg" alt="" />
-                    <a
-                      className="popup-img gallery-link"
-                      href="/assets/img/gallery/06.jpg"
-                    >
-                      <i className="fal fa-plus" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
         {/* gallery-area end */}
+
         {/* testimonial area */}
         {testimonials.length > 0 && (
           <div className="testimonial-area ts-bg py-80">

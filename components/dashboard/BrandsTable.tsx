@@ -79,6 +79,9 @@ export default function BrandsTable({ brands, pagination }: Props) {
         }
     };
 
+    const handlePageChange = (page: number) => {
+        router.push(`?page=${page}&limit=${pagination.limit}`);
+    };
 
     return (
 
@@ -150,41 +153,52 @@ export default function BrandsTable({ brands, pagination }: Props) {
                 </tbody>
             </table>
 
-            {/* pagination */}
+            {/* Dynamic Pagination */}
             <div className="pagination-area mt-4 mb-3">
-                <div aria-label="Page navigation example">
+                <div aria-label="Page navigation">
                     <ul className="pagination">
-                        <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">
-                                    <i className="far fa-angle-double-left" />
-                                </span>
-                            </a>
+
+                        {/* Previous Button */}
+                        <li className={`page-item ${pagination.page <= 1 ? "disabled" : ""}`}>
+                            <button
+                                className="page-link"
+                                onClick={() => handlePageChange(pagination.page - 1)}
+                                disabled={pagination.page <= 1}
+                            >
+                                <i className="far fa-angle-double-left" />
+                            </button>
                         </li>
-                        <li className="page-item active">
-                            <a className="page-link" href="#">
-                                1
-                            </a>
+
+                        {/* Page Numbers */}
+                        {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((page) => (
+                            <li key={page} className={`page-item ${pagination.page === page ? "active" : ""}`}>
+                                <button
+                                    className="page-link"
+                                    onClick={() => handlePageChange(page)}
+                                >
+                                    {page}
+                                </button>
+                            </li>
+                        ))}
+
+                        {/* Next Button */}
+                        <li className={`page-item ${pagination.page >= pagination.totalPages ? "disabled" : ""}`}>
+                            <button
+                                className="page-link"
+                                onClick={() => handlePageChange(pagination.page + 1)}
+                                disabled={pagination.page >= pagination.totalPages}
+                            >
+                                <i className="far fa-angle-double-right" />
+                            </button>
                         </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">
-                                2
-                            </a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">
-                                3
-                            </a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">
-                                    <i className="far fa-angle-double-right" />
-                                </span>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
+
+                {/* Optional: Show total info */}
+                <small className="text-muted">
+                    Showing {(pagination.page - 1) * pagination.limit + 1}–{Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} results
+                </small>
             </div>
             {/* pagination end */}
         </div>

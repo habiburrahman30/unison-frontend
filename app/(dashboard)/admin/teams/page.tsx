@@ -1,45 +1,47 @@
-import { getBrands } from "@/lib/api/brands";
-import BrandsTable from "@/components/dashboard/BrandsTable";
 import Link from "next/link";
+import { getTeamMembers } from "@/lib/api/teams";
+import TeamsTable from "@/components/dashboard/TeamsTable";
+
 
 interface PageProps {
-    searchParams: Promise<{
-        page?: string;
-        search?: string;
-    }>;
+    searchParams: Promise<{ page?: string; limit?: string; search?: string }>;
 }
 
 export default async function AdminTeamsPage({ searchParams }: PageProps) {
     const params = await searchParams;
     const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
     const search = params.search || "";
 
-    const data = await getBrands({
-        page,
-        limit: 20,
-        search,
-    });
+    const data = await getTeamMembers({ page, limit, search });
 
     return (
         <div className="row">
             <div className="col-lg-12">
                 <div className="user-card">
                     <div className="user-card-header">
-                        <h4 className="user-card-title">Teams</h4>
+                        <h4 className="user-card-title">Team Members</h4>
                         <div className="user-card-header-right">
                             <Link
                                 href="/admin/teams/create"
                                 className="theme-btn"
                             >
                                 <span className="far fa-plus-circle" />
-                                Add Team
+                                Add Team Member
                             </Link>
 
                         </div>
                     </div>
 
-                    <BrandsTable brands={data.brands} pagination={data.pagination} />
-
+                    <div className="user-form">
+                        {data.data.length === 0 ? (
+                            <div className="text-center py-5">
+                                <p className="text-muted">No team members found.</p>
+                            </div>
+                        ) : (
+                            <TeamsTable members={data.data} pagination={data.pagination} />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

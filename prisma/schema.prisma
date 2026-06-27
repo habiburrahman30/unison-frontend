@@ -111,7 +111,6 @@ model Gallery {
   title       String
   description String?
   image       String
-  category    String?
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
@@ -137,11 +136,13 @@ model News {
   id          Int      @id @default(autoincrement())
   title       String
   slug        String   @unique
-  content     String
-  excerpt     String?
+  description String
   image       String?
   category_id Int
   published   Boolean  @default(false)
+  from_date   DateTime
+  to_date     DateTime
+  tags        Json     @default("[]")
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
