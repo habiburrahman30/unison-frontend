@@ -1540,20 +1540,20 @@ export default function HomePage() {
         {/* choose-area end*/}
 
         {/* gallery-area */}
-        <div className="gallery-area py-100">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6 mx-auto">
-                <div className="site-heading text-center">
-                  <span className="site-title-tagline">Our Gallery</span>
-                  <h2 className="site-title">
-                    Let's Check Our Photo <span>Gallery</span>
-                  </h2>
+        {gallery.length > 0 && (
+          <div className="gallery-area py-100">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-6 mx-auto">
+                  <div className="site-heading text-center">
+                    <span className="site-title-tagline">Our Gallery</span>
+                    <h2 className="site-title">
+                      Let's Check Our Photo <span>Gallery</span>
+                    </h2>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {gallery.length > 0 && (
               <div className="row g-4 popup-gallery">
                 {gallery.map((item, index) => {
                   const colClass = [
@@ -1589,9 +1589,10 @@ export default function HomePage() {
                   );
                 })}
               </div>
-            )}
+
+            </div>
           </div>
-        </div>
+        )}
         {/* gallery-area end */}
 
         {/* testimonial area */}
