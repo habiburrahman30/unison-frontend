@@ -1,4 +1,13 @@
-@import "tailwindcss";
+@import "tailwindcss" important;
+
+/* Dashboard design tokens (brand teal) */
+@theme {
+  --color-brand: #03a297;
+  --color-brand-dark: #028b82;
+  --color-brand-darker: #02736c;
+  --color-brand-light: #e6f6f5;
+  --color-brand-soft: #f0faf9;
+}
 
 :root {
   --background: #ffffff;
@@ -20,6 +29,213 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================================================
+   Dashboard forms — restyle every legacy control into the Tailwind system so
+   forms match the rest of the dashboard (scoped to .dash-form wrappers).
+   ========================================================================== */
+@layer components {
+
+  /* ---- Field spacing + labels ---- */
+  .dash-form .form-group {
+    @apply mb-5;
+  }
+
+  .dash-form label:not(.form-check-label) {
+    @apply mb-1.5 block text-sm font-medium text-slate-700;
+  }
+
+  /* ---- Text inputs, textareas, selects ---- */
+  .dash-form .form-control,
+  .dash-form .form-select,
+  .dash-form select {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 shadow-sm outline-none transition-colors;
+  }
+
+  .dash-form textarea.form-control {
+    @apply min-h-[96px] resize-y leading-relaxed;
+  }
+
+  .dash-form .form-control::placeholder {
+    @apply text-slate-400;
+  }
+
+  .dash-form .form-control:hover,
+  .dash-form .form-select:hover,
+  .dash-form select:hover {
+    @apply border-slate-400;
+  }
+
+  .dash-form .form-control:focus,
+  .dash-form .form-select:focus,
+  .dash-form select:focus {
+    @apply border-brand;
+    box-shadow: 0 0 0 3px rgba(3, 162, 151, 0.16);
+  }
+
+  .dash-form .form-control:disabled,
+  .dash-form select:disabled {
+    @apply cursor-not-allowed bg-slate-50 text-slate-400;
+  }
+
+  .dash-form .form-control.is-invalid {
+    @apply border-red-400;
+  }
+
+  .dash-form .form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.16);
+  }
+
+  /* Custom chevron for native selects */
+  .dash-form select.form-control,
+  .dash-form .form-select,
+  .dash-form select {
+    @apply appearance-none bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2394a3b8' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.85rem center;
+    background-size: 1.1rem;
+  }
+
+  /* ---- File inputs (image upload areas) ---- */
+  .dash-form input[type="file"] {
+    @apply w-full cursor-pointer rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-500 shadow-none outline-none transition-colors;
+  }
+
+  .dash-form input[type="file"]:hover {
+    @apply border-brand bg-brand-soft;
+  }
+
+  .dash-form input[type="file"]::file-selector-button {
+    @apply mr-3 cursor-pointer rounded-md border-0 bg-brand px-3.5 py-1.5 text-sm font-medium text-white transition-colors;
+  }
+
+  .dash-form input[type="file"]::file-selector-button:hover {
+    @apply bg-brand-dark;
+  }
+
+  /* ---- Checkboxes ---- */
+  .dash-form .form-check {
+    @apply flex items-center gap-2 pl-0;
+  }
+
+  .dash-form .form-check-input {
+    @apply m-0 h-[18px] w-[18px] cursor-pointer rounded border-slate-300;
+    accent-color: var(--color-brand);
+  }
+
+  .dash-form .form-check-label {
+    @apply cursor-pointer select-none text-sm text-slate-600;
+  }
+
+  /* ---- Buttons ---- */
+  .dash-form .theme-btn,
+  .dash-form .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-transparent px-4 py-2.5 text-sm font-medium leading-none transition-colors;
+    background-image: none;
+    box-shadow: none;
+  }
+
+  .dash-form .theme-btn::before,
+  .dash-form .theme-btn::after {
+    display: none;
+  }
+
+  .dash-form .theme-btn,
+  .dash-form .btn-primary {
+    @apply bg-brand text-white;
+  }
+
+  .dash-form .theme-btn:hover,
+  .dash-form .btn-primary:hover {
+    @apply bg-brand-dark text-white;
+  }
+
+  .dash-form .btn-secondary {
+    @apply border-slate-300 bg-white text-slate-700;
+  }
+
+  .dash-form .btn-secondary:hover {
+    @apply bg-slate-100 text-slate-900;
+  }
+
+  .dash-form .btn-danger {
+    @apply bg-red-500 text-white;
+  }
+
+  .dash-form .btn-danger:hover {
+    @apply bg-red-600 text-white;
+  }
+
+  .dash-form .btn-sm {
+    @apply rounded-md px-2.5 py-1.5 text-xs;
+  }
+
+  /* ---- Image previews / thumbnails ---- */
+  .dash-form .img-thumbnail {
+    @apply rounded-xl border border-slate-200 bg-white p-1 shadow-sm;
+  }
+
+  /* ---- Chips / badges ---- */
+  .dash-form .badge {
+    @apply inline-flex items-center rounded-full bg-brand-light px-2.5 py-0.5 text-xs font-medium text-brand-dark;
+  }
+
+  /* ---- Helper text ---- */
+  .dash-form .invalid-feedback {
+    @apply mt-1 text-xs text-red-500;
+  }
+
+  .dash-form .text-danger {
+    @apply text-red-500;
+  }
+
+  .dash-form .text-muted,
+  .dash-form small {
+    @apply text-slate-400;
+  }
+
+  /* ---- react-select (products form) ---- */
+  .dash-form .react-select__control {
+    @apply min-h-[44px] rounded-lg border border-slate-300 bg-white text-sm shadow-sm;
+  }
+
+  .dash-form .react-select__control:hover {
+    @apply border-slate-400;
+  }
+
+  .dash-form .react-select__control--is-focused {
+    @apply border-brand;
+    box-shadow: 0 0 0 3px rgba(3, 162, 151, 0.16);
+  }
+
+  .dash-form .react-select__menu {
+    @apply overflow-hidden rounded-lg border border-slate-200 shadow-lg;
+  }
+
+  .dash-form .react-select__option {
+    @apply cursor-pointer text-sm text-slate-700;
+  }
+
+  .dash-form .react-select__option--is-focused {
+    @apply bg-brand-soft text-brand-dark;
+  }
+
+  .dash-form .react-select__option--is-selected {
+    @apply bg-brand text-white;
+  }
+
+  .dash-form .react-select__placeholder {
+    @apply text-sm text-slate-400;
+  }
+
+  .dash-form .react-select__single-value {
+    @apply text-sm text-slate-800;
+  }
+
+  .dash-form .react-select__indicator-separator {
+    @apply bg-slate-200;
+  }
 }
 
 
@@ -47,3 +263,85 @@ body {
   width: 100% !important;
   flex-shrink: 0;
 }
+
+/* ==========================================================================
+   Dashboard dark mode — scoped to .dash-root, toggled via <html class="dark">
+   Wrapped in the `utilities` layer so these overrides sit in the same layer as
+   the (now !important) Tailwind utilities they replace, letting specificity win.
+   ========================================================================== */
+@layer utilities {
+  .dark .dash-root {
+    background-color: #0b1120 !important;
+    color: #e2e8f0 !important;
+    color-scheme: dark;
+  }
+
+.dark .dash-root .bg-white,
+.dark .dash-root .bg-white\/80 {
+  background-color: #0f172a !important;
+}
+
+.dark .dash-root .bg-slate-50,
+.dark .dash-root .bg-slate-50\/60,
+.dark .dash-root .bg-slate-50\/70 {
+  background-color: #0b1120 !important;
+}
+
+.dark .dash-root .bg-slate-100 {
+  background-color: #1e293b !important;
+}
+
+.dark .dash-root .border-slate-200,
+.dark .dash-root .border-slate-100 {
+  border-color: #1f2a3b !important;
+}
+
+.dark .dash-root .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #1f2a3b !important;
+}
+
+.dark .dash-root .text-slate-900 { color: #f1f5f9 !important; }
+.dark .dash-root .text-slate-800 { color: #e2e8f0 !important; }
+.dark .dash-root .text-slate-700,
+.dark .dash-root .text-slate-600 { color: #cbd5e1 !important; }
+.dark .dash-root .text-slate-500 { color: #94a3b8 !important; }
+.dark .dash-root .text-slate-400 { color: #7c8aa0 !important; }
+
+.dark .dash-root .hover\:bg-slate-100:hover,
+.dark .dash-root .hover\:bg-slate-50:hover { background-color: #1e293b !important; }
+
+/* Active nav pill + avatars use brand for contrast in dark */
+.dark .dash-root .bg-slate-900 { background-color: var(--color-brand) !important; }
+
+/* Soft accent tiles → translucent so they don't glow on dark cards */
+.dark .dash-root .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.12) !important; }
+.dark .dash-root .bg-sky-50 { background-color: rgba(14, 165, 233, 0.12) !important; }
+.dark .dash-root .bg-amber-50 { background-color: rgba(245, 158, 11, 0.12) !important; }
+.dark .dash-root .bg-rose-50 { background-color: rgba(244, 63, 94, 0.12) !important; }
+.dark .dash-root .bg-violet-50 { background-color: rgba(139, 92, 246, 0.12) !important; }
+.dark .dash-root .bg-red-50 { background-color: rgba(239, 68, 68, 0.12) !important; }
+.dark .dash-root .bg-brand-light { background-color: rgba(3, 162, 151, 0.16) !important; }
+.dark .dash-root .bg-brand-soft,
+.dark .dash-root .hover\:bg-brand-soft:hover { background-color: rgba(3, 162, 151, 0.12) !important; }
+
+/* Form controls */
+.dark .dash-root input,
+.dark .dash-root textarea,
+.dark .dash-root select,
+.dark .dash-root .form-control,
+.dark .dash-root .form-select {
+  background-color: #0f172a !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark .dash-root input::placeholder,
+.dark .dash-root textarea::placeholder { color: #64748b !important; }
+
+.dark .dash-root input:disabled,
+.dark .dash-root .form-control:disabled {
+  background-color: #1e293b !important;
+  color: #64748b !important;
+}
+}
+/* end dark mode utilities layer */

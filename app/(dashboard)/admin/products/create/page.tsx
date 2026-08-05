@@ -152,11 +152,11 @@ export default function CreateProductPage() {
     return (
 
         <>
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="user-card">
-                        <h4 className="user-card-title">Add Product</h4>
-                        <div className="user-form">
+            <div className="mx-auto max-w-4xl">
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                    <div className="px-6 pt-5">
+                        <h4 className="mb-4 border-b border-slate-100 pb-4 text-lg font-semibold text-slate-900">Add Product</h4>
+                        <div className="pb-6 dash-form">
                             <Toaster position="top-right" />
                             <form onSubmit={handleSubmit}>
                                 <div className="row">
@@ -349,6 +349,7 @@ export default function CreateProductPage() {
                                             </label>
 
                                             <Select<OptionType>
+                                                classNamePrefix="react-select"
                                                 options={categoryOptions}
                                                 value={categoryOptions.find(
                                                     (opt) => opt.value === formData.category_id
@@ -374,6 +375,7 @@ export default function CreateProductPage() {
                                             </label>
 
                                             <Select<OptionType>
+                                                classNamePrefix="react-select"
                                                 options={brandOptions}
                                                 value={brandOptions.find(
                                                     (opt) => opt.value === formData.brand_id

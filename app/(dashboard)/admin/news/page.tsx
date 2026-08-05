@@ -28,27 +28,19 @@ export default async function NewsPage({ searchParams }: PageProps) {
     });
 
     return (
-        <div className="row">
-            <div className="col-lg-12">
-                <div className="user-card">
-                    <div className="user-card-header">
-                        <h4 className="user-card-title">News</h4>
-                        <div className="user-card-header-right">
-                            <Link
-                                href="/admin/news/create"
-                                className="theme-btn"
-                            >
-                                <span className="far fa-plus-circle" />
-                                Add News
-                            </Link>
-
-                        </div>
-                    </div>
-
-                    <NewsTable news={data.data} pagination={data.pagination} />
-
-                </div>
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="flex flex-col gap-3 border-b border-slate-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                <h4 className="text-lg font-semibold text-slate-900">News</h4>
+                <Link
+                    href="/admin/news/create"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+                >
+                    <span className="far fa-plus-circle" />
+                    Add News
+                </Link>
             </div>
+
+            <NewsTable news={data.data} pagination={data.pagination} />
         </div>
     );
 }

@@ -16,34 +16,26 @@ export default async function AdminTeamsPage({ searchParams }: PageProps) {
     const data = await getTeamMembers({ page, limit, search });
 
     return (
-        <div className="row">
-            <div className="col-lg-12">
-                <div className="user-card">
-                    <div className="user-card-header">
-                        <h4 className="user-card-title">Team Members</h4>
-                        <div className="user-card-header-right">
-                            <Link
-                                href="/admin/teams/create"
-                                className="theme-btn"
-                            >
-                                <span className="far fa-plus-circle" />
-                                Add Team Member
-                            </Link>
-
-                        </div>
-                    </div>
-
-                    <div className="user-form">
-                        {data.data.length === 0 ? (
-                            <div className="text-center py-5">
-                                <p className="text-muted">No team members found.</p>
-                            </div>
-                        ) : (
-                            <TeamsTable members={data.data} pagination={data.pagination} />
-                        )}
-                    </div>
-                </div>
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="flex flex-col gap-3 border-b border-slate-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                <h4 className="text-lg font-semibold text-slate-900">Team Members</h4>
+                <Link
+                    href="/admin/teams/create"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+                >
+                    <span className="far fa-plus-circle" />
+                    Add Team Member
+                </Link>
             </div>
+
+            {data.data.length === 0 ? (
+                <div className="px-5 py-14 text-center">
+                    <i className="far fa-users mb-3 text-3xl text-slate-300" />
+                    <p className="text-sm text-slate-500">No team members found.</p>
+                </div>
+            ) : (
+                <TeamsTable members={data.data} pagination={data.pagination} />
+            )}
         </div>
     );
 }

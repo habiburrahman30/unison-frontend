@@ -36,34 +36,24 @@ export default async function ProductsPage({ searchParams }: PageProps) {
     const serializedData = JSON.parse(JSON.stringify(data));
 
     return (
-
-        <div className="row">
-            <div className="col-lg-12">
-                <div className="user-card">
-                    <div className="user-card-header">
-                        <h4 className="user-card-title">Products</h4>
-                        <div className="user-card-header-right">
-                            <a
-                                href="/admin/products/create"
-                                className="theme-btn"
-                            >
-                                <span className="far fa-plus-circle" />
-                                Add Product
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <ProductsTable
-                            products={serializedData.products}
-                            pagination={serializedData.pagination}
-                        />
-                    </Suspense>
-
-                </div>
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="flex flex-col gap-3 border-b border-slate-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                <h4 className="text-lg font-semibold text-slate-900">Products</h4>
+                <a
+                    href="/admin/products/create"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+                >
+                    <span className="far fa-plus-circle" />
+                    Add Product
+                </a>
             </div>
-        </div>
 
+            <Suspense fallback={<div className="p-6 text-sm text-slate-500">Loading…</div>}>
+                <ProductsTable
+                    products={serializedData.products}
+                    pagination={serializedData.pagination}
+                />
+            </Suspense>
+        </div>
     );
 }

@@ -51,18 +51,16 @@ export default async function EditProductPage({ params }: PageProps) {
     const serializedProduct = serializeProduct(product);
 
     return (
-        <div className="row">
-            <div className="col-lg-12">
-                <div className="user-card">
-                    <h4 className="user-card-title">Edit Product</h4>
-                    <div className="user-form">
-                        <EditProductForm
-                            product={serializedProduct}
-                            categories={categories}
-                            brands={brands}
-                        />
-                    </div>
-                </div>
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="border-b border-slate-100 px-6 py-4">
+                <h4 className="text-lg font-semibold text-slate-900">Edit Product</h4>
+            </div>
+            <div className="p-6 dash-form">
+                <EditProductForm
+                    product={serializedProduct}
+                    categories={categories}
+                    brands={brands}
+                />
             </div>
         </div>
     );
