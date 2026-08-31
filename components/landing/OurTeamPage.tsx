@@ -44,6 +44,19 @@ export default function OurTeamPage({ teamData }: Props) {
                         </ul>
                     </div>
                 </div>
+                {/* <div className="container">
+                    <div className="site-breadcrumb-wrap">
+                        <h4 className="breadcrumb-title">Our Team</h4>
+                        <ul className="breadcrumb-menu">
+                            <li>
+                                <a href="/">
+                                    <i className="far fa-home" /> Home
+                                </a>
+                            </li>
+                            <li className="active">Our Team</li>
+                        </ul>
+                    </div>
+                </div> */}
             </div>
 
             {/* Team Area */}
