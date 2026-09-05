@@ -13,6 +13,7 @@ interface Category {
     name: string;
     description: string | null;
     image: string | null;
+    sequence: number;
     _count?: {
         products: number;
     };
@@ -93,6 +94,7 @@ export default function CategoriesTable({ categories, pagination }: Props) {
                 <table className="min-w-full text-left text-sm">
                     <thead>
                         <tr className="border-b border-slate-100 bg-slate-50 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                            <th className="px-5 py-3">Seq</th>
                             <th className="px-5 py-3">Logo</th>
                             <th className="px-5 py-3">Name</th>
                             <th className="px-5 py-3">Description</th>
@@ -103,6 +105,7 @@ export default function CategoriesTable({ categories, pagination }: Props) {
                     <tbody className="divide-y divide-slate-100">
                         {categories.map((data) => (
                             <tr key={data.id} className="transition-colors hover:bg-slate-50/70">
+                                <td className="px-5 py-3 font-medium text-slate-500">{data.sequence}</td>
                                 <td className="px-5 py-3">
                                     <Image
                                         src={data.image || "/assets/img/no-image-found.jpg"}

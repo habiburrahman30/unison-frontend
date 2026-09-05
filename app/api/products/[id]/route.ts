@@ -80,6 +80,8 @@ export async function PATCH(
     if (body.stock !== undefined) updateData.stock = parseInt(body.stock);
     if (body.category_id) updateData.category_id = parseInt(body.category_id);
     if (body.brand_id) updateData.brand_id = parseInt(body.brand_id);
+    if (body.sequence !== undefined && body.sequence !== null && body.sequence !== "")
+      updateData.sequence = parseInt(body.sequence);
 
     const product = await prisma.product.update({
       where: { id: Number(id) },

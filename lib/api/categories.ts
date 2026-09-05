@@ -5,6 +5,7 @@ export interface Category {
   name: string;
   description: string | null;
   image: string | null;
+  sequence: number;
   created_at: Date;
   updated_at: Date;
 }
@@ -43,7 +44,7 @@ export async function getCategories(params?: {
           select: { products: true },
         },
       },
-      orderBy: { created_at: "desc" },
+      orderBy: { sequence: "asc" },
     }),
     prisma.category.count({ where }),
   ]);

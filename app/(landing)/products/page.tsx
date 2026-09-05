@@ -30,6 +30,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         search,
         category_id: categoryId,
         brand_id: brandId,
+        is_active: true,
     });
 
     // Serialize to plain objects (alternative method)

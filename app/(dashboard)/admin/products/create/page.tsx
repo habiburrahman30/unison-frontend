@@ -27,9 +27,11 @@ export default function CreateProductPage() {
         old_price: "",
         stock: "0",
         is_trending: false,
+        is_active: true,
         images: [""],
         category_id: 0,
         brand_id: 0,
+        sequence: "",
     });
 
     const handleChange = (
@@ -100,9 +102,11 @@ export default function CreateProductPage() {
                 old_price: formData.old_price ? parseFloat(formData.old_price) : undefined,
                 stock: parseInt(formData.stock),
                 is_trending: formData.is_trending,
+                is_active: formData.is_active,
                 images: formData.images.filter((img) => img.trim() !== ""),
                 category_id: formData.category_id,
                 brand_id: formData.brand_id,
+                sequence: formData.sequence.trim() ? parseInt(formData.sequence) : undefined,
             };
 
             await createProduct(productData);
@@ -336,10 +340,25 @@ export default function CreateProductPage() {
                                             />
                                         </div>
                                     </div>
-                                    {/* Category */}
 
-
-
+                                    {/* Product Sequence */}
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Product Sequence</label>
+                                            <input
+                                                type="number"
+                                                name="sequence"
+                                                className="form-control"
+                                                placeholder="e.g., 1"
+                                                min="1"
+                                                value={formData.sequence}
+                                                onChange={handleChange}
+                                            />
+                                            <small className="text-muted d-block mt-1">
+                                                Order within the category (1, 2, 3...). Leave empty to auto-assign.
+                                            </small>
+                                        </div>
+                                    </div>
 
                                     {/* Category */}
                                     <div className="col-md-6">
@@ -444,6 +463,28 @@ export default function CreateProductPage() {
                                                     Mark as Trending Product
                                                 </label>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Is Active */}
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <div className="form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    name="is_active"
+                                                    className="form-check-input"
+                                                    id="is_active"
+                                                    checked={formData.is_active}
+                                                    onChange={handleChange}
+                                                />
+                                                <label className="form-check-label" htmlFor="is_active">
+                                                    Show on Landing Page
+                                                </label>
+                                            </div>
+                                            <small className="text-muted d-block mt-1">
+                                                Uncheck to hide this product from the storefront without deleting it.
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
