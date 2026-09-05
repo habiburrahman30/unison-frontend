@@ -10,6 +10,7 @@ interface Category {
     name: string;
     description: string | null;
     image: string | null;
+    sequence: number;
 }
 
 interface Props {
@@ -28,6 +29,7 @@ export default function EditCategoryForm({ category }: Props) {
     const [formData, setFormData] = useState({
         name: category.name,
         description: category.description || "",
+        sequence: category.sequence?.toString() || "",
     });
 
     const handleChange = (
@@ -147,6 +149,7 @@ export default function EditCategoryForm({ category }: Props) {
                 name: formData.name.trim(),
                 description: formData.description.trim() || null,
                 image: newImageUrl || null,
+                sequence: formData.sequence.trim() ? parseInt(formData.sequence) : undefined,
             };
 
             console.log("Updating category with data:", categoryData);
@@ -230,6 +233,26 @@ export default function EditCategoryForm({ category }: Props) {
                                 onChange={handleChange}
                                 disabled={isSubmitting}
                             />
+                        </div>
+                    </div>
+
+                    {/* Category Sequence - OPTIONAL */}
+                    <div className="col-md-6">
+                        <div className="form-group">
+                            <label>Category Sequence</label>
+                            <input
+                                type="number"
+                                name="sequence"
+                                className="form-control"
+                                placeholder="e.g., 1"
+                                min="1"
+                                value={formData.sequence}
+                                onChange={handleChange}
+                                disabled={isSubmitting}
+                            />
+                            <small className="text-muted d-block mt-1">
+                                Controls the display order of this category (e.g. 1, 2, 3...).
+                            </small>
                         </div>
                     </div>
 

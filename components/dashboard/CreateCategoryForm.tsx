@@ -14,6 +14,7 @@ export default function CreateCategoryForm() {
     const [formData, setFormData] = useState({
         name: "",
         description: "",
+        sequence: "",
     });
 
     const handleChange = (
@@ -133,6 +134,7 @@ export default function CreateCategoryForm() {
                 name: formData.name.trim(),
                 description: formData.description.trim() || null,
                 image: uploadedImageUrl || null,
+                sequence: formData.sequence.trim() ? parseInt(formData.sequence) : undefined,
             };
 
             console.log("Creating category with data:", categoryData);
@@ -210,6 +212,26 @@ export default function CreateCategoryForm() {
                                 onChange={handleChange}
                                 disabled={isSubmitting}
                             />
+                        </div>
+                    </div>
+
+                    {/* Category Sequence - OPTIONAL */}
+                    <div className="col-md-6">
+                        <div className="form-group">
+                            <label>Category Sequence</label>
+                            <input
+                                type="number"
+                                name="sequence"
+                                className="form-control"
+                                placeholder="e.g., 1"
+                                min="1"
+                                value={formData.sequence}
+                                onChange={handleChange}
+                                disabled={isSubmitting}
+                            />
+                            <small className="text-muted d-block mt-1">
+                                Controls the display order of this category (e.g. 1, 2, 3...). Leave empty to auto-assign.
+                            </small>
                         </div>
                     </div>
 

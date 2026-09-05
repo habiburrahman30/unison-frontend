@@ -75,6 +75,10 @@ export async function PATCH(
         name: body.name?.trim(),
         description: body.description?.trim() || null,
         image: body.image || null,
+        sequence:
+          body.sequence !== undefined && body.sequence !== null && body.sequence !== ""
+            ? parseInt(body.sequence)
+            : undefined,
       },
     });
 

@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     const categoryId = searchParams.get("category_id");
     const brandId = searchParams.get("brand_id");
     const isTrending = searchParams.get("is_trending");
+    const isActive = searchParams.get("is_active");
     const search = searchParams.get("search");
 
     const where: any = {};
@@ -20,6 +21,8 @@ export async function GET(request: NextRequest) {
     if (categoryId) where.category_id = parseInt(categoryId);
     if (brandId) where.brand_id = parseInt(brandId);
     if (isTrending === "true") where.is_trending = true;
+    if (isActive === "true") where.is_active = true;
+    if (isActive === "false") where.is_active = false;
 
     if (search) {
       where.OR = [
@@ -38,7 +41,7 @@ export async function GET(request: NextRequest) {
         },
         skip: (page - 1) * limit,
         take: limit,
-        orderBy: { created_at: "desc" },
+        orderBy: [{ category: { sequence: "asc" } }, { sequence: "asc" }],
       }),
       prisma.product.count({ where }),
     ]);
@@ -74,9 +77,11 @@ export async function POST(request: NextRequest) {
       old_price,
       stock,
       is_trending,
+      is_active,
       images,
       category_id,
       brand_id,
+      sequence,
     } = body;
 
     // Validation
@@ -111,6 +116,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Auto-assign the next sequence number within the category if not provided
+    let productSequence = sequence !== undefined && sequence !== null && sequence !== ""
+      ? parseInt(sequence)
+      : undefined;
+
+    if (productSequence === undefined) {
+      const lastProduct = await prisma.product.findFirst({
+        where: { category_id: parseInt(category_id) },
+        orderBy: { sequence: "desc" },
+      });
+      productSequence = (lastProduct?.sequence || 0) + 1;
+    }
+
     const product = await prisma.product.create({
       data: {
         name,
@@ -124,9 +142,11 @@ export async function POST(request: NextRequest) {
         old_price: old_price ? parseFloat(old_price) : null,
         stock: stock || 0,
         is_trending: is_trending || false,
+        is_active: is_active !== undefined ? is_active : true,
         images: images || [],
         category_id: parseInt(category_id),
         brand_id: parseInt(brand_id),
+        sequence: productSequence,
       },
       include: {
         category: true,

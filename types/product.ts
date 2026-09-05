@@ -11,7 +11,9 @@ export interface Product {
   price: number;
   old_price?: number;
   is_trending?: boolean;
+  is_active?: boolean;
   product_description?: string;
   technical_discription?: string;
   stock?: number;
+  sequence?: number;
 }

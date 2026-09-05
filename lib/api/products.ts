@@ -14,14 +14,17 @@ export interface ProductWithRelations {
   old_price: number | null; // Changed from Decimal
   stock: number;
   is_trending: boolean;
+  is_active: boolean;
   images: string[];
   category_id: number;
   brand_id: number;
+  sequence: number;
   created_at: Date;
   updated_at: Date;
   category: {
     id: number;
     name: string;
+    sequence: number;
   };
   brand: {
     id: number;
@@ -45,6 +48,7 @@ export interface GetProductsParams {
   category_id?: number;
   brand_id?: number;
   is_trending?: boolean;
+  is_active?: boolean;
   search?: string;
 }
 
@@ -71,6 +75,7 @@ export async function getProducts(
   if (params?.category_id) where.category_id = params.category_id;
   if (params?.brand_id) where.brand_id = params.brand_id;
   if (params?.is_trending) where.is_trending = true;
+  if (params?.is_active !== undefined) where.is_active = params.is_active;
 
   if (params?.search) {
     where.OR = [
@@ -88,6 +93,7 @@ export async function getProducts(
           select: {
             id: true,
             name: true,
+            sequence: true,
           },
         },
         brand: {
@@ -99,7 +105,7 @@ export async function getProducts(
       },
       skip: (page - 1) * limit,
       take: limit,
-      orderBy: { created_at: "desc" },
+      orderBy: [{ category: { sequence: "asc" } }, { sequence: "asc" }],
     }),
     prisma.product.count({ where }),
   ]);
@@ -129,6 +135,7 @@ export async function getProductById(
         select: {
           id: true,
           name: true,
+          sequence: true,
         },
       },
       brand: {
@@ -145,17 +152,18 @@ export async function getProductById(
   return serializeProduct(product);
 }
 
-// SERVER-SIDE: Fetch single product by slug
+// SERVER-SIDE: Fetch single product by slug (landing page only — hides inactive products)
 export async function getProductBySlug(
   slug: string,
 ): Promise<ProductWithRelations | null> {
-  const product = await prisma.product.findUnique({
-    where: { slug },
+  const product = await prisma.product.findFirst({
+    where: { slug, is_active: true },
     include: {
       category: {
         select: {
           id: true,
           name: true,
+          sequence: true,
         },
       },
       brand: {
@@ -177,12 +185,13 @@ export async function getTrendingProducts(
   limit: number = 10,
 ): Promise<ProductWithRelations[]> {
   const products = await prisma.product.findMany({
-    where: { is_trending: true },
+    where: { is_trending: true, is_active: true },
     include: {
       category: {
         select: {
           id: true,
           name: true,
+          sequence: true,
         },
       },
       brand: {

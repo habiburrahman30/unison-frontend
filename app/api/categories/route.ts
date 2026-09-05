@@ -11,7 +11,7 @@ export async function GET() {
           select: { products: true },
         },
       },
-      orderBy: { name: "asc" },
+      orderBy: { sequence: "asc" },
     });
 
     return ApiResponse.success(categories);
@@ -24,7 +24,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, description, image } = body;
+    const { name, description, image, sequence } = body;
 
     if (!name) {
       return ApiResponse.error("Category name is required", 400);
@@ -39,11 +39,24 @@ export async function POST(request: NextRequest) {
       return ApiResponse.error("Category with this name already exists", 400);
     }
 
+    // Auto-assign the next sequence number if not provided
+    let categorySequence = sequence !== undefined && sequence !== null && sequence !== ""
+      ? parseInt(sequence)
+      : undefined;
+
+    if (categorySequence === undefined) {
+      const lastCategory = await prisma.category.findFirst({
+        orderBy: { sequence: "desc" },
+      });
+      categorySequence = (lastCategory?.sequence || 0) + 1;
+    }
+
     const category = await prisma.category.create({
       data: {
         name: name.trim(),
         description: description?.trim() || null,
         image: image || null,
+        sequence: categorySequence,
       },
     });
 

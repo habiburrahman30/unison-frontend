@@ -1,6 +1,7 @@
 
 import { getProducts } from "@/lib/api/products";
 import ProductsTable from "@/components/dashboard/ProductsTable";
+import ProductsSearchFilter from "@/components/dashboard/ProductsSearchFilter";
 import { Suspense, use } from "react";
 
 interface PageProps {
@@ -39,13 +40,18 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
             <div className="flex flex-col gap-3 border-b border-slate-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
                 <h4 className="text-lg font-semibold text-slate-900">Products</h4>
-                <a
-                    href="/admin/products/create"
-                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
-                >
-                    <span className="far fa-plus-circle" />
-                    Add Product
-                </a>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Suspense fallback={null}>
+                        <ProductsSearchFilter />
+                    </Suspense>
+                    <a
+                        href="/admin/products/create"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+                    >
+                        <span className="far fa-plus-circle" />
+                        Add Product
+                    </a>
+                </div>
             </div>
 
             <Suspense fallback={<div className="p-6 text-sm text-slate-500">Loading…</div>}>

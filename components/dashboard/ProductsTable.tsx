@@ -114,18 +114,23 @@ export default function ProductsTable({ products, pagination }: Props) {
                 <table className="min-w-full text-left text-sm">
                     <thead>
                         <tr className="border-b border-slate-100 bg-slate-50 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                            <th className="px-5 py-3">Seq</th>
                             <th className="px-5 py-3">Image</th>
                             <th className="px-5 py-3">Name</th>
                             <th className="px-5 py-3">Category</th>
                             <th className="px-5 py-3">Brand</th>
                             <th className="px-5 py-3">Origin</th>
-                            <th className="px-5 py-3">Stock</th>
+                            {/* <th className="px-5 py-3">Stock</th> */}
+                            <th className="px-5 py-3">Visibility</th>
                             <th className="px-5 py-3 text-right">Action</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                         {products.map((data) => (
                             <tr key={data.id} className="transition-colors hover:bg-slate-50/70">
+                                <td className="px-5 py-3 font-medium text-slate-500">
+                                    {data.category.sequence * 10 + data.sequence}
+                                </td>
                                 <td className="px-5 py-3">
                                     <Image
                                         src={data.images[0] || "/assets/img/no-image-found.jpg"}
@@ -143,11 +148,18 @@ export default function ProductsTable({ products, pagination }: Props) {
                                     <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">{data.brand.name}</span>
                                 </td>
                                 <td className="px-5 py-3 text-slate-500">{data.manufacturer}</td>
-                                <td className="px-5 py-3">
+                                {/* <td className="px-5 py-3">
                                     {data.stock > 0 ? (
                                         <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-600">Available</span>
                                     ) : (
                                         <span className="inline-flex items-center rounded-full bg-red-50 px-2.5 py-0.5 text-xs font-medium text-red-600">Not Available</span>
+                                    )}
+                                </td> */}
+                                <td className="px-5 py-3">
+                                    {data.is_active ? (
+                                        <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-600">Visible</span>
+                                    ) : (
+                                        <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-500">Hidden</span>
                                     )}
                                 </td>
                                 <td className="px-5 py-3">

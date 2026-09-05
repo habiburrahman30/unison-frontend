@@ -51,12 +51,15 @@ model Product {
 
   stock       Int     @default(0)
   is_trending Boolean @default(false)
+  is_active   Boolean @default(true)
 
   // images String[]
   images Json?
 
   category_id Int
   brand_id    Int
+
+  sequence Int @default(0)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -72,6 +75,7 @@ model Category {
   name        String    @unique
   description String?
   image       String?
+  sequence    Int       @default(0)
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
   products    Product[]
