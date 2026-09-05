@@ -64,7 +64,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
                 </div>
                 {/* breadcrumb end */}
                 {/* shop-area */}
-                <div className="shop-area bg py-90">
+                <div className="shop-area bg py-10">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-3">
