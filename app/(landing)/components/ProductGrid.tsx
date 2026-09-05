@@ -19,7 +19,7 @@ export default function ProductGrid({ products }: Props) {
                         <div className="product-item">
                             <div className="product-img">
 
-                                {product.stock === 0 && <span className="type oos">Out Of Stock</span>}
+                                {/* {product.stock === 0 && <span className="type oos">Out Of Stock</span>} */}
                                 {product.stock > 0 && product.is_trending && <span className="type">Trending</span>}
 
                                 <Link href={`/products/${product.slug}`}>

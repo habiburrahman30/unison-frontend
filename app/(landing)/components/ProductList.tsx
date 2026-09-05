@@ -129,7 +129,7 @@ export default function ProductList() {
                 <div className="col-md-12">
                     <div className="product-item">
                         <div className="product-img">
-                            <span className="type oos">Out Of Stock</span>
+                            {/* <span className="type oos">Out Of Stock</span> */}
                             <a href="shop-single.html">
                                 <img src="/assets/img/product/03.png" alt="" />
                             </a>
