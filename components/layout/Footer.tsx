@@ -20,7 +20,7 @@ export default function Footer() {
         <footer className="footer-area ft-bg">
             <div className="footer-widget">
                 <div className="container">
-                    <div className="row footer-widget-wrapper pt-100 pb-40">
+                    <div className="row footer-widget-wrapper pt-20 pb-20">
                         <div className="col-md-6 col-lg-3">
                             <div className="footer-widget-box about-us">
                                 <a href={"/"} className="footer-logo">
@@ -49,7 +49,7 @@ export default function Footer() {
                                         </a>
                                     </li>
                                     <li>
-                                        <h4 className="footer-widget-title mt-20 mb-0 pb-2">
+                                        <h4 className="footer-widget-title mt-10 mb-0 pb-2">
                                             Medical Division
                                         </h4>
                                     </li>
@@ -82,7 +82,7 @@ export default function Footer() {
 
                                     </li>
                                     <li>
-                                        <h4 className="footer-widget-title mt-20 mb-0 pb-2">
+                                        <h4 className="footer-widget-title mt-10 mb-0 pb-2">
                                             Registered Office
                                         </h4>
                                     </li>
@@ -92,7 +92,7 @@ export default function Footer() {
                                     </li>
 
                                     <li>
-                                        <h4 className="footer-widget-title mt-20 mb-0 pb-2">
+                                        <h4 className="footer-widget-title mt-10 mb-0 pb-2">
                                             Sales Office & Mailing Address
                                         </h4>
                                     </li>

@@ -62,7 +62,7 @@ export default function AboutPage() {
             </div>
             {/* breadcrumb end */}
             {/* about area */}
-            <div className="about-area py-100">
+            <div className="about-area py-20">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
@@ -298,7 +298,7 @@ export default function AboutPage() {
             {/* counter area end */}
             {/* testimonial area */}
             {testimonials.length > 0 && (
-                <div className="testimonial-area ts-bg py-80">
+                <div className="testimonial-area ts-bg py-20">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-6 mx-auto wow fadeInDown" data-wow-delay=".25s">

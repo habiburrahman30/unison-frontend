@@ -140,7 +140,7 @@ export default function NewsAndEventPage({ newsData, categories }: Props) {
             </div>
 
             {/* Blog Area */}
-            <div className="blog-area py-100">
+            <div className="blog-area py-20">
                 <div className="container">
                     <div className="row g-4">
 

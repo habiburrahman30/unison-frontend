@@ -88,7 +88,7 @@ export default function HomeCategoryCard() {
 
     if (isLoading) {
         return (
-            <div className="category-area pt-80 pb-100">
+            <div className="category-area pt-80 pb-50">
                 <div className="container">
                     <div className="text-center py-5">Loading categories...</div>
                 </div>
@@ -101,7 +101,7 @@ export default function HomeCategoryCard() {
         return null;
     }
     return (
-        <div className="category-area pt-80 pb-100">
+        <div className="category-area pt-10 pb-20">
             <div className="container">
                 <div className="row">
                     <div className="col-12 wow fadeInDown" data-wow-delay=".25s">

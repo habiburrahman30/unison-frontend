@@ -28,7 +28,7 @@ export default function ContactPage() {
                 </div>
                 {/* breadcrumb end */}
                 {/* contact area */}
-                <div className="contact-area pt-100 pb-80">
+                <div className="contact-area pt-20 pb-20">
                     <div className="container">
                         <div className="contact-wrapper">
                             <div className="row">

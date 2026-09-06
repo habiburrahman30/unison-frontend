@@ -91,14 +91,6 @@ export default function HomePage() {
         </div>
       </div> */}
       {/* preloader end */}
-      {/* preloader */}
-      {/* <div className="preloader">
-        <div className="loader-ripple">
-          <div />
-          <div />
-        </div>
-      </div> */}
-      {/* preloader end */}
 
       {/* header area */}
 
@@ -1351,7 +1343,7 @@ export default function HomePage() {
         {/* deal area end */}
         {/* about area */}
 
-        <div className="about-area py-100">
+        <div className="about-area py-20">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-6">
@@ -1477,7 +1469,7 @@ export default function HomePage() {
         </div>
         {/* about area end */}
         {/* choose-area */}
-        <div className="choose-area bg py-100">
+        <div className="choose-area bg py-20">
           <div className="container">
             <div
               className="row g-4 align-items-center wow fadeInDown"
@@ -1549,7 +1541,7 @@ export default function HomePage() {
 
         {/* gallery-area */}
         {gallery.length > 0 && (
-          <div className="gallery-area py-100">
+          <div className="gallery-area py-20">
             <div className="container">
               <div className="row">
                 <div className="col-lg-6 mx-auto">
@@ -1605,7 +1597,7 @@ export default function HomePage() {
 
         {/* testimonial area */}
         {testimonials.length > 0 && (
-          <div className="testimonial-area ts-bg py-80">
+          <div className="testimonial-area ts-bg py-20">
             <div className="container">
               <div className="row">
                 <div className="col-lg-6 mx-auto wow fadeInDown" data-wow-delay=".25s">

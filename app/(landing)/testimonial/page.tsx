@@ -48,7 +48,7 @@ export default async function TestimonialPage() {
 
 
             {data.testimonials.length > 0 && (
-                <div className="testimonial-area bg py-80">
+                <div className="testimonial-area bg py-20">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-6 mx-auto wow fadeInDown" data-wow-delay=".25s">

@@ -60,7 +60,7 @@ export default function OurTeamPage({ teamData }: Props) {
             </div>
 
             {/* Team Area */}
-            <div className="team-area pt-100 pb-50">
+            <div className="team-area pt-20 pb-20">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6 mx-auto">

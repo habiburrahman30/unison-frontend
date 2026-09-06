@@ -36,7 +36,7 @@ const sliderData = [
 
 export default function DealSlider() {
     return (
-        <div className="deal-area pt-50 pb-50">
+        <div className="deal-area pt-20 pb-20">
             <div className="deal-text-shape">Deal</div>
             <div className="container">
                 <div className="deal-wrap wow fadeInUp" data-wow-delay=".25s">

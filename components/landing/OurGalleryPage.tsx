@@ -52,7 +52,7 @@ export default function OurGalleryPage({ galleryItems }: Props) {
             </div>
 
             {/* Gallery Area */}
-            <div className="gallery-area py-100">
+            <div className="gallery-area py-20">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6 mx-auto">
