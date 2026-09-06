@@ -91,6 +91,14 @@ export default function HomePage() {
         </div>
       </div> */}
       {/* preloader end */}
+      {/* preloader */}
+      {/* <div className="preloader">
+        <div className="loader-ripple">
+          <div />
+          <div />
+        </div>
+      </div> */}
+      {/* preloader end */}
 
       {/* header area */}
 
