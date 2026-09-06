@@ -38,7 +38,6 @@ export default async function ProductsPage({ searchParams }: PageProps) {
 
 
 
-
     return (
         <>
             <main className="main">
