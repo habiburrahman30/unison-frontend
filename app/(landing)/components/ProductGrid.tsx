@@ -4,6 +4,7 @@ import { Product } from "@/types/product";
 import { ProductWithRelations } from "@/lib/api/products";
 import Link from "next/link";
 import EmptyProductsCard from "@/components/EmptyProductsCard";
+import { getSafeImageSrc } from "@/lib/imageUrl";
 interface Props {
     products: ProductWithRelations[];
 }
@@ -24,11 +25,10 @@ export default function ProductGrid({ products }: Props) {
 
                                 <Link href={`/products/${product.slug}`}>
                                     <img
-                                        src={
-                                            product.images?.length
-                                                ? product.images[0]
-                                                : "/assets/img/no-image-found.jpg"
-                                        }
+                                        src={getSafeImageSrc(
+                                            product.images?.[0],
+                                            "/assets/img/no-image-found.jpg"
+                                        )}
                                         alt={product.name}
                                     />
                                 </Link>

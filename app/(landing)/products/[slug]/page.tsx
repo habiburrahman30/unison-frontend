@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/lib/api/products";
 import Image from "next/image";
 import Link from "next/link";
+import { getSafeImageSrc } from "@/lib/imageUrl";
 
 interface PageProps {
     params: Promise<{
@@ -77,10 +78,13 @@ export default async function ProductPage({ params }: PageProps) {
 
                                                 <li
                                                     key={index}
-                                                    data-thumb={img}
+                                                    data-thumb={getSafeImageSrc(img, "/assets/img/no-image-found.jpg")}
                                                     rel="adjustX:10, adjustY:"
                                                 >
-                                                    <img src={img} alt={product.name} />
+                                                    <img
+                                                        src={getSafeImageSrc(img, "/assets/img/no-image-found.jpg")}
+                                                        alt={product.name}
+                                                    />
                                                 </li>
                                             ))}
 

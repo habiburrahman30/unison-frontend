@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import { getSafeImageSrc } from "@/lib/imageUrl";
 
 interface Props {
     products: ProductWithRelations[];
@@ -133,7 +134,7 @@ export default function ProductsTable({ products, pagination }: Props) {
                                 </td>
                                 <td className="px-5 py-3">
                                     <Image
-                                        src={data.images[0] || "/assets/img/no-image-found.jpg"}
+                                        src={getSafeImageSrc(data.images[0], "/assets/img/no-image-found.jpg")}
                                         alt={data.name}
                                         width={56}
                                         height={56}
