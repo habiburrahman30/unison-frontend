@@ -87,6 +87,12 @@ export default function AdminLayout({
             ],
         },
         {
+            title: "Proposals & Sales",
+            items: [
+                { label: "Price Proposals", href: "/admin/proposals", icon: "fa-file-invoice" },
+            ],
+        },
+        {
             title: "Content",
             items: [
                 { label: "News Categories", href: "/admin/news-categories", icon: "fa-folder" },
