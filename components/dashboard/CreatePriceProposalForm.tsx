@@ -35,10 +35,12 @@ interface VariantRow {
 interface LineItemState {
     id: string;
     name: string;
+    model: string;
     brand: string;
     manufacturer: string;
     origin: string;
     specNote: string;
+    warrantyType: string;
     autoFilled: boolean;
     specsOpen: boolean;
     variants: VariantRow[];
@@ -49,6 +51,8 @@ interface LineItemState {
 }
 
 const UNIT_OPTIONS = ["Set", "Nos", "Pcs", "Meter", "Job", "Unit"];
+
+const WARRANTY_TYPE_OPTIONS = ["Warranty", "Guarantee"];
 
 const DELIVERY_TERMS = [
     { value: "Free Delivery", label: "Free Delivery (Standard)" },
@@ -74,10 +78,12 @@ const emptyVariant = (): VariantRow => ({
 const emptyLineItem = (): LineItemState => ({
     id: nextId(),
     name: "",
+    model: "",
     brand: "",
     manufacturer: "",
     origin: "",
     specNote: "",
+    warrantyType: WARRANTY_TYPE_OPTIONS[0],
     autoFilled: false,
     specsOpen: true,
     variants: [emptyVariant()],
@@ -87,9 +93,32 @@ const emptyLineItem = (): LineItemState => ({
     showResults: false,
 });
 
-const formatBDT = (n: number) => {
+const CURRENCY_OPTIONS = [
+    { value: "BDT", label: "BDT (Bangladeshi Taka)", name: "Bangladeshi Taka", symbol: "৳" },
+    { value: "USD", label: "USD (US Dollar)", name: "US Dollar", symbol: "$" },
+];
+
+const currencySymbol = (currency: string) => CURRENCY_OPTIONS.find((c) => c.value === currency)?.symbol || "";
+const currencyName = (currency: string) => CURRENCY_OPTIONS.find((c) => c.value === currency)?.name || currency;
+
+// Bangladeshi digit grouping (e.g. 3800000 -> "38,00,000.00")
+const formatIndianGrouping = (n: number) => {
     const safe = Number.isFinite(n) ? n : 0;
-    return `৳ ${safe.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    const [intPart, decPart] = Math.abs(safe).toFixed(2).split(".");
+    let lastThree = intPart.slice(-3);
+    const rest = intPart.slice(0, -3);
+    if (rest) lastThree = `,${lastThree}`;
+    const grouped = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+    return `${safe < 0 ? "-" : ""}${grouped}${lastThree}.${decPart}`;
+};
+
+// Plain amount (no currency symbol) formatted per the document's numbering convention
+const formatDocNumber = (n: number, currency: string) =>
+    currency === "BDT" ? formatIndianGrouping(n) : (Number.isFinite(n) ? n : 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const formatMoney = (n: number, currency: string = "BDT") => {
+    const safe = Number.isFinite(n) ? n : 0;
+    return `${currencySymbol(currency)} ${safe.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 };
 
 const ONES = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
@@ -133,6 +162,30 @@ const numberToWordsBDT = (amount: number): string => {
     return `${parts.join(" ")} Taka Only.`;
 };
 
+// International numbering system: Billion / Million / Thousand
+const numberToWordsUSD = (amount: number): string => {
+    let n = Math.round(amount);
+    if (n <= 0) return "Zero US Dollars Only.";
+
+    const billion = Math.floor(n / 1e9);
+    n %= 1e9;
+    const million = Math.floor(n / 1e6);
+    n %= 1e6;
+    const thousand = Math.floor(n / 1e3);
+    n %= 1e3;
+    const rest = n;
+
+    const parts: string[] = [];
+    if (billion) parts.push(`${threeDigitsWords(billion)} Billion`);
+    if (million) parts.push(`${threeDigitsWords(million)} Million`);
+    if (thousand) parts.push(`${threeDigitsWords(thousand)} Thousand`);
+    if (rest) parts.push(threeDigitsWords(rest));
+
+    return `${parts.join(" ")} US Dollars Only.`;
+};
+
+const numberToWords = (amount: number, currency: string): string => (currency === "USD" ? numberToWordsUSD(amount) : numberToWordsBDT(amount));
+
 const escapeHtml = (str: string) =>
     String(str ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
 
@@ -154,15 +207,13 @@ export default function CreatePriceProposalForm() {
 
     const [subject, setSubject] = useState("");
     const [deliveryTerms, setDeliveryTerms] = useState("Free Delivery");
+    const [currency, setCurrency] = useState(CURRENCY_OPTIONS[0].value);
     const [validity, setValidity] = useState(VALIDITY_OPTIONS[0]);
-    const [warranty, setWarranty] = useState("12 Months Free Comprehensive");
 
     const [introText, setIntroText] = useState(
-        "Thank you for your interest in the products we deal in. UNISON BIZ LIMITED is pleased to submit this proposal covering the scope of supply you requested. We have extensive experience working with government and private institutions in Bangladesh, ensuring reliability, quality, and responsive after-sales service."
+        "Thank you for your interest in products we deal in.\n\nUNISON BIZ LIMITED is pleased to submit this proposal to you covers the supply for the project you asked for.\n\nUNISON BIZ LIMITED has good experience to work with Government and private institute in Bangladesh for medical equipment and all are working with full satisfaction to our customers. Reliability, experience, and responsive service are important considerations when evaluating suppliers of medical services. The proposed equipment meets standard for quality, durability, and reliability along with service availability. This offer meets international recognized performance, technical, commercial, and field support requirements."
     );
-    const [closingNote, setClosingNote] = useState(
-        "We look forward to your favorable response. If you have any query on any point, please let us know so we can clarify further."
-    );
+    const [closingNote, setClosingNote] = useState("Thanking you and best regards.");
 
     const [items, setItems] = useState<LineItemState[]>([emptyLineItem()]);
 
@@ -178,6 +229,7 @@ export default function CreatePriceProposalForm() {
     const [signatoryId, setSignatoryId] = useState<number | null>(null);
     const [loadingTeams, setLoadingTeams] = useState(true);
     const [isGenerating, setIsGenerating] = useState(false);
+    const [showGenerateMenu, setShowGenerateMenu] = useState(false);
 
     const searchTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
@@ -289,7 +341,7 @@ export default function CreatePriceProposalForm() {
     const subtotal = itemsSubtotal + installationTotal;
     const taxAmount = subtotal * ((Number(tdsVds) || 0) / 100);
     const grandTotal = subtotal + taxAmount;
-    const amountInWords = useMemo(() => numberToWordsBDT(grandTotal), [grandTotal]);
+    const amountInWords = useMemo(() => numberToWords(grandTotal, currency), [grandTotal, currency]);
 
     const selectedSignatory = teams.find((t) => t.id === signatoryId) || null;
 
@@ -311,16 +363,18 @@ export default function CreatePriceProposalForm() {
         recipientAddress,
         subject,
         deliveryTerms,
+        currency,
         validity,
-        warranty,
         introText,
         closingNote,
         items: items.map((it) => ({
             name: it.name,
+            model: it.model,
             brand: it.brand,
             manufacturer: it.manufacturer,
             origin: it.origin,
             specNote: it.specNote,
+            warrantyType: it.warrantyType,
             variants: it.variants,
         })),
         installation: {
@@ -349,23 +403,42 @@ export default function CreatePriceProposalForm() {
         }
     };
 
-    const buildPrintableHtml = () => {
+    const buildProposalBodyHtml = () => {
+        const origins = Array.from(new Set(items.map((it) => it.origin.trim()).filter(Boolean)));
+        const originLabel = origins.length ? `, Origin: ${origins.join(" & ")}` : "";
+        const addressLines = recipientAddress
+            .split("\n")
+            .map((l) => l.trim())
+            .filter(Boolean);
+
         const rows: string[] = [];
         let sn = 0;
 
         items.forEach((it) => {
-            it.variants.forEach((v) => {
-                if (!v.description.trim() && !(Number(v.unitPrice) > 0)) return;
+            const validVariants = it.variants.filter((v) => v.description.trim() || (Number(v.unitPrice) || 0) > 0);
+            validVariants.forEach((v, vi) => {
                 sn += 1;
-                const label = it.name && it.name !== v.description ? `${it.name} — ${v.description}` : v.description || it.name;
+                const descParts: string[] = [];
+                if (vi === 0) {
+                    descParts.push(`<b>Product Name:</b> ${escapeHtml(it.name || v.description)}`);
+                    if (it.model.trim()) descParts.push(`<b>Model:</b> ${escapeHtml(it.model)}`);
+                    if (it.brand.trim()) descParts.push(`<b>Brand:</b> ${escapeHtml(it.brand)}`);
+                    if (it.manufacturer.trim()) descParts.push(`<b>Manufacturer:</b> ${escapeHtml(it.manufacturer)}`);
+                    if (it.origin.trim()) descParts.push(`<b>Origin:</b> ${escapeHtml(it.origin)}`);
+                    descParts.push(`<b>${escapeHtml(it.warrantyType)}:</b> As per Terms &amp; Condition`);
+                    if (it.specNote.trim()) descParts.push(escapeHtml(it.specNote).replace(/\n/g, "<br/>"));
+                    if (validVariants.length > 1) descParts.push(`<b>Variant:</b> ${escapeHtml(v.description)}`);
+                } else {
+                    descParts.push(escapeHtml(v.description || it.name));
+                }
                 rows.push(`
                     <tr>
-                        <td class="c">${sn}</td>
-                        <td>${escapeHtml(label)}</td>
+                        <td class="c">${String(sn).padStart(2, "0")}</td>
+                        <td>${descParts.join("<br/>")}</td>
                         <td class="c">${escapeHtml(v.unit)}</td>
                         <td class="c">${Number(v.qty) || 0}</td>
-                        <td class="r">${formatBDT(Number(v.unitPrice) || 0)}</td>
-                        <td class="r">${formatBDT((Number(v.qty) || 0) * (Number(v.unitPrice) || 0))}</td>
+                        <td class="r">${formatDocNumber(Number(v.unitPrice) || 0, currency)}</td>
+                        <td class="r"><b>${formatDocNumber((Number(v.qty) || 0) * (Number(v.unitPrice) || 0), currency)}</b></td>
                     </tr>`);
             });
         });
@@ -374,89 +447,173 @@ export default function CreatePriceProposalForm() {
             sn += 1;
             rows.push(`
                 <tr>
-                    <td class="c">${sn}</td>
-                    <td>Installation &amp; Commissioning Charge${installDesc ? `<br/><span class="muted">${escapeHtml(installDesc)}</span>` : ""}</td>
+                    <td class="c">${String(sn).padStart(2, "0")}</td>
+                    <td><b>Installation &amp; Commissioning Charge</b>${installDesc ? `<br/>${escapeHtml(installDesc)}` : ""}</td>
                     <td class="c">${escapeHtml(installUnit)}</td>
                     <td class="c">${Number(installQty) || 0}</td>
-                    <td class="r">${formatBDT(Number(installPrice) || 0)}</td>
-                    <td class="r">${formatBDT(installationTotal)}</td>
+                    <td class="r">${formatDocNumber(Number(installPrice) || 0, currency)}</td>
+                    <td class="r"><b>${formatDocNumber(installationTotal, currency)}</b></td>
                 </tr>`);
         }
 
+        return `
+    <p>Date: ${escapeHtml(offerDate)}</p>
+    <p>&nbsp;</p>
+    <p><b>To</b></p>
+    ${recipientAttention ? `<p><b>${escapeHtml(recipientAttention)}</b></p>` : ""}
+    <p><b>${escapeHtml(recipientCompany)}</b></p>
+    ${addressLines.map((l) => `<p><b>${escapeHtml(l)}</b></p>`).join("\n    ")}
+    <p>&nbsp;</p>
+    <table class="subject-table">
+        <tr><td class="label">Subject:</td><td><b>${escapeHtml(subject)}</b></td></tr>
+        <tr><td class="label">Our Offer No :</td><td>${escapeHtml(proposalRef)}</td></tr>
+    </table>
+    <p>&nbsp;</p>
+    <p>Dear Sir,</p>
+    <p>&nbsp;</p>
+    ${introText
+        .split(/\n{2,}/)
+        .map((para) => `<p>${escapeHtml(para).replace(/\n/g, "<br/>")}</p>\n    <p>&nbsp;</p>`)
+        .join("\n    ")}
+    <p>We made this offer on <b>${escapeHtml(deliveryTerms)}</b> basis. Machine will be supplied in brand new condition and installation will be done as in offer instruction. If you have any query on any point, let us know to clarify further. We look forward for your favorable response.</p>
+    <p>&nbsp;</p>
+    <p>${escapeHtml(closingNote)}</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p><b>${escapeHtml(selectedSignatory?.name || "")}</b></p>
+    <p><b>${escapeHtml(selectedSignatory?.position || "")}</b></p>
+    <p><b>Unison Biz Ltd.</b></p>
+    <p><b>Mob: ${escapeHtml(selectedSignatory?.phone || selectedSignatory?.email || "")}</b></p>
+
+    <div class="page-break"></div>
+    <h2 class="doc-title">Price Proposal for ${escapeHtml(subject) || "Equipment"}${escapeHtml(originLabel)}:</h2>
+    <table class="items">
+        <thead>
+            <tr>
+                <th style="width:6%">S/N</th>
+                <th>PRODUCT DESCRIPTION</th>
+                <th style="width:8%">Unit</th>
+                <th style="width:8%">QTY</th>
+                <th style="width:15%">Unit Price<br/>In ${escapeHtml(currency)}.</th>
+                <th style="width:15%">Total Price<br/>In ${escapeHtml(currency)}.</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${rows.join("") || `<tr><td colspan="6" class="c muted">No items added</td></tr>`}
+        </tbody>
+    </table>
+    <table class="totals-table">
+        <tr><td>Total Price excluding Vat &amp; Tax ${escapeHtml(currency)}:</td><td class="r">${formatDocNumber(subtotal, currency)}</td></tr>
+        <tr><td>TDS &amp; VDS (${Number(tdsVds) || 0}%)</td><td class="r">${formatDocNumber(taxAmount, currency)}</td></tr>
+        <tr class="grand"><td><b>Grand Total ${escapeHtml(currency)}</b></td><td class="r"><b>${formatDocNumber(grandTotal, currency)}</b></td></tr>
+    </table>
+    <p class="words"><b>Total ${currency === "USD" ? "Amount" : "Taka"}: ${escapeHtml(amountInWords)}</b></p>
+    <p>&nbsp;</p>
+
+    <h3>Terms and Condition:</h3>
+    <ol class="terms">
+        <li><b>PAYMENT TERMS:</b>
+            <ol type="i">
+                <li>Offered Price based on &ldquo;${escapeHtml(deliveryTerms)}&rdquo; basis.</li>
+                <li>100% payment to be made to UNISON BIZ LIMITED.</li>
+                <li>100% Payment to be made to M/S Unison Biz Limited. 70% payment as advance with the confirmed work order, 20% payment will be made when goods arrive at CTG Port &amp; rest 10% after successful installation within 30 days.</li>
+                <li>Price includes all import taxes, duties etc. up to installation site and all bank charges (foreign and local). Price are Excluded from VAT and AIT at source.</li>
+            </ol>
+        </li>
+        <li><b>VALIDITY:</b> This offer is valid up to ${escapeHtml(validity)} from the date hereon.</li>
+        <li><b>DELIVERY:</b> Delivery will be made within 8-10 weeks day from the date of your acceptable work order and subject to making payments complying/fulfilling our payment terms mentioned in this offer and agreed there upon. Delivery notification will be served 1-3 days before the date of delivery. Unless otherwise mentioned in this offer, delivery notification will be effective and delivery will take place subject to completion total payment.</li>
+        <li><b>WARRANTEE:</b> All the customers of Unison Biz Limited enjoy full international warranty as specified against each item from the date of installation. Warranty does not cover accessories, consumables and items with specific life time like batteries.</li>
+        <li><b>INSTALLATION &amp; COMMISSIONING:</b> Proper Installation &amp; Commissioning is the prerequisite for possible warranty claim and our principal approves our service team and for which our charge is mentioned in price offer. You are however have to provide a suitable place for the store and space for the accommodation of our project technicians for installation &amp; commissioning as per our engineer&rsquo;s recommendations. Any kind of civil and electrical work should be done by Customer like Plant room, Electrical SDB board e.t.c. Any kind of electrical support should be provided by customer to do the installation work.</li>
+        <li><b>SPARES &amp; SERVICE BACK UP:</b> By being in the vicinity of customers, we do extend our service facilities to all of our clients for which we are equipped with all the service potentialities including all the specialized tools, service van, skilled and experienced service team headed by graduate engineers trained by our principal. We keep most of the fast moving spare at stock and maintenance tools at our fingertip. For slow moving spares from manufacturer, we use fastest possible means of transport to support our customers.</li>
+        <li><b>RISK FACTORS:</b> During the installation time we may face some problem/risk like ROBBERY. Customer should provide all kind of Project security to secure the project and any kind of losses for the Risk factors should compensate by the Customer. Factors: Robbery. Product loss due to site condition. Any kind of losses due to civil construction work. Excess of work quantity. Any kind of Excess work&rsquo;s price should be adjusting from the unit price of the offer.</li>
+        <li><b>IMMEDIATE CONTACT / HOTLINE</b><br/>${escapeHtml(selectedSignatory?.name || "")}, ${escapeHtml(selectedSignatory?.position || "")}, Unison Biz Limited, Mobile: ${escapeHtml(selectedSignatory?.phone || "")}${selectedSignatory?.email ? `, Email: ${escapeHtml(selectedSignatory.email)}.` : "."}</li>
+    </ol>
+`;
+    };
+
+    const DOC_STYLE = `
+    * { box-sizing: border-box; }
+    body { font-family: 'Century Gothic', Calibri, Arial, sans-serif; color: #1a1a1a; font-size: 12pt; line-height: 1.5; }
+    p { margin: 0 0 4px; }
+    h2.doc-title { text-align: center; text-decoration: underline; font-size: 14pt; margin: 24px 0 14px; }
+    h3 { font-size: 12.5pt; margin: 18px 0 8px; }
+    table.subject-table { border-collapse: collapse; margin: 6px 0; }
+    table.subject-table td { border: none; padding: 2px 10px 2px 0; vertical-align: top; }
+    table.subject-table td.label { font-weight: bold; white-space: nowrap; }
+    table.items { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 10pt; }
+    table.items th, table.items td { border: 1px solid #000; padding: 6px 8px; vertical-align: top; }
+    table.items th { text-align: center; font-size: 10pt; }
+    table.items td.c { text-align: center; }
+    table.items td.r { text-align: right; }
+    table.totals-table { width: 340px; margin-left: auto; margin-top: 10px; border-collapse: collapse; font-size: 11pt; }
+    table.totals-table td { padding: 3px 0; }
+    table.totals-table td.r { text-align: right; }
+    table.totals-table tr.grand td { border-top: 1.5px solid #000; padding-top: 6px; }
+    p.words { margin-top: 10px; }
+    ol.terms { padding-left: 20px; }
+    ol.terms > li { margin-bottom: 10px; }
+    .muted { color: #666; }
+    .page-break { page-break-before: always; }
+`;
+
+    const buildPrintableHtml = () => {
+        const body = buildProposalBodyHtml();
         return `<!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
 <title>${escapeHtml(proposalRef)} - Price Proposal</title>
 <style>
-    * { box-sizing: border-box; }
-    body { font-family: Arial, Helvetica, sans-serif; color: #1e293b; padding: 32px 40px; font-size: 13px; line-height: 1.55; }
-    h1 { font-size: 18px; margin: 0 0 4px; color: #0f172a; }
-    .brand { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #028b82; text-transform: uppercase; }
-    .meta { display: flex; justify-content: space-between; margin: 18px 0; font-size: 12px; }
-    .meta div { line-height: 1.7; }
-    .subject { font-weight: 700; margin: 14px 0; }
-    table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 12px; }
-    th, td { border: 1px solid #cbd5e1; padding: 6px 8px; vertical-align: top; }
-    th { background: #f1f5f9; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-    td.c { text-align: center; }
-    td.r { text-align: right; font-variant-numeric: tabular-nums; }
-    .muted { color: #64748b; font-size: 11px; }
-    .totals { width: 320px; margin-left: auto; margin-top: 10px; font-size: 12px; }
-    .totals div { display: flex; justify-content: space-between; padding: 4px 0; }
-    .totals .grand { font-weight: 700; font-size: 14px; border-top: 2px solid #0f172a; margin-top: 4px; padding-top: 8px; color: #028b82; }
-    .words { margin-top: 14px; padding: 10px 12px; background: #f0faf9; border: 1px solid #a7d8d3; border-radius: 6px; font-weight: 700; }
-    .closing { margin-top: 16px; }
-    .sign { margin-top: 40px; }
-    .sign .name { font-weight: 700; }
+${DOC_STYLE}
+    body { padding: 32px 44px; }
     .print-bar { text-align: right; margin-bottom: 16px; }
     .print-bar button { background: #03a297; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-size: 12px; cursor: pointer; }
-    @media print { .print-bar { display: none; } }
+    @media print { .print-bar { display: none; } .page-break { page-break-before: always; } }
 </style>
 </head>
 <body>
     <div class="print-bar"><button onclick="window.print()">Print / Save as PDF</button></div>
-    <div class="brand">Unison Biz Limited</div>
-    <h1>${escapeHtml(subject) || "Price Proposal"}</h1>
-    <div class="meta">
-        <div>
-            <strong>To:</strong><br/>
-            ${escapeHtml(recipientCompany)}<br/>
-            ${recipientAttention ? `${escapeHtml(recipientAttention)}<br/>` : ""}
-            ${recipientAddress ? escapeHtml(recipientAddress).replace(/\n/g, "<br/>") : ""}
-        </div>
-        <div>
-            <strong>Offer Date:</strong> ${escapeHtml(offerDate)}<br/>
-            <strong>Reference No.:</strong> ${escapeHtml(proposalRef)}<br/>
-            <strong>Delivery Terms:</strong> ${escapeHtml(deliveryTerms)}<br/>
-            <strong>Validity:</strong> ${escapeHtml(validity)}<br/>
-            <strong>Warranty:</strong> ${escapeHtml(warranty)}
-        </div>
-    </div>
-    <p>${escapeHtml(introText).replace(/\n/g, "<br/>")}</p>
-    <table>
-        <thead>
-            <tr><th style="width:32px">SN</th><th>Description</th><th style="width:70px">Unit</th><th style="width:60px">Qty</th><th style="width:110px">Unit Price (BDT)</th><th style="width:120px">Total (BDT)</th></tr>
-        </thead>
-        <tbody>
-            ${rows.join("") || `<tr><td colspan="6" class="c muted">No items added</td></tr>`}
-        </tbody>
-    </table>
-    <div class="totals">
-        <div><span>Subtotal (excl. VAT &amp; Tax)</span><span>${formatBDT(subtotal)}</span></div>
-        <div><span>TDS &amp; VDS (${Number(tdsVds) || 0}%)</span><span>${formatBDT(taxAmount)}</span></div>
-        <div class="grand"><span>Grand Total</span><span>${formatBDT(grandTotal)}</span></div>
-    </div>
-    <div class="words">Amount in Words: ${escapeHtml(amountInWords)}</div>
-    <p class="closing">${escapeHtml(closingNote).replace(/\n/g, "<br/>")}</p>
-    <div class="sign">
-        Sincerely,<br/><br/><br/>
-        <div class="name">${escapeHtml(selectedSignatory?.name || "")}</div>
-        <div class="muted">${escapeHtml(selectedSignatory?.position || "")}, Unison Biz Ltd.</div>
-        <div class="muted">${escapeHtml(selectedSignatory?.phone || selectedSignatory?.email || "")}</div>
-    </div>
+    ${body}
 </body>
 </html>`;
+    };
+
+    const buildWordHtml = () => {
+        const body = buildProposalBodyHtml();
+        return `<!doctype html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="utf-8" />
+<title>${escapeHtml(proposalRef)} - Price Proposal</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+${DOC_STYLE}
+</style>
+</head>
+<body>
+${body}
+</body>
+</html>`;
+    };
+
+    const downloadBlob = (content: string, filename: string, mime: string) => {
+        const blob = new Blob([content], { type: mime });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
     };
 
     const openPrintWindow = () => {
@@ -481,18 +638,43 @@ export default function CreatePriceProposalForm() {
         openPrintWindow();
     };
 
-    const handleGenerate = () => {
+    const handleDownloadPdf = () => {
         const err = validateForGenerate();
         if (err) {
             toast.error(err);
             return;
         }
         setIsGenerating(true);
+        setShowGenerateMenu(false);
         setTimeout(() => {
             setIsGenerating(false);
-            toast.success("Proposal generated — opening print preview");
-            openPrintWindow();
-        }, 400);
+            const html = buildPrintableHtml().replace(
+                "</body>",
+                `<script>window.onload = function () { window.print(); };</script></body>`
+            );
+            const win = window.open("", "_blank", "width=880,height=1000");
+            if (!win) {
+                toast.error("Please allow pop-ups to download the PDF");
+                return;
+            }
+            win.document.open();
+            win.document.write(html);
+            win.document.close();
+            win.focus();
+            toast.success("Choose “Save as PDF” in the print dialog to download");
+        }, 300);
+    };
+
+    const handleDownloadDoc = () => {
+        const err = validateForGenerate();
+        if (err) {
+            toast.error(err);
+            return;
+        }
+        setShowGenerateMenu(false);
+        const html = buildWordHtml();
+        downloadBlob(html, `${proposalRef || "price-proposal"}.doc`, "application/msword");
+        toast.success("DOC file downloaded");
     };
 
     return (
@@ -622,11 +804,17 @@ export default function CreatePriceProposalForm() {
                                 </div>
                                 <div>
                                     <label className="mb-1 block text-xs font-medium text-slate-700">Currency</label>
-                                    <input
-                                        readOnly
-                                        value="BDT (Bangladeshi Taka)"
-                                        className="w-full select-none rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600"
-                                    />
+                                    <select
+                                        value={currency}
+                                        onChange={(e) => setCurrency(e.target.value)}
+                                        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900 focus:border-brand focus:ring-2 focus:ring-brand"
+                                    >
+                                        {CURRENCY_OPTIONS.map((c) => (
+                                            <option key={c.value} value={c.value}>
+                                                {c.label}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                                 <div>
                                     <label className="mb-1 block text-xs font-medium text-slate-700">Offer Validity Period</label>
@@ -641,14 +829,6 @@ export default function CreatePriceProposalForm() {
                                             </option>
                                         ))}
                                     </select>
-                                </div>
-                                <div>
-                                    <label className="mb-1 block text-xs font-medium text-slate-700">Standard Warranty</label>
-                                    <input
-                                        value={warranty}
-                                        onChange={(e) => setWarranty(e.target.value)}
-                                        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-900"
-                                    />
                                 </div>
                             </div>
                         </section>
@@ -715,6 +895,7 @@ export default function CreatePriceProposalForm() {
                                         onRemoveVariant={(vId) => removeVariant(item.id, vId)}
                                         onVariantChange={(vId, patch) => updateVariant(item.id, vId, patch)}
                                         subtotal={itemSubtotal(item)}
+                                        currency={currency}
                                     />
                                 ))}
                             </div>
@@ -791,9 +972,9 @@ export default function CreatePriceProposalForm() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <label className="mb-1 block text-[11px] font-medium text-slate-600">Unit Price (BDT)</label>
+                                                <label className="mb-1 block text-[11px] font-medium text-slate-600">Unit Price ({currency})</label>
                                                 <div className="relative">
-                                                    <span className="absolute left-2.5 top-1.5 font-mono text-xs text-slate-400">৳</span>
+                                                    <span className="absolute left-2.5 top-1.5 font-mono text-xs text-slate-400">{currencySymbol(currency)}</span>
                                                     <input
                                                         type="number"
                                                         min={0}
@@ -807,7 +988,7 @@ export default function CreatePriceProposalForm() {
                                         <div className="flex items-center justify-between border-t border-slate-200 pt-3">
                                             <span className="text-xs font-bold text-slate-700">Total Charge:</span>
                                             <div className="text-right">
-                                                <span className="font-mono text-sm font-bold text-brand">{formatBDT(installationTotal)}</span>
+                                                <span className="font-mono text-sm font-bold text-brand">{formatMoney(installationTotal, currency)}</span>
                                                 <span className="block text-[9px] font-medium text-emerald-600">Auto-calculated</span>
                                             </div>
                                         </div>
@@ -828,7 +1009,7 @@ export default function CreatePriceProposalForm() {
                                             </span>
                                         </div>
                                         <ul className="list-inside list-disc space-y-1.5 text-xs leading-relaxed text-slate-600">
-                                            <li>All prices are quoted in Bangladeshi Taka (BDT) on {deliveryTerms} basis.</li>
+                                            <li>All prices are quoted in {currencyName(currency)} ({currency}) on {deliveryTerms} basis.</li>
                                             <li>Applicable Tax and VAT are calculated strictly according to National Board of Revenue (NBR) regulatory rates.</li>
                                             <li>Payment terms: 50% advance along with confirmed work order, 40% against material shipment, 10% post commissioning handover.</li>
                                         </ul>
@@ -844,7 +1025,7 @@ export default function CreatePriceProposalForm() {
                                             <span className="font-medium text-slate-600">Total Price excluding Vat &amp; Tax:</span>
                                             <span className="block text-[10px] text-slate-400">Auto-summed subtotal</span>
                                         </div>
-                                        <span className="font-mono text-sm font-bold text-slate-800">{formatBDT(subtotal)}</span>
+                                        <span className="font-mono text-sm font-bold text-slate-800">{formatMoney(subtotal, currency)}</span>
                                     </div>
                                     <div className="flex items-center justify-between py-1 text-xs">
                                         <div className="flex items-center gap-1.5">
@@ -862,7 +1043,7 @@ export default function CreatePriceProposalForm() {
                                             </div>
                                         </div>
                                         <div className="text-right">
-                                            <span className="font-mono text-xs font-medium text-slate-700">{formatBDT(taxAmount)}</span>
+                                            <span className="font-mono text-xs font-medium text-slate-700">{formatMoney(taxAmount, currency)}</span>
                                             <span className="block text-[9px] text-slate-400">Auto-calculated: {tdsVds}% of Subtotal</span>
                                         </div>
                                     </div>
@@ -874,7 +1055,7 @@ export default function CreatePriceProposalForm() {
                                             </span>
                                             <span className="text-[10px] font-semibold text-emerald-600">Grand Total Payable</span>
                                         </div>
-                                        <span className="font-mono text-xl font-extrabold tracking-tight text-emerald-600">{formatBDT(grandTotal)}</span>
+                                        <span className="font-mono text-xl font-extrabold tracking-tight text-emerald-600">{formatMoney(grandTotal, currency)}</span>
                                     </div>
                                 </div>
                             </div>
@@ -890,7 +1071,7 @@ export default function CreatePriceProposalForm() {
                                     </div>
                                 </div>
                                 <span className="inline-flex items-center self-start rounded-full border border-emerald-300 bg-white px-2.5 py-1 text-[10px] font-bold text-emerald-800 shadow-2xs sm:self-auto">
-                                    Auto-generated in words (BDT)
+                                    Auto-generated in words ({currency})
                                 </span>
                             </div>
                         </section>
@@ -983,24 +1164,48 @@ export default function CreatePriceProposalForm() {
                                 <i className="far fa-eye text-[11px]" />
                                 Preview PDF
                             </button>
-                            <button
-                                type="button"
-                                disabled={isGenerating}
-                                onClick={handleGenerate}
-                                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-brand px-5 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60 sm:flex-initial"
-                            >
-                                {isGenerating ? (
-                                    <>
-                                        <i className="far fa-spinner-third animate-spin text-[11px]" />
-                                        Generating…
-                                    </>
-                                ) : (
-                                    <>
-                                        <i className="far fa-paper-plane text-[11px]" />
-                                        Generate Proposal
-                                    </>
+                            <div className="relative flex-1 sm:flex-initial">
+                                <button
+                                    type="button"
+                                    disabled={isGenerating}
+                                    onClick={() => setShowGenerateMenu((s) => !s)}
+                                    onBlur={() => setTimeout(() => setShowGenerateMenu(false), 150)}
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
+                                >
+                                    {isGenerating ? (
+                                        <>
+                                            <i className="far fa-spinner-third animate-spin text-[11px]" />
+                                            Generating…
+                                        </>
+                                    ) : (
+                                        <>
+                                            <i className="far fa-paper-plane text-[11px]" />
+                                            Generate Doc
+                                            <i className="far fa-chevron-down text-[9px]" />
+                                        </>
+                                    )}
+                                </button>
+                                {showGenerateMenu && (
+                                    <div className="absolute bottom-full right-0 z-10 mb-2 w-48 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
+                                        <button
+                                            type="button"
+                                            onMouseDown={handleDownloadPdf}
+                                            className="flex w-full items-center gap-2 px-3 py-2.5 text-left text-xs font-medium text-slate-700 hover:bg-slate-50"
+                                        >
+                                            <i className="far fa-file-pdf text-rose-500" />
+                                            Download as PDF
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onMouseDown={handleDownloadDoc}
+                                            className="flex w-full items-center gap-2 px-3 py-2.5 text-left text-xs font-medium text-slate-700 hover:bg-slate-50"
+                                        >
+                                            <i className="far fa-file-word text-blue-500" />
+                                            Download as DOC
+                                        </button>
+                                    </div>
                                 )}
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1039,6 +1244,7 @@ function LineItemCard({
     onRemoveVariant,
     onVariantChange,
     subtotal,
+    currency,
 }: {
     index: number;
     item: LineItemState;
@@ -1052,6 +1258,7 @@ function LineItemCard({
     onRemoveVariant: (variantId: string) => void;
     onVariantChange: (variantId: string, patch: Partial<VariantRow>) => void;
     subtotal: number;
+    currency: string;
 }) {
     const hasSpecInfo = item.brand || item.manufacturer || item.origin || item.specNote;
 
@@ -1086,7 +1293,7 @@ function LineItemCard({
                                         >
                                             <span className="font-semibold text-slate-800">{p.name}</span>
                                             <span className="text-[11px] text-slate-400">
-                                                {p.brand?.name || p.manufacturer} · {formatBDT(p.price)}
+                                                {p.brand?.name || p.manufacturer} · {formatMoney(p.price)}
                                             </span>
                                         </button>
                                     ))}
@@ -1119,7 +1326,12 @@ function LineItemCard({
             {item.specsOpen && (
                 <div className="border-b border-slate-100 bg-slate-50/40 p-4">
                     <div className="space-y-2 rounded-lg border border-slate-200 bg-white p-3 text-xs">
-                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                            <LabeledMiniInput
+                                label="Model"
+                                value={item.model}
+                                onChange={(v) => onFieldChange({ model: v })}
+                            />
                             <LabeledMiniInput
                                 label="Brand"
                                 value={item.brand}
@@ -1135,6 +1347,20 @@ function LineItemCard({
                                 value={item.origin}
                                 onChange={(v) => onFieldChange({ origin: v })}
                             />
+                            <div>
+                                <span className="mb-0.5 block text-[10px] font-bold uppercase tracking-wide text-slate-400">Warranty Period</span>
+                                <select
+                                    value={item.warrantyType}
+                                    onChange={(e) => onFieldChange({ warrantyType: e.target.value })}
+                                    className="w-full rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 focus:ring-1 focus:ring-brand"
+                                >
+                                    {WARRANTY_TYPE_OPTIONS.map((w) => (
+                                        <option key={w} value={w}>
+                                            {w}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
                         <div className="pt-1">
                             <span className="mb-0.5 block font-semibold text-slate-800">Specification &amp; Compliance Notes</span>
@@ -1159,8 +1385,8 @@ function LineItemCard({
                             <th className="pb-2 font-semibold">Variant / Item Description</th>
                             <th className="w-28 pb-2 font-semibold">Unit</th>
                             <th className="w-24 pb-2 font-semibold">Qty</th>
-                            <th className="w-36 pb-2 text-right font-semibold">Unit Price (BDT)</th>
-                            <th className="w-36 pb-2 text-right font-semibold">Total Price (BDT)</th>
+                            <th className="w-36 pb-2 text-right font-semibold">Unit Price ({currency})</th>
+                            <th className="w-36 pb-2 text-right font-semibold">Total Price ({currency})</th>
                             <th className="w-12 pb-2 text-center font-semibold">Action</th>
                         </tr>
                     </thead>
@@ -1199,7 +1425,7 @@ function LineItemCard({
                                 </td>
                                 <td className="py-2.5 pr-3">
                                     <div className="relative">
-                                        <span className="absolute left-2.5 top-1.5 font-mono text-slate-400">৳</span>
+                                        <span className="absolute left-2.5 top-1.5 font-mono text-slate-400">{currencySymbol(currency)}</span>
                                         <input
                                             type="number"
                                             min={0}
@@ -1210,7 +1436,7 @@ function LineItemCard({
                                     </div>
                                 </td>
                                 <td className="py-2.5 pr-3 text-right">
-                                    <span className="font-mono text-sm font-bold text-brand">{formatBDT((Number(v.qty) || 0) * (Number(v.unitPrice) || 0))}</span>
+                                    <span className="font-mono text-sm font-bold text-brand">{formatMoney((Number(v.qty) || 0) * (Number(v.unitPrice) || 0), currency)}</span>
                                     <span className="block text-[9px] font-medium text-emerald-600">Auto-calculated</span>
                                 </td>
                                 <td className="py-2.5 text-center">
@@ -1234,7 +1460,7 @@ function LineItemCard({
                         Add Variant Size
                     </button>
                     <div className="text-xs font-medium text-slate-500">
-                        Item #{String(index + 1).padStart(2, "0")} Subtotal: <span className="font-mono font-bold text-slate-900">{formatBDT(subtotal)}</span>
+                        Item #{String(index + 1).padStart(2, "0")} Subtotal: <span className="font-mono font-bold text-slate-900">{formatMoney(subtotal, currency)}</span>
                     </div>
                 </div>
             </div>
