@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { CURRENCY_OPTIONS, currencyName, currencySymbol, formatDocNumber, formatMoney } from "@/lib/currency";
+import type { ProposalDocxInput } from "@/lib/proposal-docx";
 
 interface ProductLite {
     id: number;
@@ -92,34 +94,6 @@ const emptyLineItem = (): LineItemState => ({
     searching: false,
     showResults: false,
 });
-
-const CURRENCY_OPTIONS = [
-    { value: "BDT", label: "BDT (Bangladeshi Taka)", name: "Bangladeshi Taka", symbol: "৳" },
-    { value: "USD", label: "USD (US Dollar)", name: "US Dollar", symbol: "$" },
-];
-
-const currencySymbol = (currency: string) => CURRENCY_OPTIONS.find((c) => c.value === currency)?.symbol || "";
-const currencyName = (currency: string) => CURRENCY_OPTIONS.find((c) => c.value === currency)?.name || currency;
-
-// Bangladeshi digit grouping (e.g. 3800000 -> "38,00,000.00")
-const formatIndianGrouping = (n: number) => {
-    const safe = Number.isFinite(n) ? n : 0;
-    const [intPart, decPart] = Math.abs(safe).toFixed(2).split(".");
-    let lastThree = intPart.slice(-3);
-    const rest = intPart.slice(0, -3);
-    if (rest) lastThree = `,${lastThree}`;
-    const grouped = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
-    return `${safe < 0 ? "-" : ""}${grouped}${lastThree}.${decPart}`;
-};
-
-// Plain amount (no currency symbol) formatted per the document's numbering convention
-const formatDocNumber = (n: number, currency: string) =>
-    currency === "BDT" ? formatIndianGrouping(n) : (Number.isFinite(n) ? n : 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-const formatMoney = (n: number, currency: string = "BDT") => {
-    const safe = Number.isFinite(n) ? n : 0;
-    return `${currencySymbol(currency)} ${safe.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-};
 
 const ONES = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
 const TENS = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
@@ -579,43 +553,6 @@ ${DOC_STYLE}
 </html>`;
     };
 
-    const buildWordHtml = () => {
-        const body = buildProposalBodyHtml();
-        return `<!doctype html>
-<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
-<head>
-<meta charset="utf-8" />
-<title>${escapeHtml(proposalRef)} - Price Proposal</title>
-<!--[if gte mso 9]>
-<xml>
-<w:WordDocument>
-<w:View>Print</w:View>
-<w:Zoom>100</w:Zoom>
-</w:WordDocument>
-</xml>
-<![endif]-->
-<style>
-${DOC_STYLE}
-</style>
-</head>
-<body>
-${body}
-</body>
-</html>`;
-    };
-
-    const downloadBlob = (content: string, filename: string, mime: string) => {
-        const blob = new Blob([content], { type: mime });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-    };
-
     const openPrintWindow = () => {
         const html = buildPrintableHtml();
         const win = window.open("", "_blank", "width=880,height=1000");
@@ -672,9 +609,67 @@ ${body}
             return;
         }
         setShowGenerateMenu(false);
-        const html = buildWordHtml();
-        downloadBlob(html, `${proposalRef || "price-proposal"}.doc`, "application/msword");
-        toast.success("DOC file downloaded");
+
+        const payload: ProposalDocxInput = {
+            offerDate,
+            proposalRef,
+            recipientCompany,
+            recipientAttention,
+            recipientAddress,
+            subject,
+            deliveryTerms,
+            currency,
+            validity,
+            introText,
+            closingNote,
+            items: items.map((it) => ({
+                name: it.name,
+                model: it.model,
+                brand: it.brand,
+                manufacturer: it.manufacturer,
+                origin: it.origin,
+                specNote: it.specNote,
+                warrantyType: it.warrantyType,
+                variants: it.variants.map((v) => ({ description: v.description, unit: v.unit, qty: v.qty, unitPrice: v.unitPrice })),
+            })),
+            installation: {
+                description: installDesc,
+                unit: installUnit,
+                qty: installQty,
+                unitPrice: installPrice,
+                total: installationTotal,
+            },
+            tdsVds,
+            subtotal,
+            taxAmount,
+            grandTotal,
+            amountInWords,
+            signatory: selectedSignatory
+                ? {
+                      name: selectedSignatory.name,
+                      position: selectedSignatory.position,
+                      phone: selectedSignatory.phone,
+                      email: selectedSignatory.email,
+                  }
+                : null,
+        };
+
+        // A real <form> POST (not fetch+blob) so the browser downloads the response
+        // natively from its Content-Disposition header — client-side Blob-URL downloads
+        // can get stuck as "<file>.crdownload" under some Chrome download-protection setups.
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "/api/proposals/export-docx/";
+        form.style.display = "none";
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "payload";
+        input.value = JSON.stringify(payload);
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+        form.remove();
+        toast.success("Generating DOC file…");
     };
 
     return (
